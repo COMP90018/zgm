@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E6FF08E1F63B0DB00DFA96F /* ResLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6FF08D1F63B0DB00DFA96F /* ResLogViewController.swift */; };
+		8E6FF0901F63B14E00DFA96F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6FF08F1F63B14E00DFA96F /* SignUpViewController.swift */; };
+		8E6FF0921F63B1E300DFA96F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6FF0911F63B1E300DFA96F /* SignInViewController.swift */; };
+		8E7FF0FA1F64FF0A00B930B9 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FF0F91F64FF0A00B930B9 /* AddTaskViewController.swift */; };
 		8EDB06BB1F63A13E00F5C3EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDB06BA1F63A13E00F5C3EB /* AppDelegate.swift */; };
 		8EDB06BD1F63A13E00F5C3EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDB06BC1F63A13E00F5C3EB /* ViewController.swift */; };
 		8EDB06C01F63A13E00F5C3EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EDB06BE1F63A13E00F5C3EB /* Main.storyboard */; };
@@ -16,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E6FF08D1F63B0DB00DFA96F /* ResLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResLogViewController.swift; sourceTree = "<group>"; };
+		8E6FF08F1F63B14E00DFA96F /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		8E6FF0911F63B1E300DFA96F /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		8E7FF0F91F64FF0A00B930B9 /* AddTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		8EDB06B71F63A13E00F5C3EB /* zgq.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zgq.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EDB06BA1F63A13E00F5C3EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8EDB06BC1F63A13E00F5C3EB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -37,6 +45,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E6FF0861F63AD6C00DFA96F /* ResLog */ = {
+			isa = PBXGroup;
+			children = (
+				8E6FF08D1F63B0DB00DFA96F /* ResLogViewController.swift */,
+				8E6FF08F1F63B14E00DFA96F /* SignUpViewController.swift */,
+				8E6FF0911F63B1E300DFA96F /* SignInViewController.swift */,
+			);
+			name = ResLog;
+			sourceTree = "<group>";
+		};
 		8EDB06AE1F63A13E00F5C3EB = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +74,7 @@
 		8EDB06B91F63A13E00F5C3EB /* zgq */ = {
 			isa = PBXGroup;
 			children = (
+				8E6FF0861F63AD6C00DFA96F /* ResLog */,
 				8EDB06BA1F63A13E00F5C3EB /* AppDelegate.swift */,
 				8EDB06BC1F63A13E00F5C3EB /* ViewController.swift */,
 				8EDB06BE1F63A13E00F5C3EB /* Main.storyboard */,
@@ -63,6 +82,7 @@
 				8EDB06C61F63A13E00F5C3EB /* LaunchScreen.storyboard */,
 				8EDB06C91F63A13E00F5C3EB /* Info.plist */,
 				8EDB06C11F63A13E00F5C3EB /* zgq.xcdatamodeld */,
+				8E7FF0F91F64FF0A00B930B9 /* AddTaskViewController.swift */,
 			);
 			path = zgq;
 			sourceTree = "<group>";
@@ -140,9 +160,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E6FF08E1F63B0DB00DFA96F /* ResLogViewController.swift in Sources */,
 				8EDB06BD1F63A13E00F5C3EB /* ViewController.swift in Sources */,
+				8E6FF0921F63B1E300DFA96F /* SignInViewController.swift in Sources */,
 				8EDB06BB1F63A13E00F5C3EB /* AppDelegate.swift in Sources */,
 				8EDB06C31F63A13E00F5C3EB /* zgq.xcdatamodeld in Sources */,
+				8E6FF0901F63B14E00DFA96F /* SignUpViewController.swift in Sources */,
+				8E7FF0FA1F64FF0A00B930B9 /* AddTaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +332,7 @@
 				8EDB06CE1F63A13E00F5C3EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
