@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="8st-Q2-1ux">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="R5g-cE-ssE">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Futura.ttc">
+            <string>Futura-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Azure Mobile Apps-->
         <scene sceneID="v2j-ei-0Wt">
@@ -23,11 +29,11 @@
                                 <rect key="frame" x="0.0" y="22" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nsK-Da-6ym" id="WJg-MQ-TxZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xtB-im-W7s">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                            <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -59,7 +65,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sn7-zH-IVo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1034" y="1621"/>
+            <point key="canvasLocation" x="1190" y="2615"/>
         </scene>
         <!--Add Item-->
         <scene sceneID="RI1-O5-vZS">
@@ -104,7 +110,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MmN-xB-6h2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1767" y="1627"/>
+            <point key="canvasLocation" x="1922" y="2622"/>
         </scene>
         <!--Res Log View Controller-->
         <scene sceneID="mkZ-XA-6KD">
@@ -128,7 +134,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="eoJ-Sk-9gN">
                                 <rect key="frame" x="28.5" y="220" width="319" height="180"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AEB-SX-Ahb">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AEB-SX-Ahb">
                                         <rect key="frame" x="0.0" y="0.0" width="319" height="50"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
@@ -139,17 +145,37 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K7B-sU-3dM">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="jch-c4-Aaa">
                                         <rect key="frame" x="0.0" y="65" width="319" height="50"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OWA-ap-034">
+                                                <rect key="frame" x="0.0" y="0.0" width="127.5" height="50"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                                <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Face" image="selfie">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or/and" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Dh-lh-OWx">
+                                                <rect key="frame" x="127.5" y="0.0" width="64" height="50"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZ6-fl-E6P">
+                                                <rect key="frame" x="191.5" y="0.0" width="127.5" height="50"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                                <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Voice" image="voice">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="OWA-ap-034" firstAttribute="width" secondItem="jch-c4-Aaa" secondAttribute="width" multiplier="0.4" id="MbQ-OC-iQH"/>
+                                            <constraint firstItem="TZ6-fl-E6P" firstAttribute="width" secondItem="jch-c4-Aaa" secondAttribute="width" multiplier="0.4" id="Va7-8G-4sR"/>
+                                        </constraints>
+                                    </stackView>
                                     <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AaL-xq-C3M">
                                         <rect key="frame" x="0.0" y="130" width="319" height="50"/>
                                         <color key="backgroundColor" red="0.62040144210000003" green="0.93593049049999999" blue="0.94807928799999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -171,7 +197,7 @@
                                 <rect key="frame" x="0.0" y="634" width="375" height="28"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDj-qh-BDY">
-                                        <rect key="frame" x="0.0" y="0.0" width="218.5" height="28"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="214.5" height="28"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
                                         <state key="normal" title="Don't Have An Account?">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -181,25 +207,25 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oTk-rn-4zW">
-                                        <rect key="frame" x="218.5" y="0.0" width="156.5" height="28"/>
+                                        <rect key="frame" x="214.5" y="0.0" width="160.5" height="28"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
-                                        <state key="normal" title="Forget Password?">
+                                        <state key="normal" title="Forget Username?">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="resetPassword:" destination="R5g-cE-ssE" eventType="touchUpInside" id="mY6-1l-by8"/>
+                                            <action selector="findUsername:" destination="R5g-cE-ssE" eventType="touchUpInside" id="vRS-gz-aXI"/>
                                         </connections>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or sign in with" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTG-eD-jbq">
-                                <rect key="frame" x="0.0" y="440" width="375" height="18.5"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sign in with" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTG-eD-jbq">
+                                <rect key="frame" x="0.0" y="440" width="375" height="19.5"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" tag="1" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iiy-kD-Paa">
-                                <rect key="frame" x="80.5" y="498.5" width="45" height="45"/>
+                                <rect key="frame" x="80.5" y="499.5" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="4SK-sF-wJk"/>
                                     <constraint firstAttribute="height" constant="45" id="p2K-yA-h3o"/>
@@ -210,7 +236,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQM-v5-DY8">
-                                <rect key="frame" x="165.5" y="498.5" width="45" height="45"/>
+                                <rect key="frame" x="165.5" y="499.5" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="TYx-70-biu"/>
                                     <constraint firstAttribute="height" constant="45" id="UCW-nL-UrA"/>
@@ -221,7 +247,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gN2-4s-gQ3">
-                                <rect key="frame" x="250.5" y="498.5" width="45" height="45"/>
+                                <rect key="frame" x="250.5" y="499.5" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="A0v-vD-PaG"/>
                                     <constraint firstAttribute="width" constant="45" id="xDp-ZQ-KLf"/>
@@ -260,9 +286,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="email" destination="AEB-SX-Ahb" id="OpQ-dZ-Cxb"/>
+                        <outlet property="face" destination="OWA-ap-034" id="bdZ-nj-oHH"/>
                         <outlet property="login" destination="AaL-xq-C3M" id="7O8-IF-31k"/>
-                        <outlet property="password" destination="K7B-sU-3dM" id="zjJ-XT-S7h"/>
+                        <outlet property="username" destination="AEB-SX-Ahb" id="zjM-ky-lRs"/>
+                        <outlet property="voice" destination="TZ6-fl-E6P" id="CR5-JE-V8a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YWl-ZI-Xpj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -289,10 +316,10 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="pwB-hj-agq">
-                                <rect key="frame" x="28" y="190" width="319" height="240"/>
+                                <rect key="frame" x="28" y="230" width="319" height="180"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lwk-nG-LoV">
-                                        <rect key="frame" x="0.0" y="0.0" width="319" height="49"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="319" height="50"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -302,30 +329,39 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="527-8d-bCB">
-                                        <rect key="frame" x="0.0" y="64" width="319" height="48.5"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uud-N4-bqh">
-                                        <rect key="frame" x="0.0" y="127.5" width="319" height="49"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="8y5-Fb-ex4">
+                                        <rect key="frame" x="0.0" y="65" width="319" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hoa-ct-U1i">
+                                                <rect key="frame" x="0.0" y="0.0" width="127.5" height="50"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                                <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Face" image="selfie">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or/and" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Klu-yO-kIm">
+                                                <rect key="frame" x="127.5" y="0.0" width="64" height="50"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AiI-kF-FKe">
+                                                <rect key="frame" x="191.5" y="0.0" width="127.5" height="50"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                                <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Voice" image="voice">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="AiI-kF-FKe" firstAttribute="width" secondItem="8y5-Fb-ex4" secondAttribute="width" multiplier="0.4" id="6iF-Ir-zPr"/>
+                                            <constraint firstItem="Hoa-ct-U1i" firstAttribute="width" secondItem="8y5-Fb-ex4" secondAttribute="width" multiplier="0.4" id="TM3-7u-W0f"/>
+                                        </constraints>
+                                    </stackView>
                                     <button opaque="NO" alpha="0.94999998807907104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NNq-Np-qch">
-                                        <rect key="frame" x="0.0" y="191.5" width="319" height="48.5"/>
+                                        <rect key="frame" x="0.0" y="130" width="319" height="50"/>
                                         <color key="backgroundColor" red="0.62040144210000003" green="0.93593049049999999" blue="0.94807928799999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <state key="normal" title="Signup">
@@ -338,27 +374,27 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="de5-4W-BhX"/>
+                                    <constraint firstAttribute="height" constant="180" id="de5-4W-BhX"/>
                                 </constraints>
                             </stackView>
                             <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" translatesAutoresizingMaskIntoConstraints="NO" id="rxa-VV-MVh">
-                                <rect key="frame" x="127.5" y="40" width="120" height="120"/>
+                                <rect key="frame" x="127.5" y="60" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="1pE-aC-Y9t"/>
                                     <constraint firstAttribute="height" constant="120" id="LaP-YC-nqy"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qxf-Er-zzd">
-                                <rect key="frame" x="127" y="140.5" width="120" height="19.5"/>
+                                <rect key="frame" x="127" y="160.5" width="120" height="19.5"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWC-Nl-fkc">
-                                <rect key="frame" x="62.5" y="435" width="250" height="45"/>
+                                <rect key="frame" x="62.5" y="430" width="250" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="5La-V4-dk1"/>
-                                    <constraint firstAttribute="height" constant="45" id="mU4-Xf-egR"/>
+                                    <constraint firstAttribute="height" constant="50" id="mU4-Xf-egR"/>
                                 </constraints>
                                 <attributedString key="attributedText">
                                     <fragment content="By clicking Signup, you  agree with Taskhelper's Terms of Service and Privary Policy">
@@ -371,14 +407,14 @@
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or sign in with" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBN-6n-xhD">
-                                <rect key="frame" x="112" y="500" width="150" height="18.5"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sign in with" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBN-6n-xhD">
+                                <rect key="frame" x="112" y="510" width="150" height="19.5"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z7Z-ZK-Qlb">
-                                <rect key="frame" x="80" y="558.5" width="45" height="45"/>
+                                <rect key="frame" x="80" y="559.5" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="M0i-ne-EEB"/>
                                     <constraint firstAttribute="width" constant="45" id="kdO-py-a8l"/>
@@ -386,7 +422,7 @@
                                 <state key="normal" image="facebook"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rIe-fx-mIx">
-                                <rect key="frame" x="165" y="558.5" width="45" height="45"/>
+                                <rect key="frame" x="165" y="559.5" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Zsq-go-2Tj"/>
                                     <constraint firstAttribute="width" constant="45" id="bsR-J1-XR5"/>
@@ -394,12 +430,19 @@
                                 <state key="normal" image="twitter"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lBX-gh-gPr">
-                                <rect key="frame" x="250" y="558.5" width="45" height="45"/>
+                                <rect key="frame" x="250" y="559.5" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="44n-dC-o6X"/>
                                     <constraint firstAttribute="height" constant="45" id="agI-RR-YW4"/>
                                 </constraints>
                                 <state key="normal" image="google"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0aF-Qv-Xnh">
+                                <rect key="frame" x="16" y="35" width="20" height="22"/>
+                                <state key="normal" image="arrow"/>
+                                <connections>
+                                    <segue destination="LBC-yr-6cz" kind="unwind" unwindAction="unwindToResLogWithSegue:" id="d5P-uA-hrx"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -408,6 +451,8 @@
                             <constraint firstItem="EWC-Nl-fkc" firstAttribute="centerX" secondItem="qYA-vC-4sR" secondAttribute="centerX" id="9fw-hD-YH7"/>
                             <constraint firstItem="pwB-hj-agq" firstAttribute="centerX" secondItem="qYA-vC-4sR" secondAttribute="centerX" id="BsR-5o-oJC"/>
                             <constraint firstItem="iKB-Kb-Aft" firstAttribute="width" secondItem="qYA-vC-4sR" secondAttribute="width" id="CJq-ZM-6AE"/>
+                            <constraint firstItem="0aF-Qv-Xnh" firstAttribute="top" secondItem="qYA-vC-4sR" secondAttribute="topMargin" constant="15" id="H3M-I4-gBC"/>
+                            <constraint firstItem="0aF-Qv-Xnh" firstAttribute="leading" secondItem="qYA-vC-4sR" secondAttribute="leadingMargin" id="HQg-xr-fSv"/>
                             <constraint firstItem="iKB-Kb-Aft" firstAttribute="centerY" secondItem="qYA-vC-4sR" secondAttribute="centerY" id="HZQ-WS-r4B"/>
                             <constraint firstItem="Qxf-Er-zzd" firstAttribute="centerX" secondItem="rxa-VV-MVh" secondAttribute="centerX" id="K4y-KU-kIL"/>
                             <constraint firstItem="cNL-h9-U9c" firstAttribute="centerX" secondItem="qYA-vC-4sR" secondAttribute="centerX" id="RkT-9e-h2W"/>
@@ -418,32 +463,33 @@
                             <constraint firstItem="rIe-fx-mIx" firstAttribute="leading" secondItem="Z7Z-ZK-Qlb" secondAttribute="trailing" constant="40" id="WaC-J0-DQH"/>
                             <constraint firstItem="Qxf-Er-zzd" firstAttribute="bottom" secondItem="rxa-VV-MVh" secondAttribute="bottom" id="Xan-Bb-mwg"/>
                             <constraint firstItem="iKB-Kb-Aft" firstAttribute="centerX" secondItem="qYA-vC-4sR" secondAttribute="centerX" id="Zar-8k-rPr"/>
-                            <constraint firstItem="pwB-hj-agq" firstAttribute="top" secondItem="rxa-VV-MVh" secondAttribute="bottom" constant="30" id="bpK-MH-cv9"/>
+                            <constraint firstItem="pwB-hj-agq" firstAttribute="top" secondItem="rxa-VV-MVh" secondAttribute="bottom" constant="50" id="bpK-MH-cv9"/>
                             <constraint firstItem="Z7Z-ZK-Qlb" firstAttribute="baseline" secondItem="rIe-fx-mIx" secondAttribute="baseline" id="iGT-ze-AsN"/>
                             <constraint firstItem="cNL-h9-U9c" firstAttribute="centerY" secondItem="qYA-vC-4sR" secondAttribute="centerY" id="nfr-97-Pbx"/>
-                            <constraint firstItem="MBN-6n-xhD" firstAttribute="top" secondItem="EWC-Nl-fkc" secondAttribute="bottom" constant="20" id="o8P-jG-F4r"/>
+                            <constraint firstItem="MBN-6n-xhD" firstAttribute="top" secondItem="EWC-Nl-fkc" secondAttribute="bottom" constant="30" id="o8P-jG-F4r"/>
                             <constraint firstItem="pwB-hj-agq" firstAttribute="width" secondItem="qYA-vC-4sR" secondAttribute="width" multiplier="0.85" id="oRt-NH-WyE"/>
                             <constraint firstItem="Qxf-Er-zzd" firstAttribute="width" secondItem="rxa-VV-MVh" secondAttribute="width" id="qVS-Ss-p9u"/>
                             <constraint firstItem="iKB-Kb-Aft" firstAttribute="height" secondItem="qYA-vC-4sR" secondAttribute="height" id="qfu-vS-Ccf"/>
                             <constraint firstItem="rIe-fx-mIx" firstAttribute="centerX" secondItem="qYA-vC-4sR" secondAttribute="centerX" id="rZO-Hk-Dec"/>
                             <constraint firstItem="MBN-6n-xhD" firstAttribute="width" secondItem="qYA-vC-4sR" secondAttribute="width" multiplier="0.4" id="uPK-jO-Efb"/>
-                            <constraint firstItem="rIe-fx-mIx" firstAttribute="top" secondItem="MBN-6n-xhD" secondAttribute="bottom" constant="40" id="vZQ-9z-ufB"/>
+                            <constraint firstItem="rIe-fx-mIx" firstAttribute="top" secondItem="MBN-6n-xhD" secondAttribute="bottom" constant="30" id="vZQ-9z-ufB"/>
                             <constraint firstItem="lBX-gh-gPr" firstAttribute="leading" secondItem="rIe-fx-mIx" secondAttribute="trailing" constant="40" id="wZK-5b-vt1"/>
-                            <constraint firstItem="rxa-VV-MVh" firstAttribute="top" secondItem="1y9-47-bK5" secondAttribute="bottom" constant="20" id="yRG-GX-KRJ"/>
-                            <constraint firstItem="EWC-Nl-fkc" firstAttribute="top" secondItem="pwB-hj-agq" secondAttribute="bottom" constant="5" id="zbP-2g-pHv"/>
+                            <constraint firstItem="rxa-VV-MVh" firstAttribute="top" secondItem="1y9-47-bK5" secondAttribute="bottom" constant="40" id="yRG-GX-KRJ"/>
+                            <constraint firstItem="EWC-Nl-fkc" firstAttribute="top" secondItem="pwB-hj-agq" secondAttribute="bottom" constant="20" id="zbP-2g-pHv"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="email" destination="527-8d-bCB" id="AAn-ig-75i"/>
-                        <outlet property="password" destination="Uud-N4-bqh" id="Nqi-Ov-QNT"/>
+                        <outlet property="face" destination="Hoa-ct-U1i" id="8oM-xd-FUL"/>
                         <outlet property="profilio" destination="rxa-VV-MVh" id="NXH-qa-SNN"/>
                         <outlet property="signup" destination="NNq-Np-qch" id="AN8-1a-ORj"/>
                         <outlet property="termsText" destination="EWC-Nl-fkc" id="Rq7-0u-WXM"/>
                         <outlet property="username" destination="Lwk-nG-LoV" id="eyn-lZ-Bgd"/>
+                        <outlet property="voice" destination="AiI-kF-FKe" id="qJj-zK-Foa"/>
                         <segue destination="ka6-nZ-0Tm" kind="presentation" identifier="showDetailTerms" modalPresentationStyle="pageSheet" id="w5e-te-EvU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OqM-Ad-ap1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="LBC-yr-6cz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="240.80000000000001" y="939.58020989505258"/>
         </scene>
@@ -466,46 +512,7 @@
                                     <fragment content="Terms of Service">
                                         <attributes>
                                             <font key="NSFont" size="14" name="Helvetica"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                <tabStops>
-                                                    <textTab alignment="left" location="28">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="56">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="84">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="112">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="140">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="168">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="196">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="224">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="252">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="280">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="308">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="336">
-                                                        <options/>
-                                                    </textTab>
-                                                </tabStops>
-                                            </paragraphStyle>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                         </attributes>
                                     </fragment>
                                     <fragment>
@@ -514,46 +521,7 @@ Cg
 </string>
                                         <attributes>
                                             <font key="NSFont" size="10" name="Helvetica"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                <tabStops>
-                                                    <textTab alignment="left" location="28">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="56">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="84">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="112">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="140">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="168">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="196">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="224">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="252">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="280">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="308">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="336">
-                                                        <options/>
-                                                    </textTab>
-                                                </tabStops>
-                                            </paragraphStyle>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                         </attributes>
                                     </fragment>
                                     <fragment>
@@ -562,189 +530,33 @@ Cg
 </string>
                                         <attributes>
                                             <font key="NSFont" size="10" name="Helvetica"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                <tabStops>
-                                                    <textTab alignment="left" location="28">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="56">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="84">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="112">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="140">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="168">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="196">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="224">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="252">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="280">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="308">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="336">
-                                                        <options/>
-                                                    </textTab>
-                                                </tabStops>
-                                            </paragraphStyle>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">TaskHelper provides an online social networking service. This Agreement includes TaskHelper’s policy for acceptable use of the TaskHelper Services and Content posted on the TaskHelper Website, your rights, obligations and restrictions regarding your use of the TaskHelper Services and TaskHelper’s Terms of Service. In order to participate in certain TaskHelper Services, you may be notified that you are required to download software or content and/or agree to additional terms and conditions. Unless otherwise provided by the additional terms and conditions applicable to the TaskHelper Services in which you choose to participate, those additional terms are hereby incorporated into this Agreement. You may receive a copy of this Agreement by emailing us at: privacy@TaskHelperapp.com, Subject: Terms of Use Agreement.
+                                        <string key="content">TaskHelper provides an online social networking service. This Agreement includes TaskHelper’s policy for acceptable use of the TaskHelper Services and Content posted on the TaskHelper Website, your rights, obligations and restrictions regarding your use of the TaskHelper Services and TaskHelper’s Terms of Service. In order to participate in certain TaskHelper Services, you may be notified that you are required to download software or content and/or agree to additional terms and conditions. Unless otherwise provided by the additional terms and conditions applicable to the TaskHelper Services in which you choose to participate, those additional terms are hereby incorporated into this Agreement. You may receive a copy of this Agreement by emailing us at: privacy@TaskHelperapp.com, Subject: Terms of Use Agreement.
 
 TaskHelper may modify this Agreement from time to time and such modification shall be effective upon posting by TaskHelper on the TaskHelper Website. You agree to be bound to any changes to this Agreement when you use the TaskHelper Services after any such modification is posted. It is therefore important that you review this Agreement regularly to ensure you are updated as to any changes.
 
 TaskHelper Members (for instance, in their Profile) may not contain inaccurate, inappropriate, offensive or sexually explicit information or any information prohibited under Section 7 of this Agreement, and TaskHelper assumes no responsibility or liability for.
 
-</mutableString>
+</string>
                                         <attributes>
                                             <font key="NSFont" size="13" name="Helvetica"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                <tabStops>
-                                                    <textTab alignment="left" location="28">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="56">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="84">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="112">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="140">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="168">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="196">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="224">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="252">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="280">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="308">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="336">
-                                                        <options/>
-                                                    </textTab>
-                                                </tabStops>
-                                            </paragraphStyle>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">TaskHelper reserves the right, in its sole discretion, to reject, refuse to post or remove any posting (including private messages) by you, or to restrict, suspend, or terminate your access to all or any part of the TaskHelper Services at any time, for any or no reason, with or without prior notice, and without liability. TaskHelper expressly reserves the right to remove your profile and/or restrict, suspend, or terminate your access to any part of TaskHelper Services if TaskHelper determines, in its sole discretion, that you pose a threat to TaskHelper and/or its Users. TaskHelper also reserves the right to change, alter or remove part of or all your added personal information. With TaskHelperAPP.com using short URL’s as links to members personal profiles, TaskHelper reserves the right to alter or remove this at any time without further notification.</mutableString>
+                                        <string key="content">TaskHelper reserves the right, in its sole discretion, to reject, refuse to post or remove any posting (including private messages) by you, or to restrict, suspend, or terminate your access to all or any part of the TaskHelper Services at any time, for any or no reason, with or without prior notice, and without liability. TaskHelper expressly reserves the right to remove your profile and/or restrict, suspend, or terminate your access to any part of TaskHelper Services if TaskHelper determines, in its sole discretion, that you pose a threat to TaskHelper and/or its Users. TaskHelper also reserves the right to change, alter or remove part of or all your added personal information. With TaskHelperAPP.com using short URL’s as links to members personal profiles, TaskHelper reserves the right to alter or remove this at any time without further notification.</string>
                                         <attributes>
                                             <font key="NSFont" size="13" name="Helvetica"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                <tabStops>
-                                                    <textTab alignment="left" location="28">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="56">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="84">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="112">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="140">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="168">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="196">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="224">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="252">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="280">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="308">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="336">
-                                                        <options/>
-                                                    </textTab>
-                                                </tabStops>
-                                            </paragraphStyle>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content="   ">
                                         <attributes>
                                             <font key="NSFont" size="12" name="Helvetica"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                <tabStops>
-                                                    <textTab alignment="left" location="28">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="56">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="84">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="112">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="140">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="168">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="196">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="224">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="252">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="280">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="308">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="336">
-                                                        <options/>
-                                                    </textTab>
-                                                </tabStops>
-                                            </paragraphStyle>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                         </attributes>
                                     </fragment>
                                     <fragment>
@@ -752,46 +564,7 @@ TaskHelper Members (for instance, in their Profile) may not contain inaccurate, 
 @2017 TaskHelper</string>
                                         <attributes>
                                             <font key="NSFont" size="10" name="Helvetica"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                <tabStops>
-                                                    <textTab alignment="left" location="28">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="56">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="84">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="112">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="140">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="168">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="196">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="224">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="252">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="280">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="308">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="336">
-                                                        <options/>
-                                                    </textTab>
-                                                </tabStops>
-                                            </paragraphStyle>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -818,12 +591,71 @@ TaskHelper Members (for instance, in their Profile) may not contain inaccurate, 
                 <placeholder placeholderIdentifier="IBFirstResponder" id="suw-WB-OZl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="peK-ZR-y1C" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2156" y="939.58020989505258"/>
+            <point key="canvasLocation" x="1217" y="1787"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="at3-Ms-Be8">
+            <objects>
+                <tableViewController id="5jn-UQ-Ch8" customClass="ProfileTableViewController" customModule="taskhelper" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Qah-8t-utN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="3JW-7j-Tsp">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eN7-T5-NGE">
+                                    <rect key="frame" x="137.5" y="25" width="100" height="100"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="100" id="Vhl-ua-NeW"/>
+                                        <constraint firstAttribute="height" constant="100" id="cAW-tA-J96"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.62040144205093384" green="0.93593049049377441" blue="0.94807928800582886" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="eN7-T5-NGE" firstAttribute="centerX" secondItem="3JW-7j-Tsp" secondAttribute="centerX" id="Nvs-0l-Msi"/>
+                                <constraint firstItem="eN7-T5-NGE" firstAttribute="centerY" secondItem="3JW-7j-Tsp" secondAttribute="centerY" id="ehb-yL-rfO"/>
+                            </constraints>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="19" reuseIdentifier="Cell" textLabel="AJA-8Z-XlB" rowHeight="90" style="IBUITableViewCellStyleDefault" id="cUt-FV-vFb">
+                                <rect key="frame" x="0.0" y="178" width="375" height="90"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cUt-FV-vFb" id="3qx-DH-v70">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AJA-8Z-XlB">
+                                            <rect key="frame" x="16" y="0.0" width="344" height="89.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="5jn-UQ-Ch8" id="pGV-jA-ifW"/>
+                            <outlet property="delegate" destination="5jn-UQ-Ch8" id="Sp2-Uz-uw3"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Profile" id="cU3-Xz-O0Q"/>
+                    <connections>
+                        <outlet property="profileImage" destination="eN7-T5-NGE" id="c2J-K8-1Hu"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5q-1z-hXU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2192.8000000000002" y="939.58020989505258"/>
         </scene>
         <!--Home-->
         <scene sceneID="ZSq-US-tlb">
             <objects>
-                <viewController id="yKY-Wt-y0a" sceneMemberID="viewController">
+                <viewController id="yKY-Wt-y0a" customClass="TaskHomeViewController" customModule="taskhelper" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="M0Z-pd-eCx"/>
                         <viewControllerLayoutGuide type="bottom" id="8X6-Cb-tUc"/>
@@ -843,7 +675,7 @@ TaskHelper Members (for instance, in their Profile) may not contain inaccurate, 
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dHa-Lb-eX2" id="b7s-Th-u0J">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -876,8 +708,15 @@ TaskHelper Members (for instance, in their Profile) may not contain inaccurate, 
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="flX-Di-NXY">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="ZRo-pl-fgj"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="a8S-Fw-0MX"/>
+                        <barButtonItem key="leftBarButtonItem" image="faceicon" id="ZRo-pl-fgj">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="5jn-UQ-Ch8" kind="show" id="6vT-AL-ZSV"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="a8S-Fw-0MX">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9tH-S3-8kd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -899,14 +738,28 @@ TaskHelper Members (for instance, in their Profile) may not contain inaccurate, 
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Add a Task" id="zlS-c1-i2G">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="KSj-Hm-f4w"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="edO-6P-2jE"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="KSj-Hm-f4w">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="cancelTap:" destination="67B-F5-Orw" id="dm6-Vd-OMe"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="edO-6P-2jE">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="saveTap:" destination="67B-F5-Orw" id="67i-MC-ufq"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="79h-B1-bmJ" kind="unwind" identifier="unwindToHome" unwindAction="unwindToHomeWithSegue:" id="Jnh-Yu-MmM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zWh-MS-BBw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="79h-B1-bmJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3214" y="169"/>
+            <point key="canvasLocation" x="3135" y="169"/>
         </scene>
         <!--Azure Mobile Apps-->
         <scene sceneID="yNt-7v-plj">
@@ -914,7 +767,7 @@ TaskHelper Members (for instance, in their Profile) may not contain inaccurate, 
                 <navigationController title="Azure Mobile Apps" automaticallyAdjustsScrollViewInsets="NO" id="8st-Q2-1ux" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Cf-GE-u1S">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.27058823529411763" green="0.69411764705882351" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -930,7 +783,7 @@ TaskHelper Members (for instance, in their Profile) may not contain inaccurate, 
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FRr-xT-xwq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="241" y="1628"/>
+            <point key="canvasLocation" x="398" y="2623"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KFv-pz-aDe">
@@ -938,7 +791,7 @@ TaskHelper Members (for instance, in their Profile) may not contain inaccurate, 
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9vo-RX-v5c" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Bp-69-LnP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -956,7 +809,7 @@ TaskHelper Members (for instance, in their Profile) may not contain inaccurate, 
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ka6-nZ-0Tm" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xc5-AV-5I7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -966,7 +819,7 @@ TaskHelper Members (for instance, in their Profile) may not contain inaccurate, 
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="780-xX-s7p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1216.8" y="939.58020989505258"/>
+            <point key="canvasLocation" x="241" y="1787"/>
         </scene>
     </scenes>
     <resources>
@@ -975,8 +828,11 @@ TaskHelper Members (for instance, in their Profile) may not contain inaccurate, 
         <image name="bg" width="375" height="667"/>
         <image name="bg_highlight" width="375" height="667"/>
         <image name="facebook" width="256" height="256"/>
+        <image name="faceicon" width="20" height="20"/>
         <image name="google" width="256" height="256"/>
         <image name="photo" width="150" height="150"/>
+        <image name="selfie" width="16" height="16"/>
         <image name="twitter" width="256" height="256"/>
+        <image name="voice" width="16" height="16"/>
     </resources>
 </document>

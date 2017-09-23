@@ -1,14 +1,14 @@
 //
-//  AddTaskViewController.swift
+//  TaskHomeViewController.swift
 //  taskhelper
 //
-//  Created by DongGao on 17/9/17.
+//  Created by DongGao on 23/9/17.
 //  Copyright © 2017 Microsoft. All rights reserved.
 //
 
 import UIKit
 
-class AddTaskViewController: UIViewController {
+class TaskHomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,17 +21,9 @@ class AddTaskViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func cancelTap(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "unwindToHome", sender: self)
-    }
-    
-    
-    @IBAction func saveTap(_ sender: UIBarButtonItem) {
+    @IBAction func unwindToHome(segue: UIStoryboardSegue) {
         
-        performSegue(withIdentifier: "unwindToHome", sender: self)
     }
-    
-    
     
 
     /*
