@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77F2001F1F78BBDA00D0F70A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77F2001E1F78AF2700D0F70A /* GoogleService-Info.plist */; };
 		8E1305671F6E941D0093B94B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1305661F6E941D0093B94B /* SignupViewController.swift */; };
 		8E32442E1F76477500E08D26 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E32442D1F76477500E08D26 /* User.swift */; };
 		8E3244311F764F7500E08D26 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3244301F764F7500E08D26 /* ProfileTableViewController.swift */; };
@@ -22,13 +23,14 @@
 		A2D9CBC41943C2540017F096 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D9CBC31943C2540017F096 /* AppDelegate.swift */; };
 		A2D9CBCC1943C2540017F096 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2D9CBCA1943C2540017F096 /* Main.storyboard */; };
 		A2D9CBCE1943C2540017F096 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2D9CBCD1943C2540017F096 /* Images.xcassets */; };
-		A2D9CBE41943C39D0017F096 /* ToDoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D9CBE31943C39D0017F096 /* ToDoTableViewController.swift */; };
-		A2E767C6194594DC00869113 /* ToDoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E767C5194594DC00869113 /* ToDoItemViewController.swift */; };
 		A31A89F71BF3FDFA00C7B656 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A31A89F61BF3FDFA00C7B656 /* Launch Screen.storyboard */; };
-		A3BBD77D1C05181600DD0DB0 /* MicrosoftAzureMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3BBD77C1C05181600DD0DB0 /* MicrosoftAzureMobile.framework */; };
+		FC06663F726DAEEE8ADC36FD /* Pods_taskhelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1235C04CE160150E12EEB4A3 /* Pods_taskhelper.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1235C04CE160150E12EEB4A3 /* Pods_taskhelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_taskhelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		77F2001E1F78AF2700D0F70A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		87EF23A533F179DD0311C045 /* Pods-taskhelper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskhelper.release.xcconfig"; path = "Pods/Target Support Files/Pods-taskhelper/Pods-taskhelper.release.xcconfig"; sourceTree = "<group>"; };
 		8E1305661F6E941D0093B94B /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		8E32442D1F76477500E08D26 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8E3244301F764F7500E08D26 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
@@ -46,11 +48,9 @@
 		A2D9CBC31943C2540017F096 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2D9CBCB1943C2540017F096 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A2D9CBCD1943C2540017F096 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A2D9CBE31943C39D0017F096 /* ToDoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTableViewController.swift; sourceTree = "<group>"; };
 		A2D9CBE81943D1340017F096 /* taskhelper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "taskhelper-Bridging-Header.h"; sourceTree = "<group>"; };
-		A2E767C5194594DC00869113 /* ToDoItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoItemViewController.swift; sourceTree = "<group>"; };
 		A31A89F61BF3FDFA00C7B656 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		A3BBD77C1C05181600DD0DB0 /* MicrosoftAzureMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MicrosoftAzureMobile.framework; sourceTree = "<group>"; };
+		F5AF573155FECBDDE5C8901D /* Pods-taskhelper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskhelper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-taskhelper/Pods-taskhelper.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,13 +61,22 @@
 				9C35A4B61DE4EF8500650581 /* Security.framework in Frameworks */,
 				9C35A4B41DE4EF8000650581 /* SafariServices.framework in Frameworks */,
 				9CA121761DAC7FFD000C2FCA /* WebKit.framework in Frameworks */,
-				A3BBD77D1C05181600DD0DB0 /* MicrosoftAzureMobile.framework in Frameworks */,
+				FC06663F726DAEEE8ADC36FD /* Pods_taskhelper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		44BF6330891870F866BDEE8C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F5AF573155FECBDDE5C8901D /* Pods-taskhelper.debug.xcconfig */,
+				87EF23A533F179DD0311C045 /* Pods-taskhelper.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		8E32442F1F764F4D00E08D26 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +117,7 @@
 				9C35A4B51DE4EF8500650581 /* Security.framework */,
 				9C35A4B31DE4EF8000650581 /* SafariServices.framework */,
 				9CA121751DAC7FFD000C2FCA /* WebKit.framework */,
+				1235C04CE160150E12EEB4A3 /* Pods_taskhelper.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -118,6 +128,7 @@
 				A2D9CBC01943C2540017F096 /* taskhelper */,
 				A2D9CBBF1943C2540017F096 /* Products */,
 				9CA121741DAC7FFD000C2FCA /* Frameworks */,
+				44BF6330891870F866BDEE8C /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,8 +152,6 @@
 				A2D9CBCA1943C2540017F096 /* Main.storyboard */,
 				A2D9CBCD1943C2540017F096 /* Images.xcassets */,
 				A2D9CBC11943C2540017F096 /* Supporting Files */,
-				A2D9CBE31943C39D0017F096 /* ToDoTableViewController.swift */,
-				A2E767C5194594DC00869113 /* ToDoItemViewController.swift */,
 				A2D9CBE51943CB520017F096 /* frameworks */,
 				A2D9CBE81943D1340017F096 /* taskhelper-Bridging-Header.h */,
 				A31A89F61BF3FDFA00C7B656 /* Launch Screen.storyboard */,
@@ -156,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				A2D9CBC21943C2540017F096 /* Info.plist */,
+				77F2001E1F78AF2700D0F70A /* GoogleService-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -163,7 +173,6 @@
 		A2D9CBE51943CB520017F096 /* frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A3BBD77C1C05181600DD0DB0 /* MicrosoftAzureMobile.framework */,
 			);
 			name = frameworks;
 			path = ..;
@@ -176,9 +185,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A2D9CBDD1943C2540017F096 /* Build configuration list for PBXNativeTarget "taskhelper" */;
 			buildPhases = (
+				E3340174A64F30B4F502CFFA /* [CP] Check Pods Manifest.lock */,
 				A2D9CBBA1943C2540017F096 /* Sources */,
 				A2D9CBBB1943C2540017F096 /* Frameworks */,
 				A2D9CBBC1943C2540017F096 /* Resources */,
+				D10A3CD0EDFBFA5DD96313D2 /* [CP] Embed Pods Frameworks */,
+				B5779AD1FACCB31FD099F7A7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -231,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2D9CBCC1943C2540017F096 /* Main.storyboard in Resources */,
+				77F2001F1F78BBDA00D0F70A /* GoogleService-Info.plist in Resources */,
 				A2D9CBCE1943C2540017F096 /* Images.xcassets in Resources */,
 				A31A89F71BF3FDFA00C7B656 /* Launch Screen.storyboard in Resources */,
 			);
@@ -238,13 +251,70 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B5779AD1FACCB31FD099F7A7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-taskhelper/Pods-taskhelper-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D10A3CD0EDFBFA5DD96313D2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-taskhelper/Pods-taskhelper-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-taskhelper/Pods-taskhelper-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3340174A64F30B4F502CFFA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-taskhelper-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A2D9CBBA1943C2540017F096 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8E3244311F764F7500E08D26 /* ProfileTableViewController.swift in Sources */,
-				A2E767C6194594DC00869113 /* ToDoItemViewController.swift in Sources */,
 				8E3244341F76597000E08D26 /* TaskHomeViewController.swift in Sources */,
 				8E3244391F767B1700E08D26 /* DBConnection.swift in Sources */,
 				8E1305671F6E941D0093B94B /* SignupViewController.swift in Sources */,
@@ -253,7 +323,6 @@
 				8ED6E7E91F6E3CD0006FE377 /* ResLogViewController.swift in Sources */,
 				8E32442E1F76477500E08D26 /* User.swift in Sources */,
 				A2BD20971AC8A731007F7181 /* QSTodoDataModel.xcdatamodeld in Sources */,
-				A2D9CBE41943C39D0017F096 /* ToDoTableViewController.swift in Sources */,
 				A2D9CBC41943C2540017F096 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,6 +433,7 @@
 		};
 		A2D9CBDE1943C2540017F096 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5AF573155FECBDDE5C8901D /* Pods-taskhelper.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -386,6 +456,7 @@
 		};
 		A2D9CBDF1943C2540017F096 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 87EF23A533F179DD0311C045 /* Pods-taskhelper.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

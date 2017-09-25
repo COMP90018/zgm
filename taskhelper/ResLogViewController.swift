@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ResLogViewController: UIViewController {
     
@@ -54,7 +55,22 @@ class ResLogViewController: UIViewController {
     
     @IBAction func logIn(_ sender: UIButton) {
         
-        
+        if username.text != "" {
+            Auth.auth().signIn(withEmail: username.text!, password: "123456", completion: { (user, error) in
+                if user != nil {
+                    //Log in successful
+                    print("Log in successful")
+                }
+                else {
+                    if let myError = error?.localizedDescription {
+                        print(myError)
+                    }
+                    else {
+                        print("ERROR")
+                    }
+                }
+            })
+        }
         
     }
     

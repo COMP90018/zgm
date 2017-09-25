@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SignupViewController: UIViewController, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate {
     
@@ -84,6 +85,22 @@ class SignupViewController: UIViewController, UIGestureRecognizerDelegate, UIIma
     
     @IBAction func signUp(_ sender: UIButton) {
         
+        if username.text != "" {
+            Auth.auth().createUser(withEmail: username.text!, password: "123456", completion: { (user, error) in
+                if user != nil {
+                    //Sign up successful
+                    print("Sign up successful")
+                }
+                else {
+                    if let myError = error?.localizedDescription {
+                        print(myError)
+                    }
+                    else {
+                        print("ERROR")
+                    }
+                }
+            })
+        }
         
     }
     
