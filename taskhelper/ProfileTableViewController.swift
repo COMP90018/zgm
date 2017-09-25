@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import SafariServices
 
 class ProfileTableViewController: UITableViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet weak var profileImage: UIImageView!
     var sectionTitle = ["Personal Information","Task Helper","About Us","More Options"]
-    var sectionContent = [["","","","",""],["Helper","Friends"],["Website","Github"],["Settings"]]
+    var sectionContent = [["","","",""],["Helper","Friends"],["Website","Github"],["Settings"]]
     
     var links = ["https://taskhelper.azurewebsites.net","https://github.com/COMP90018/zgm"]
     
@@ -28,7 +29,7 @@ class ProfileTableViewController: UITableViewController,UINavigationControllerDe
         }
         
         if !gameUser.isVerified {
-            method = " None! You must choose one method."
+            method = " None!"
         }
         
         sectionContent[0][0] = "Username: " + gameUser.username
@@ -52,7 +53,64 @@ class ProfileTableViewController: UITableViewController,UINavigationControllerDe
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        switch section {
+        case 0:
+            return 4
+        case 1:
+            return 2
+        case 2:
+            return 2
+        case 3:
+            return 1
+        default:
+            return 0
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionTitle[section]
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        
+        // Configure the cell...
+        cell.textLabel?.text = sectionContent[indexPath.section][indexPath.row]
+        if indexPath.section != 0 {
+            cell.accessoryType = .disclosureIndicator
+        }
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 2 {
+            if let url = URL(string: links[indexPath.row]) {
+                let sfVc = SFSafariViewController(url: url)
+                present(sfVc, animated: true, completion: nil)
+            }
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.textLabel?.font = UIFont(name: "Futura-Medium", size: 17)
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+        header.contentView.backgroundColor = UIColor(red: 224/255, green: 227/255, blue: 218/255, alpha: 0.7)
+        header.textLabel?.font = UIFont(name: "Futura-Medium", size: 15)
+        header.textLabel?.textAlignment = .center
+    }
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 45
     }
 
     /*

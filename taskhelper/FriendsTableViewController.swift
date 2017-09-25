@@ -1,14 +1,14 @@
 //
-//  AddTaskViewController.swift
+//  FriendsTableViewController.swift
 //  taskhelper
 //
-//  Created by DongGao on 24/9/17.
+//  Created by DongGao on 25/9/17.
 //  Copyright © 2017 Microsoft. All rights reserved.
 //
 
 import UIKit
 
-class AddTaskViewController: UITableViewController {
+class FriendsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,17 +36,6 @@ class AddTaskViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 0
     }
-    
-    @IBAction func cancelTap(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "unwindToHome", sender: self)
-    }
-    
-    
-    
-    @IBAction func saveTap(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "unwindToHome", sender: self)
-    }
-    
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
