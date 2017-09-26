@@ -54,24 +54,26 @@ class ResLogViewController: UIViewController {
     }
     
     @IBAction func logIn(_ sender: UIButton) {
-        
         if username.text != "" {
-            Auth.auth().signIn(withEmail: username.text!, password: "123456", completion: { (user, error) in
-                if user != nil {
-                    //Log in successful
-                    print("Log in successful")
+            FriendSystem.system.loginAccount(username.text!, password: "123456") { (success) in
+                if success {
+                    self.performSegue(withIdentifier: "showHomePage", sender: self)
+                } else {
+                    // Error
+                    self.presentLoginAlertView()
                 }
-                else {
-                    if let myError = error?.localizedDescription {
-                        print(myError)
-                    }
-                    else {
-                        print("ERROR")
-                    }
-                }
-            })
+            }
+        } else {
+            // Fields not filled
+            presentLoginAlertView()
         }
-        
+    }
+    
+    func presentLoginAlertView() {
+        let alertController = UIAlertController(title: "Error", message: "Email is invalid", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     

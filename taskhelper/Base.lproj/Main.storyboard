@@ -185,7 +185,6 @@
                                         </state>
                                         <connections>
                                             <action selector="logIn:" destination="R5g-cE-ssE" eventType="touchUpInside" id="dRc-xD-Zv5"/>
-                                            <segue destination="9vo-RX-v5c" kind="presentation" id="EtE-Eg-YrC"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -290,6 +289,7 @@
                         <outlet property="login" destination="AaL-xq-C3M" id="7O8-IF-31k"/>
                         <outlet property="username" destination="AEB-SX-Ahb" id="zjM-ky-lRs"/>
                         <outlet property="voice" destination="TZ6-fl-E6P" id="CR5-JE-V8a"/>
+                        <segue destination="9vo-RX-v5c" kind="presentation" identifier="showHomePage" id="BIQ-dj-Lle"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YWl-ZI-Xpj" userLabel="First Responder" sceneMemberID="firstResponder"/>

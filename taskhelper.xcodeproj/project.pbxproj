@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		77F2001F1F78BBDA00D0F70A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77F2001E1F78AF2700D0F70A /* GoogleService-Info.plist */; };
+		77F200211F79DAB200D0F70A /* FriendSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F200201F79DAB200D0F70A /* FriendSystem.swift */; };
+		77F200231F79DAC200D0F70A /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F200221F79DAC200D0F70A /* Error.swift */; };
+		77F200251F79EF8800D0F70A /* DBConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F200241F79EF8800D0F70A /* DBConnection.swift */; };
 		8E1305671F6E941D0093B94B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1305661F6E941D0093B94B /* SignupViewController.swift */; };
 		8E32442E1F76477500E08D26 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E32442D1F76477500E08D26 /* User.swift */; };
 		8E3244311F764F7500E08D26 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3244301F764F7500E08D26 /* ProfileTableViewController.swift */; };
 		8E3244341F76597000E08D26 /* TaskHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3244331F76597000E08D26 /* TaskHomeViewController.swift */; };
 		8E3244361F765A2C00E08D26 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3244351F765A2C00E08D26 /* Task.swift */; };
-		8E3244391F767B1700E08D26 /* DBConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3244381F767B1700E08D26 /* DBConnection.swift */; };
 		8ED6E7E91F6E3CD0006FE377 /* ResLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED6E7E81F6E3CD0006FE377 /* ResLogViewController.swift */; };
 		8ED6E7EB1F6E41B6006FE377 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED6E7EA1F6E41B6006FE377 /* AddTaskViewController.swift */; };
 		9C35A4B41DE4EF8000650581 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C35A4B31DE4EF8000650581 /* SafariServices.framework */; };
@@ -30,13 +32,15 @@
 /* Begin PBXFileReference section */
 		1235C04CE160150E12EEB4A3 /* Pods_taskhelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_taskhelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77F2001E1F78AF2700D0F70A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		77F200201F79DAB200D0F70A /* FriendSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSystem.swift; sourceTree = "<group>"; };
+		77F200221F79DAC200D0F70A /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		77F200241F79EF8800D0F70A /* DBConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBConnection.swift; sourceTree = "<group>"; };
 		87EF23A533F179DD0311C045 /* Pods-taskhelper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskhelper.release.xcconfig"; path = "Pods/Target Support Files/Pods-taskhelper/Pods-taskhelper.release.xcconfig"; sourceTree = "<group>"; };
 		8E1305661F6E941D0093B94B /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		8E32442D1F76477500E08D26 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8E3244301F764F7500E08D26 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		8E3244331F76597000E08D26 /* TaskHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskHomeViewController.swift; sourceTree = "<group>"; };
 		8E3244351F765A2C00E08D26 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		8E3244381F767B1700E08D26 /* DBConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBConnection.swift; sourceTree = "<group>"; };
 		8ED6E7E81F6E3CD0006FE377 /* ResLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResLogViewController.swift; sourceTree = "<group>"; };
 		8ED6E7EA1F6E41B6006FE377 /* AddTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		9C35A4B31DE4EF8000650581 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
@@ -97,7 +101,9 @@
 		8E3244371F767AF600E08D26 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
-				8E3244381F767B1700E08D26 /* DBConnection.swift */,
+				77F200201F79DAB200D0F70A /* FriendSystem.swift */,
+				77F200221F79DAC200D0F70A /* Error.swift */,
+				77F200241F79EF8800D0F70A /* DBConnection.swift */,
 			);
 			name = Firebase;
 			sourceTree = "<group>";
@@ -276,12 +282,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-taskhelper/Pods-taskhelper-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,7 +324,9 @@
 			files = (
 				8E3244311F764F7500E08D26 /* ProfileTableViewController.swift in Sources */,
 				8E3244341F76597000E08D26 /* TaskHomeViewController.swift in Sources */,
-				8E3244391F767B1700E08D26 /* DBConnection.swift in Sources */,
+				77F200211F79DAB200D0F70A /* FriendSystem.swift in Sources */,
+				77F200251F79EF8800D0F70A /* DBConnection.swift in Sources */,
+				77F200231F79DAC200D0F70A /* Error.swift in Sources */,
 				8E1305671F6E941D0093B94B /* SignupViewController.swift in Sources */,
 				8E3244361F765A2C00E08D26 /* Task.swift in Sources */,
 				8ED6E7EB1F6E41B6006FE377 /* AddTaskViewController.swift in Sources */,

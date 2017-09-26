@@ -17,7 +17,7 @@ class ProfileTableViewController: UITableViewController,UINavigationControllerDe
     var links = ["https://taskhelper.azurewebsites.net","https://github.com/COMP90018/zgm"]
     
     
-    override func viewDidLoad() {
+    /** override func viewDidLoad() {
         super.viewDidLoad()
         var method = ""
         if gameUser.baseImage {
@@ -31,12 +31,12 @@ class ProfileTableViewController: UITableViewController,UINavigationControllerDe
             method = " None! You must choose one method."
         }
         
-        sectionContent[0][0] = "Username: " + gameUser.username
+        //sectionContent[0][0] = "Username: " + gameUser.username
         sectionContent[0][1] = "Total Task Numbers: " + String(gameUser.taskNum)
         sectionContent[0][2] = "Compeleted Task Numbers: " + String(gameUser.taskCompeleteNum)
         sectionContent[0][3] = "Verification Methods:" + method
         
-    }
+    } */
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

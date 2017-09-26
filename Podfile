@@ -8,5 +8,6 @@ target 'taskhelper' do
   # Pods for taskhelper
 pod 'Firebase/Core'
 pod 'Firebase/Auth’
+pod 'Firebase/Database'
 
 end

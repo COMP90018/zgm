@@ -84,24 +84,28 @@ class SignupViewController: UIViewController, UIGestureRecognizerDelegate, UIIma
     }
     
     @IBAction func signUp(_ sender: UIButton) {
-        
         if username.text != "" {
-            Auth.auth().createUser(withEmail: username.text!, password: "123456", completion: { (user, error) in
-                if user != nil {
+            FriendSystem.system.createAccount(username.text!, password: "123456") { (success) in
+                if success {
                     //Sign up successful
                     print("Sign up successful")
                 }
                 else {
-                    if let myError = error?.localizedDescription {
-                        print(myError)
-                    }
-                    else {
-                        print("ERROR")
-                    }
+                    //Error
+                    self.presentSignupAlertView()
                 }
-            })
+            }
+        } else {
+            // Fields not filled
+            presentSignupAlertView()
         }
-        
+    }
+    
+    func presentSignupAlertView() {
+        let alertController = UIAlertController(title: "Error", message: "Couldn't create account", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     func myMethodToHandleTap(_ sender: UITapGestureRecognizer) {
