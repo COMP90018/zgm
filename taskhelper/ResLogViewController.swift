@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ResLogViewController: UIViewController {
     
@@ -53,9 +54,26 @@ class ResLogViewController: UIViewController {
     }
     
     @IBAction func logIn(_ sender: UIButton) {
-        
-        
-        
+        if username.text != "" {
+            FriendSystem.system.loginAccount(username.text!, password: "123456") { (success) in
+                if success {
+                    self.performSegue(withIdentifier: "showHomePage", sender: self)
+                } else {
+                    // Error
+                    self.presentLoginAlertView()
+                }
+            }
+        } else {
+            // Fields not filled
+            presentLoginAlertView()
+        }
+    }
+    
+    func presentLoginAlertView() {
+        let alertController = UIAlertController(title: "Error", message: "Email is invalid", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     

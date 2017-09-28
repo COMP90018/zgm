@@ -185,7 +185,6 @@
                                         </state>
                                         <connections>
                                             <action selector="logIn:" destination="R5g-cE-ssE" eventType="touchUpInside" id="dRc-xD-Zv5"/>
-                                            <segue destination="9vo-RX-v5c" kind="presentation" id="EtE-Eg-YrC"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -290,6 +289,7 @@
                         <outlet property="login" destination="AaL-xq-C3M" id="7O8-IF-31k"/>
                         <outlet property="username" destination="AEB-SX-Ahb" id="zjM-ky-lRs"/>
                         <outlet property="voice" destination="TZ6-fl-E6P" id="CR5-JE-V8a"/>
+                        <segue destination="9vo-RX-v5c" kind="presentation" identifier="showHomePage" id="Irj-wc-v0J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YWl-ZI-Xpj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -534,7 +534,7 @@ Cg
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <mutableString key="content">TaskHelper provides an online social networking service. This Agreement includes TaskHelper’s policy for acceptable use of the TaskHelper Services and Content posted on the TaskHelper Website, your rights, obligations and restrictions regarding your use of the TaskHelper Services and TaskHelper’s Terms of Service. In order to participate in certain TaskHelper Services, you may be notified that you are required to download software or content and/or agree to additional terms and conditions. Unless otherwise provided by the additional terms and conditions applicable to the TaskHelper Services in which you choose to participate, those additional terms are hereby incorporated into this Agreement. You may receive a copy of this Agreement by emailing us at: privacy@TaskHelperapp.com, Subject: Terms of Use Agreement.
+                                        <string key="content">TaskHelper provides an online social networking service. This Agreement includes TaskHelper’s policy for acceptable use of the TaskHelper Services and Content posted on the TaskHelper Website, your rights, obligations and restrictions regarding your use of the TaskHelper Services and TaskHelper’s Terms of Service. In order to participate in certain TaskHelper Services, you may be notified that you are required to download software or content and/or agree to additional terms and conditions. Unless otherwise provided by the additional terms and conditions applicable to the TaskHelper Services in which you choose to participate, those additional terms are hereby incorporated into this Agreement. You may receive a copy of this Agreement by emailing us at: privacy@TaskHelperapp.com, Subject: Terms of Use Agreement.
 
 TaskHelper may modify this Agreement from time to time and such modification shall be effective upon posting by TaskHelper on the TaskHelper Website. You agree to be bound to any changes to this Agreement when you use the TaskHelper Services after any such modification is posted. It is therefore important that you review this Agreement regularly to ensure you are updated as to any changes.
 
@@ -542,7 +542,7 @@ TaskHelper Members (for instance, in their Profile) may not contain inaccurate, 
 
 TaskHelper reserves the right, in its sole discretion, to reject, refuse to post or remove any posting (including private messages) by you, or to restrict, suspend, or terminate your access to all or any part of the TaskHelper Services at any time, for any or no reason, with or without prior notice, and without liability. TaskHelper expressly reserves the right to remove your profile and/or restrict, suspend, or terminate your access to any part of TaskHelper Services if TaskHelper determines, in its sole discretion, that you pose a threat to TaskHelper and/or its Users. TaskHelper also reserves the right to change, alter or remove part of or all your added personal information. With TaskHelperAPP.com using short URL’s as links to members personal profiles, TaskHelper reserves the right to alter or remove this at any time without further notification.
 
-</mutableString>
+</string>
                                         <attributes>
                                             <font key="NSFont" size="13" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>

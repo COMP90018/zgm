@@ -11,6 +11,7 @@ import Foundation
 // To store the information of user
 struct User {
     var username: String
+    var email: String
     var profilioImage: Bool
     var baseImage: Bool
     var selfieImage: Bool
@@ -24,8 +25,9 @@ struct User {
     var requestNum: Int
     var msgUnreadNum: Int
     
-    init(username: String, profilioImage: Bool, baseImage: Bool, selfieImage: Bool, baseVoice: Bool, selfieVoice: Bool, isVerified: Bool , friends: [String], friendsNum: Int, taskNum: Int, taskCompeleteNum: Int, requestNum: Int,msgUnreadNum: Int) {
+    init(username: String, email: String, profilioImage: Bool, baseImage: Bool, selfieImage: Bool, baseVoice: Bool, selfieVoice: Bool, isVerified: Bool , friends: [String], friendsNum: Int, taskNum: Int, taskCompeleteNum: Int, requestNum: Int,msgUnreadNum: Int) {
         self.username = username
+        self.email = email
         self.profilioImage = profilioImage
         self.baseImage = baseImage
         self.selfieImage = selfieImage
@@ -42,6 +44,7 @@ struct User {
     
     init() {
         self.username = ""
+        self.email = ""
         self.profilioImage = false
         self.baseImage = false
         self.selfieImage = false
