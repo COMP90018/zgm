@@ -47,16 +47,18 @@ class FriendSystem {
     func getCurrentUser(_ completion: @escaping (FirebaseUser) -> Void) {
         CURRENT_USER_REF.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
             let email = snapshot.childSnapshot(forPath: "email").value as! String
+            let username = snapshot.childSnapshot(forPath: "username").value as! String
             let id = snapshot.key
-            completion(FirebaseUser(userEmail: email, userID: id))
+            completion(FirebaseUser(userID: id,userEmail: email, userName: username))
         })
     }
     /** Gets the User object for the specified user id */
     func getUser(_ userID: String, completion: @escaping (FirebaseUser) -> Void) {
         USER_REF.child(userID).observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
             let email = snapshot.childSnapshot(forPath: "email").value as! String
+            let username = snapshot.childSnapshot(forPath: "username").value as! String
             let id = snapshot.key
-            completion(FirebaseUser(userEmail: email, userID: id))
+            completion(FirebaseUser(userID: id, userEmail: email, userName: username))
         })
     }
     
@@ -69,13 +71,13 @@ class FriendSystem {
      - parameter completion: What to do when the block has finished running. The success variable
      indicates whether or not the signup was a success
      */
-    func createAccount(_ email: String, password: String, completion: @escaping (_ success: Bool) -> Void) {
+    func createAccount(_ email: String, _ username: String, password: String, completion: @escaping (_ success: Bool) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
             
             if (error == nil) {
                 // Success
                 var userInfo = [String: AnyObject]()
-                userInfo = ["email": email as AnyObject]
+                userInfo = ["email": email as AnyObject, "username": username as AnyObject]
                 self.CURRENT_USER_REF.setValue(userInfo)
                 completion(true)
             } else {
@@ -147,9 +149,11 @@ class FriendSystem {
             self.userList.removeAll()
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 let email = child.childSnapshot(forPath: "email").value as! String
+                let username = child.childSnapshot(forPath: "username").value as! String
                 if email != Auth.auth().currentUser?.email! {
-                    self.userList.append(FirebaseUser(userEmail: email, userID: child.key))
+                    self.userList.append(FirebaseUser(userID: child.key, userEmail: email, userName: username))
                 }
+            
             }
             update()
         })

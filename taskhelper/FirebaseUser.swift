@@ -9,13 +9,14 @@
 import Foundation
 
 class FirebaseUser {
-    
-    var email: String!
     var id: String!
+    var email: String!
+    var username: String!
     
-    init(userEmail: String, userID: String) {
-        self.email = userEmail
+    init(userID: String,userEmail: String, userName: String) {
         self.id = userID
+        self.email = userEmail
+        self.username = userName
     }
     
 }

@@ -12,6 +12,7 @@ import FirebaseAuth
 class SignupViewController: UIViewController, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet weak var profilio: UIImageView!
+    @IBOutlet weak var email: UITextField!
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var face: UIButton!
     @IBOutlet weak var voice: UIButton!
@@ -32,8 +33,12 @@ class SignupViewController: UIViewController, UIGestureRecognizerDelegate, UIIma
         profilio.layer.cornerRadius = profilio.frame.size.width/2
         profilio.clipsToBounds = true
         
+        
         username.backgroundColor = UIColor(white: 0.7, alpha: 0.4)
         username.layer.cornerRadius = username.frame.size.height/2
+        
+        email.backgroundColor = UIColor(white: 0.7, alpha: 0.4)
+        email.layer.cornerRadius = email.frame.size.height/2
         face.backgroundColor = UIColor(white: 0.7, alpha: 0.5)
         face.layer.cornerRadius = face.frame.size.height/2
         voice.backgroundColor = UIColor(white: 0.7, alpha: 0.5)
@@ -41,12 +46,19 @@ class SignupViewController: UIViewController, UIGestureRecognizerDelegate, UIIma
 
         signup.layer.cornerRadius = signup.frame.size.height/2
         
+        email.leftViewMode = .always
+        let emailView = UIImageView(frame: CGRect(x: 0, y: 0, width: 47, height: 25))
+        let emailImg = UIImage(named: "email.png")
+        emailView.image = emailImg
+        emailView.contentMode = .center
+        email.leftView = emailView
+        
         username.leftViewMode = .always
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 25))
-        let image = UIImage(named: "user.png")
-        imageView.image = image
-        imageView.contentMode = .center
-        username.leftView = imageView
+        let userView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 25))
+        let userImg = UIImage(named: "user.png")
+        userView.image = userImg
+        userView.contentMode = .center
+        username.leftView = userView
         
         
 
@@ -84,8 +96,8 @@ class SignupViewController: UIViewController, UIGestureRecognizerDelegate, UIIma
     }
     
     @IBAction func signUp(_ sender: UIButton) {
-        if username.text != "" {
-            FriendSystem.system.createAccount(username.text!, password: "123456") { (success) in
+        if email.text != "" {
+            FriendSystem.system.createAccount(email.text!, username.text!, password: "123456") { (success) in
                 if success {
                     //Sign up successful
                     print("Sign up successful")

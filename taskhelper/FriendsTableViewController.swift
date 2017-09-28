@@ -87,22 +87,34 @@ class FriendsTableViewController: UITableViewController, UISearchResultsUpdating
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return sc.isActive ? searchResult.count : friendsList.count
+        return sc.isActive ? searchResult.count : FriendSystem.system.userList.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
         // Configure the cell...
-        let friend = sc.isActive ? searchResult[indexPath.row] :friendsList[indexPath.row]
-
-        cell.textLabel?.text = friend.friendName
-        cell.imageView?.image = friend.friendIcon
-        cell.imageView?.layer.cornerRadius = (cell.imageView?.frame.width)!/2
-        cell.imageView?.clipsToBounds = true
+//        let friend = sc.isActive ? searchResult[indexPath.row] :friendsList[indexPath.row]
+//
+//        cell.textLabel?.text = friend.friendName
+//        cell.imageView?.image = friend.friendIcon
+//        cell.imageView?.layer.cornerRadius = (cell.imageView?.frame.width)!/2
+//        cell.imageView?.clipsToBounds = true
+//
+//        return cell
         
-        return cell
+        
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
+        
+        // Modify cell
+        cell?.textLabel?.text = FriendSystem.system.userList[indexPath.row].username
+        cell?.detailTextLabel?.text = FriendSystem.system.userList[indexPath.row].email
+        cell?.imageView?.image = UIImage(named: "user.png")
+        
+        // Return cell
+        return cell!
     }
     
     

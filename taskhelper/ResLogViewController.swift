@@ -12,7 +12,7 @@ import FirebaseAuth
 class ResLogViewController: UIViewController {
     
     
-    @IBOutlet weak var username: UITextField!
+    @IBOutlet weak var email: UITextField!
     @IBOutlet weak var face: UIButton!
     @IBOutlet weak var voice: UIButton!
     @IBOutlet weak var login: UIButton!
@@ -27,20 +27,20 @@ class ResLogViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         //Set the UITextField transparent, not affect the placeholder.
-        username.backgroundColor = UIColor(white: 0.7, alpha: 0.5)
-        username.layer.cornerRadius = username.frame.size.height/2
+        email.backgroundColor = UIColor(white: 0.7, alpha: 0.5)
+        email.layer.cornerRadius = email.frame.size.height/2
         face.backgroundColor = UIColor(white: 0.7, alpha: 0.5)
         face.layer.cornerRadius = face.frame.size.height/2
         voice.backgroundColor = UIColor(white: 0.7, alpha: 0.5)
         voice.layer.cornerRadius = voice.frame.size.height/2
         login.layer.cornerRadius = login.frame.size.height/2
         
-        username.leftViewMode = .always
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 25))
-        let image = UIImage(named: "user.png")
+        email.leftViewMode = .always
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 25))
+        let image = UIImage(named: "email.png")
         imageView.image = image
-        imageView.contentMode = .center
-        username.leftView = imageView
+        imageView.contentMode = .right
+        email.leftView = imageView
         
     }
     
@@ -54,8 +54,8 @@ class ResLogViewController: UIViewController {
     }
     
     @IBAction func logIn(_ sender: UIButton) {
-        if username.text != "" {
-            FriendSystem.system.loginAccount(username.text!, password: "123456") { (success) in
+        if email.text != "" {
+            FriendSystem.system.loginAccount(email.text!, password: "123456") { (success) in
                 if success {
                     self.performSegue(withIdentifier: "showHomePage", sender: self)
                 } else {
@@ -83,7 +83,7 @@ class ResLogViewController: UIViewController {
     }
     
     
-    @IBAction func findUsername(_ sender: UIButton) {
+    @IBAction func findemail(_ sender: UIButton) {
         
         
         
