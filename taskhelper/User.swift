@@ -58,4 +58,19 @@ struct User {
     
 }
 
+struct Friend {
+    var friendName: String
+    var friendIcon: UIImage
+    
+    init(friendName: String, friendIcon: UIImage) {
+        self.friendName = friendName
+        self.friendIcon = friendIcon
+    }
+    
+    init() {
+        self.friendName = ""
+        self.friendIcon = UIImage()
+    }
+}
+
 

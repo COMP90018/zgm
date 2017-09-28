@@ -12,11 +12,13 @@ import SafariServices
 class ProfileTableViewController: UITableViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet weak var profileImage: UIImageView!
-    var sectionTitle = ["Personal Information","Task Helper","About Us","More Options"]
-    var sectionContent = [["","","",""],["Helper","Friends"],["Website","Github"],["Settings"]]
     
+    var sectionTitle = ["Personal Information","Task Helper","More Options","About Us"]
+    var sectionContent = [["","","",""],["Helper","Friends"],["Settings"],["Website","Github"]]
     var links = ["https://taskhelper.azurewebsites.net","https://github.com/COMP90018/zgm"]
     
+    var secNum:Int = 0
+    var rowNum:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +35,8 @@ class ProfileTableViewController: UITableViewController,UINavigationControllerDe
         }
         
         sectionContent[0][0] = "Username: " + gameUser.username
-        sectionContent[0][1] = "Total Task Numbers: " + String(gameUser.taskNum)
-        sectionContent[0][2] = "Compeleted Task Numbers: " + String(gameUser.taskCompeleteNum)
+        sectionContent[0][1] = "Total Tasks: " + String(gameUser.taskNum)
+        sectionContent[0][2] = "Compeleted Tasks: " + String(gameUser.taskCompeleteNum)
         sectionContent[0][3] = "Verification Methods:" + method
         
     }
@@ -59,9 +61,9 @@ class ProfileTableViewController: UITableViewController,UINavigationControllerDe
         case 1:
             return 2
         case 2:
-            return 2
-        case 3:
             return 1
+        case 3:
+            return 2
         default:
             return 0
         }
@@ -85,11 +87,22 @@ class ProfileTableViewController: UITableViewController,UINavigationControllerDe
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 2 {
+        
+        switch indexPath.section {
+        case 1:
+            secNum = 1
+            performSegue(withIdentifier: "showDetailProfile", sender: self)
+        case 2:
+            secNum = 2
+            rowNum = indexPath.row
+            performSegue(withIdentifier: "showDetailProfile", sender: self)
+        case 3:
             if let url = URL(string: links[indexPath.row]) {
                 let sfVc = SFSafariViewController(url: url)
                 present(sfVc, animated: true, completion: nil)
             }
+        default:
+            break
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -114,16 +127,6 @@ class ProfileTableViewController: UITableViewController,UINavigationControllerDe
     }
 
     /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
@@ -143,29 +146,35 @@ class ProfileTableViewController: UITableViewController,UINavigationControllerDe
     }
     */
 
-    /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
 
     }
-    */
 
-    /*
+
+    
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
     }
-    */
+    
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
+        if segue.identifier == "showDetailProfile" {
+            let dest = segue.destination as! DetailProfileTableViewController
+//            dest.hidesBottomBarWhenPushed = true
+            dest.secNum = secNum
+            dest.rowNum = rowNum
+        }
+        
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }

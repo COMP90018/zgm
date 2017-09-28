@@ -1,76 +1,27 @@
 //
-//  FriendsTableViewController.swift
+//  DetailProfileTableViewController.swift
 //  taskhelper
 //
-//  Created by DongGao on 25/9/17.
+//  Created by DongGao on 27/9/17.
 //  Copyright © 2017 Microsoft. All rights reserved.
 //
 
 import UIKit
-import CoreData
 
-class FriendsTableViewController: UITableViewController, UISearchResultsUpdating{
+class DetailProfileTableViewController: UITableViewController {
     
-    var friendsList: [Friend] = []
-    var searchResult: [Friend] = []
-    var sc: UISearchController!
-    
-    
-    
-    func searchFilter(text: String) {
-        searchResult = friendsList.filter({ (friend) -> Bool in
-            return friend.friendName.localizedCaseInsensitiveContains(text)
-        })
-    }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        if var text = searchController.searchBar.text {
-            text = text.trimmingCharacters(in: .whitespaces)
-            searchFilter(text: text)
-            tableView.reloadData()
-        }
-        
-    }
+    var secNum: Int = 0
+    var rowNum: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        
-        
-        //Static friend data
-        friendsList.append(Friend(friendName: "Arthur", friendIcon: UIImage(named: "profile_image")!))
-        friendsList.append(Friend(friendName: "Bob", friendIcon: UIImage(named: "profile_image")!))
-        
-        //There should be a function to get all friends from server
-        getAllFriends(username: "")
-        sc = UISearchController(searchResultsController: nil)
-        sc.searchResultsUpdater = self
-        tableView.tableHeaderView = sc.searchBar
-        //不变暗，搜索之后可以直接点击进入
-        sc.dimsBackgroundDuringPresentation = false
-        //定制搜索条
-        //        sc.searchBar.barTintColor = UIColor.orange
-        //        sc.searchBar.tintColor = UIColor.white
-        sc.searchBar.placeholder = "Search"
-        sc.searchBar.searchBarStyle = .minimal
-        
-        
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        
-        tableView.estimatedRowHeight = 40
-        tableView.rowHeight = UITableViewAutomaticDimension
-        
-    }
-    
-    func getAllFriends(username: String) -> [Friend] {
-        //Get all friends from server
-        return friendsList
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,29 +38,18 @@ class FriendsTableViewController: UITableViewController, UISearchResultsUpdating
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return sc.isActive ? searchResult.count : friendsList.count
+        return 0
     }
 
-    
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         // Configure the cell...
-        let friend = sc.isActive ? searchResult[indexPath.row] :friendsList[indexPath.row]
 
-        cell.textLabel?.text = friend.friendName
-        cell.imageView?.image = friend.friendIcon
-        cell.imageView?.layer.cornerRadius = (cell.imageView?.frame.width)!/2
-        cell.imageView?.clipsToBounds = true
-        
         return cell
     }
-    
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //
-    }
-    
+    */
 
     /*
     // Override to support conditional editing of the table view.

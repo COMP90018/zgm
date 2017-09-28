@@ -505,13 +505,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Tz-Lr-eeQ">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Tz-Lr-eeQ">
                                 <rect key="frame" x="-0.5" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Terms of Service">
                                         <attributes>
-                                            <font key="NSFont" size="14" name="Helvetica"/>
+                                            <font key="NSFont" size="15" name="Helvetica-Bold"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                         </attributes>
                                     </fragment>
@@ -534,29 +534,18 @@ Cg
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content">TaskHelper provides an online social networking service. This Agreement includes TaskHelper’s policy for acceptable use of the TaskHelper Services and Content posted on the TaskHelper Website, your rights, obligations and restrictions regarding your use of the TaskHelper Services and TaskHelper’s Terms of Service. In order to participate in certain TaskHelper Services, you may be notified that you are required to download software or content and/or agree to additional terms and conditions. Unless otherwise provided by the additional terms and conditions applicable to the TaskHelper Services in which you choose to participate, those additional terms are hereby incorporated into this Agreement. You may receive a copy of this Agreement by emailing us at: privacy@TaskHelperapp.com, Subject: Terms of Use Agreement.
+                                        <mutableString key="content">TaskHelper provides an online social networking service. This Agreement includes TaskHelper’s policy for acceptable use of the TaskHelper Services and Content posted on the TaskHelper Website, your rights, obligations and restrictions regarding your use of the TaskHelper Services and TaskHelper’s Terms of Service. In order to participate in certain TaskHelper Services, you may be notified that you are required to download software or content and/or agree to additional terms and conditions. Unless otherwise provided by the additional terms and conditions applicable to the TaskHelper Services in which you choose to participate, those additional terms are hereby incorporated into this Agreement. You may receive a copy of this Agreement by emailing us at: privacy@TaskHelperapp.com, Subject: Terms of Use Agreement.
 
 TaskHelper may modify this Agreement from time to time and such modification shall be effective upon posting by TaskHelper on the TaskHelper Website. You agree to be bound to any changes to this Agreement when you use the TaskHelper Services after any such modification is posted. It is therefore important that you review this Agreement regularly to ensure you are updated as to any changes.
 
 TaskHelper Members (for instance, in their Profile) may not contain inaccurate, inappropriate, offensive or sexually explicit information or any information prohibited under Section 7 of this Agreement, and TaskHelper assumes no responsibility or liability for.
 
-</string>
+TaskHelper reserves the right, in its sole discretion, to reject, refuse to post or remove any posting (including private messages) by you, or to restrict, suspend, or terminate your access to all or any part of the TaskHelper Services at any time, for any or no reason, with or without prior notice, and without liability. TaskHelper expressly reserves the right to remove your profile and/or restrict, suspend, or terminate your access to any part of TaskHelper Services if TaskHelper determines, in its sole discretion, that you pose a threat to TaskHelper and/or its Users. TaskHelper also reserves the right to change, alter or remove part of or all your added personal information. With TaskHelperAPP.com using short URL’s as links to members personal profiles, TaskHelper reserves the right to alter or remove this at any time without further notification.
+
+</mutableString>
                                         <attributes>
                                             <font key="NSFont" size="13" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content">TaskHelper reserves the right, in its sole discretion, to reject, refuse to post or remove any posting (including private messages) by you, or to restrict, suspend, or terminate your access to all or any part of the TaskHelper Services at any time, for any or no reason, with or without prior notice, and without liability. TaskHelper expressly reserves the right to remove your profile and/or restrict, suspend, or terminate your access to any part of TaskHelper Services if TaskHelper determines, in its sole discretion, that you pose a threat to TaskHelper and/or its Users. TaskHelper also reserves the right to change, alter or remove part of or all your added personal information. With TaskHelperAPP.com using short URL’s as links to members personal profiles, TaskHelper reserves the right to alter or remove this at any time without further notification.</string>
-                                        <attributes>
-                                            <font key="NSFont" size="13" name="Helvetica"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="   ">
-                                        <attributes>
-                                            <font key="NSFont" size="12" name="Helvetica"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                         </attributes>
                                     </fragment>
                                     <fragment>
@@ -592,6 +581,38 @@ TaskHelper Members (for instance, in their Profile) may not contain inaccurate, 
                 <exit id="peK-ZR-y1C" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1217" y="1787"/>
+        </scene>
+        <!--Detail Profile Table View Controller-->
+        <scene sceneID="rB8-Xg-vdf">
+            <objects>
+                <tableViewController id="0DJ-q7-S36" customClass="DetailProfileTableViewController" customModule="taskhelper" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="MIs-TR-jeH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Tdl-9f-WVu">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tdl-9f-WVu" id="flE-3i-aQR">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="0DJ-q7-S36" id="Wxm-BD-gGQ"/>
+                            <outlet property="delegate" destination="0DJ-q7-S36" id="pnu-f1-SsU"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="LHL-2J-6Bv" kind="unwind" identifier="showLogout" unwindAction="unwindToResLogWithSegue:" id="xfj-xz-YPw"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y2f-Qb-psF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="LHL-2J-6Bv" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2193" y="1787"/>
         </scene>
         <!--Profile-->
         <scene sceneID="at3-Ms-Be8">
@@ -646,6 +667,7 @@ TaskHelper Members (for instance, in their Profile) may not contain inaccurate, 
                     <navigationItem key="navigationItem" title="Profile" id="cU3-Xz-O0Q"/>
                     <connections>
                         <outlet property="profileImage" destination="eN7-T5-NGE" id="c2J-K8-1Hu"/>
+                        <segue destination="0DJ-q7-S36" kind="show" identifier="showDetailProfile" id="cDu-De-dko"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5q-1z-hXU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -661,12 +683,21 @@ TaskHelper Members (for instance, in their Profile) may not contain inaccurate, 
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="fHL-e2-1F9">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="wtB-Ls-78r" style="IBUITableViewCellStyleDefault" id="fHL-e2-1F9">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fHL-e2-1F9" id="Gmw-J1-53Q">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wtB-Ls-78r">
+                                            <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -678,6 +709,9 @@ TaskHelper Members (for instance, in their Profile) may not contain inaccurate, 
                     <navigationItem key="navigationItem" title="Friends" id="5UZ-1D-AST">
                         <barButtonItem key="leftBarButtonItem" image="arrow" id="Toa-vU-a0h">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="YwN-Ha-Yhz" kind="unwind" unwindAction="unwindToHomeWithSegue:" id="Eup-UX-RMf"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="uCz-cU-J5s">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -685,6 +719,7 @@ TaskHelper Members (for instance, in their Profile) may not contain inaccurate, 
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oUF-tZ-VSi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="YwN-Ha-Yhz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4167" y="940"/>
         </scene>
@@ -735,18 +770,28 @@ TaskHelper Members (for instance, in their Profile) may not contain inaccurate, 
                                 <rect key="frame" x="-0.5" y="64" width="375" height="523"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="80" id="dHa-Lb-eX2" customClass="TaskTableViewCell" customModule="taskhelper" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="lcY-QY-I1x" rowHeight="50" style="IBUITableViewCellStyleDefault" id="dHa-Lb-eX2" customClass="TaskTableViewCell" customModule="taskhelper" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dHa-Lb-eX2" id="b7s-Th-u0J">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lcY-QY-I1x">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="49.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="0Gm-ml-J6s" kind="show" identifier="showTaskDetail" action="showDetailViewController:sender:" id="qp8-5o-22a"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="yKY-Wt-y0a" id="P5Z-4U-Rkq"/>
+                                    <outlet property="delegate" destination="yKY-Wt-y0a" id="mFD-kP-yJi"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfM-Jr-sp2">
                                 <rect key="frame" x="0.0" y="609" width="375" height="48"/>
@@ -783,10 +828,13 @@ TaskHelper Members (for instance, in their Profile) may not contain inaccurate, 
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="friends" id="a8S-Fw-0MX">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="ELC-ne-TLW" kind="show" id="tvD-3K-QPk"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="ELC-ne-TLW" kind="showDetail" id="5sr-Pa-Utq"/>
+                        <segue destination="0Gm-ml-J6s" kind="show" identifier="showDetailTask" id="KuI-eT-RYt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9tH-S3-8kd" userLabel="First Responder" sceneMemberID="firstResponder"/>

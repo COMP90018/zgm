@@ -17,6 +17,7 @@
 		8E8897651F77F5C90016F831 /* TaskDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8897641F77F5C90016F831 /* TaskDetailTableViewController.swift */; };
 		8E8897671F78863A0016F831 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8897661F78863A0016F831 /* TaskTableViewCell.swift */; };
 		8E88976A1F788E450016F831 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8897691F788E450016F831 /* FriendsTableViewController.swift */; };
+		8EB8D7A21F7B8A61005FC912 /* DetailProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB8D7A11F7B8A61005FC912 /* DetailProfileTableViewController.swift */; };
 		8ED6E7E91F6E3CD0006FE377 /* ResLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED6E7E81F6E3CD0006FE377 /* ResLogViewController.swift */; };
 		9C35A4B41DE4EF8000650581 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C35A4B31DE4EF8000650581 /* SafariServices.framework */; };
 		9C35A4B61DE4EF8500650581 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C35A4B51DE4EF8500650581 /* Security.framework */; };
@@ -42,6 +43,7 @@
 		8E8897641F77F5C90016F831 /* TaskDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailTableViewController.swift; sourceTree = "<group>"; };
 		8E8897661F78863A0016F831 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		8E8897691F788E450016F831 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
+		8EB8D7A11F7B8A61005FC912 /* DetailProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProfileTableViewController.swift; sourceTree = "<group>"; };
 		8ED6E7E81F6E3CD0006FE377 /* ResLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResLogViewController.swift; sourceTree = "<group>"; };
 		9C35A4B31DE4EF8000650581 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		9C35A4B51DE4EF8500650581 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				8E3244301F764F7500E08D26 /* ProfileTableViewController.swift */,
+				8EB8D7A11F7B8A61005FC912 /* DetailProfileTableViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				8E32442E1F76477500E08D26 /* User.swift in Sources */,
 				8E8897651F77F5C90016F831 /* TaskDetailTableViewController.swift in Sources */,
 				A2BD20971AC8A731007F7181 /* QSTodoDataModel.xcdatamodeld in Sources */,
+				8EB8D7A21F7B8A61005FC912 /* DetailProfileTableViewController.swift in Sources */,
 				A2D9CBE41943C39D0017F096 /* ToDoTableViewController.swift in Sources */,
 				A2D9CBC41943C2540017F096 /* AppDelegate.swift in Sources */,
 				8E88976A1F788E450016F831 /* FriendsTableViewController.swift in Sources */,
