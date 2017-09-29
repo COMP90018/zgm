@@ -10,36 +10,26 @@ import Foundation
 
 // To store the information of user
 struct Task {
-    var username: String
-    var profilioImage: Bool
-    var baseImage: Bool
-    var selfieImage: Bool
-    var baseVoice: Bool
-    var selfieVoice: Bool
-    var isVerified: Bool
-    var friends: [String]
+    var taskID: String
+    var content: String
+    var dueDate: String
+    var verifier: [Friend]
+    var isFinished: Bool
     
-    init(username: String, profilioImage: Bool, baseImage: Bool, selfieImage: Bool, baseVoice: Bool, selfieVoice: Bool, isVerified: Bool , friends: [String]) {
-        self.username = username
-        self.profilioImage = profilioImage
-        self.baseImage = baseImage
-        self.selfieImage = selfieImage
-        self.baseVoice = baseVoice
-        self.selfieVoice = selfieVoice
-        self.isVerified = isVerified
-        self.friends = friends
-        
+    init(taskID: String, content: String,dueDate: String, verifier: [Friend], isFinished: Bool) {
+        self.taskID = taskID
+        self.content = content
+        self.dueDate = dueDate
+        self.verifier = verifier
+        self.isFinished = isFinished
     }
     
     init() {
-        self.username = ""
-        self.profilioImage = false
-        self.baseImage = false
-        self.selfieImage = false
-        self.baseVoice = false
-        self.selfieVoice = false
-        self.isVerified = false //isVerified depends on
-        self.friends = [String]()
+        self.taskID = ""
+        self.content = ""
+        self.dueDate = ""
+        self.verifier = [Friend]()
+        self.isFinished = false
     }
-    
 }
+

@@ -35,12 +35,12 @@ class ResLogViewController: UIViewController {
         voice.layer.cornerRadius = voice.frame.size.height/2
         login.layer.cornerRadius = login.frame.size.height/2
         
-        email.leftViewMode = .always
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 25))
-        let image = UIImage(named: "email.png")
-        imageView.image = image
-        imageView.contentMode = .right
-        email.leftView = imageView
+//        email.leftViewMode = .always
+//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 25))
+//        let image = UIImage(named: "email.png")
+//        imageView.image = image
+//        imageView.contentMode = .center
+//        email.leftView = imageView
         
     }
     
@@ -83,8 +83,7 @@ class ResLogViewController: UIViewController {
     }
     
     
-    @IBAction func findemail(_ sender: UIButton) {
-        
+    @IBAction func findUsername(_ sender: UIButton) {
         
         
     }

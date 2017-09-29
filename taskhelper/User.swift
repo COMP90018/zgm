@@ -10,52 +10,53 @@ import Foundation
 
 // To store the information of user
 struct User {
-    var username: String
     var email: String
-    var profilioImage: Bool
-    var baseImage: Bool
-    var selfieImage: Bool
-    var baseVoice: Bool
-    var selfieVoice: Bool
+    var username: String
+    var profileImage: UIImage?
+    var baseImage: UIImage?
+    var selfieImage: UIImage?
+    var baseVoice: NSData?
+    var selfieVoice: NSData?
+    //If the user login using OAuth, isVerified is false.
     var isVerified: Bool
-    var friends: [String]
-    var friendsNum: Int
+    var friendList: [Friend]
+    var requestFriends: [Friend]
     var taskNum: Int
     var taskCompeleteNum: Int
-    var requestNum: Int
+    var requestTasks: [Task]
     var msgUnreadNum: Int
     
-    init(username: String, email: String, profilioImage: Bool, baseImage: Bool, selfieImage: Bool, baseVoice: Bool, selfieVoice: Bool, isVerified: Bool , friends: [String], friendsNum: Int, taskNum: Int, taskCompeleteNum: Int, requestNum: Int,msgUnreadNum: Int) {
-        self.username = username
+    init(email: String, username: String, profileImage: UIImage, baseImage: UIImage, selfieImage: UIImage, baseVoice: NSData, selfieVoice: NSData, isVerified: Bool, friendList: [Friend], requestFriends: [Friend], taskNum: Int, taskCompeleteNum: Int, requestTasks: [Task], msgUnreadNum: Int) {
         self.email = email
-        self.profilioImage = profilioImage
+        self.username = username
+        self.profileImage = profileImage
         self.baseImage = baseImage
         self.selfieImage = selfieImage
         self.baseVoice = baseVoice
         self.selfieVoice = selfieVoice
         self.isVerified = isVerified
-        self.friends = friends
-        self.friendsNum = friendsNum
+        self.friendList = friendList
+        self.requestFriends = requestFriends
         self.taskNum = taskNum
         self.taskCompeleteNum = taskCompeleteNum
-        self.requestNum = requestNum
+        self.requestTasks = requestTasks
         self.msgUnreadNum = msgUnreadNum
     }
     
     init() {
-        self.username = ""
         self.email = ""
-        self.profilioImage = false
-        self.baseImage = false
-        self.selfieImage = false
-        self.baseVoice = false
-        self.selfieVoice = false
-        self.isVerified = false //isVerified depends on
-        self.friends = [String]()
-        self.friendsNum = 0
+        self.username = ""
+        self.profileImage = UIImage()
+        self.baseImage = UIImage()
+        self.selfieImage = UIImage()
+        self.baseVoice = NSData()
+        self.selfieVoice = NSData()
+        self.isVerified = false
+        self.friendList = []
+        self.requestFriends = []
         self.taskNum = 0
         self.taskCompeleteNum = 0
-        self.requestNum = 0
+        self.requestTasks = []
         self.msgUnreadNum = 0
     }
     
@@ -63,17 +64,28 @@ struct User {
 
 struct Friend {
     var friendName: String
+    var friendEmail: String
     var friendIcon: UIImage
     
-    init(friendName: String, friendIcon: UIImage) {
+    init(friendName: String, friendEmail: String, friendIcon: UIImage) {
         self.friendName = friendName
         self.friendIcon = friendIcon
+        self.friendEmail = friendEmail
     }
     
     init() {
         self.friendName = ""
+        self.friendEmail = ""
         self.friendIcon = UIImage()
     }
 }
+
+extension Friend {
+    var nameFirstLetter: String {
+        return String(self.friendName[self.friendName.startIndex]).uppercased()
+    }
+}
+
+
 
 

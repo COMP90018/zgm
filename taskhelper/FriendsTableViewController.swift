@@ -13,9 +13,9 @@ class FriendsTableViewController: UITableViewController, UISearchResultsUpdating
     
     var friendsList: [Friend] = []
     var searchResult: [Friend] = []
+    var sortedFirstLetters: [String] = []
+    var sections: [[Friend]] = [[]]
     var sc: UISearchController!
-    
-    
     
     func searchFilter(text: String) {
         searchResult = friendsList.filter({ (friend) -> Bool in
@@ -44,28 +44,48 @@ class FriendsTableViewController: UITableViewController, UISearchResultsUpdating
         
         
         //Static friend data
-        friendsList.append(Friend(friendName: "Arthur", friendIcon: UIImage(named: "profile_image")!))
-        friendsList.append(Friend(friendName: "Bob", friendIcon: UIImage(named: "profile_image")!))
+        friendsList.append(Friend(friendName: "Arthur", friendEmail:"donngao@gmail.com",friendIcon: UIImage(named: "profile_image.png")!))
+        friendsList.append(Friend(friendName: "Arthur", friendEmail:"donngao@gmail.com",friendIcon: UIImage(named: "profile_image.png")!))
+        friendsList.append(Friend(friendName: "Arthur", friendEmail:"donngao@gmail.com",friendIcon: UIImage(named: "profile_image.png")!))
+        friendsList.append(Friend(friendName: "Arthur", friendEmail:"donngao@gmail.com",friendIcon: UIImage(named: "profile_image.png")!))
+        friendsList.append(Friend(friendName: "Arthur", friendEmail:"donngao@gmail.com",friendIcon: UIImage(named: "profile_image.png")!))
+        friendsList.append(Friend(friendName: "Arthur", friendEmail:"donngao@gmail.com",friendIcon: UIImage(named: "profile_image.png")!))
+        friendsList.append(Friend(friendName: "Arthur", friendEmail:"donngao@gmail.com",friendIcon: UIImage(named: "profile_image.png")!))
+        friendsList.append(Friend(friendName: "Arthur", friendEmail:"donngao@gmail.com",friendIcon: UIImage(named: "profile_image.png")!))
+        friendsList.append(Friend(friendName: "Arthur", friendEmail:"donngao@gmail.com",friendIcon: UIImage(named: "profile_image.png")!))
+        friendsList.append(Friend(friendName: "Arthur", friendEmail:"donngao@gmail.com",friendIcon: UIImage(named: "profile_image.png")!))
+        friendsList.append(Friend(friendName: "Arthur", friendEmail:"donngao@gmail.com",friendIcon: UIImage(named: "profile_image.png")!))
+        friendsList.append(Friend(friendName: "Arthur", friendEmail:"donngao@gmail.com",friendIcon: UIImage(named: "profile_image.png")!))
+        friendsList.append(Friend(friendName: "Bob", friendEmail:"bob@gmail.com",friendIcon: UIImage(named: "profile_image.png")!))
         
         //There should be a function to get all friends from server
         getAllFriends(username: "")
         sc = UISearchController(searchResultsController: nil)
         sc.searchResultsUpdater = self
         tableView.tableHeaderView = sc.searchBar
-        //不变暗，搜索之后可以直接点击进入
         sc.dimsBackgroundDuringPresentation = false
-        //定制搜索条
-        //        sc.searchBar.barTintColor = UIColor.orange
-        //        sc.searchBar.tintColor = UIColor.white
+        //sc.searchBar.barTintColor = UIColor.orange
+        //sc.searchBar.tintColor = UIColor.white
         sc.searchBar.placeholder = "Search"
         sc.searchBar.searchBarStyle = .minimal
         
-        
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        
         tableView.estimatedRowHeight = 40
         tableView.rowHeight = UITableViewAutomaticDimension
         
+        //Generate index of names
+        // All the first letters in the data
+        let firstLetters = friendsList.map { $0.nameFirstLetter }
+        //Remove duplicates
+        let uniqueFirstLetters = Array(Set(firstLetters))
+        //Sort and generate the index
+        sortedFirstLetters = uniqueFirstLetters.sorted()
+        //Generate sections and sort friend list
+        sections = sortedFirstLetters.map { firstLetter in
+            return friendsList
+                .filter { $0.nameFirstLetter == firstLetter }
+                .sorted { $0.friendName < $1.friendName }
+        }
     }
     
     func getAllFriends(username: String) -> [Friend] {
@@ -82,41 +102,59 @@ class FriendsTableViewController: UITableViewController, UISearchResultsUpdating
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return sc.isActive ? 1 : sortedFirstLetters.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sc.isActive ? nil : sortedFirstLetters[section]
+    }
+
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return sc.isActive ? nil :sortedFirstLetters
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return sc.isActive ? searchResult.count : FriendSystem.system.userList.count
+        return sc.isActive ? searchResult.count : sections[section].count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        // Configure the cell...
-//        let friend = sc.isActive ? searchResult[indexPath.row] :friendsList[indexPath.row]
+        //Configure the cell...
+        let friend = sc.isActive ? searchResult[indexPath.row] :sections[indexPath.section][indexPath.row]
+
+        cell.textLabel?.text = friend.friendName
+        cell.detailTextLabel?.text = friend.friendEmail
+        cell.imageView?.image = imageWithImage(image: friend.friendIcon,scaledToSize: CGSize(width:40, height: 40))
+        cell.imageView?.layer.cornerRadius = (cell.imageView?.frame.width)!/2
+        cell.imageView?.clipsToBounds = true
+
+        return cell
+        
+        
+        
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
 //
-//        cell.textLabel?.text = friend.friendName
-//        cell.imageView?.image = friend.friendIcon
-//        cell.imageView?.layer.cornerRadius = (cell.imageView?.frame.width)!/2
-//        cell.imageView?.clipsToBounds = true
+//        // Modify cell
+//        cell?.textLabel?.text = FriendSystem.system.userList[indexPath.row].username
+//        cell?.detailTextLabel?.text = FriendSystem.system.userList[indexPath.row].email
+//        cell?.imageView?.image = UIImage(named: "user.png")
 //
-//        return cell
-        
-        
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
-        
-        // Modify cell
-        cell?.textLabel?.text = FriendSystem.system.userList[indexPath.row].username
-        cell?.detailTextLabel?.text = FriendSystem.system.userList[indexPath.row].email
-        cell?.imageView?.image = UIImage(named: "user.png")
-        
-        // Return cell
-        return cell!
+//        // Return cell
+//        return cell!
     }
     
+    
+    func imageWithImage(image:UIImage,scaledToSize newSize:CGSize)->UIImage{
+        
+        UIGraphicsBeginImageContext( newSize )
+        image.draw(in: CGRect(x: 0,y: 0,width: newSize.width,height: newSize.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!.withRenderingMode(.alwaysTemplate)
+    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //

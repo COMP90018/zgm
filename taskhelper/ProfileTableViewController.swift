@@ -23,10 +23,10 @@ class ProfileTableViewController: UITableViewController,UINavigationControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         var method = ""
-        if gameUser.baseImage {
+        if gameUser.baseImage != nil {
             method = method + " Face ecognition"
         }
-        if gameUser.baseVoice {
+        if gameUser.baseVoice != nil {
             method = method + " Speech Recognition"
         }
         

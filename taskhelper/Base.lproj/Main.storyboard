@@ -134,14 +134,18 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="eoJ-Sk-9gN">
                                 <rect key="frame" x="28.5" y="220" width="319" height="180"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AEB-SX-Ahb">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AEB-SX-Ahb" customClass="PaddingTextField" customModule="taskhelper" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="319" height="50"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="28"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="email"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
@@ -212,7 +216,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="findUsername:" destination="R5g-cE-ssE" eventType="touchUpInside" id="vRS-gz-aXI"/>
+                                            <action selector="findUsername:" destination="R5g-cE-ssE" eventType="touchUpInside" id="Nur-t1-QRj"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -318,20 +322,33 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="pwB-hj-agq">
                                 <rect key="frame" x="28" y="210" width="319" height="240"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bsx-lX-cwq">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bsx-lX-cwq" customClass="PaddingTextField" customModule="taskhelper" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="319" height="49"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="email"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="email"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="28"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lwk-nG-LoV">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lwk-nG-LoV" customClass="PaddingTextField" customModule="taskhelper" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="64" width="319" height="48.5"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="user"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="28"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
@@ -518,7 +535,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="Terms of Service">
                                         <attributes>
-                                            <font key="NSFont" size="15" name="Helvetica-Bold"/>
+                                            <font key="NSFont" size="18" name="Helvetica-Bold"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                         </attributes>
                                     </fragment>
@@ -541,14 +558,21 @@ Cg
                                         </attributes>
                                     </fragment>
                                     <fragment>
-                                        <string key="content">TaskHelper provides an online social networking service. This Agreement includes TaskHelper’s policy for acceptable use of the TaskHelper Services and Content posted on the TaskHelper Website, your rights, obligations and restrictions regarding your use of the TaskHelper Services and TaskHelper’s Terms of Service. In order to participate in certain TaskHelper Services, you may be notified that you are required to download software or content and/or agree to additional terms and conditions. Unless otherwise provided by the additional terms and conditions applicable to the TaskHelper Services in which you choose to participate, those additional terms are hereby incorporated into this Agreement. You may receive a copy of this Agreement by emailing us at: privacy@TaskHelperapp.com, Subject: Terms of Use Agreement.
+                                        <mutableString key="content">TaskHelper provides an online social networking service. This Agreement includes TaskHelper’s policy for acceptable use of the TaskHelper Services and Content posted on the TaskHelper Website, your rights, obligations and restrictions regarding your use of the TaskHelper Services and TaskHelper’s Terms of Service. In order to participate in certain TaskHelper Services, you may be notified that you are required to download software or content and/or agree to additional terms and conditions. Unless otherwise provided by the additional terms and conditions applicable to the TaskHelper Services in which you choose to participate, those additional terms are hereby incorporated into this Agreement. You may receive a copy of this Agreement by emailing us at: privacy@TaskHelperapp.com, Subject: Terms of Use Agreement.
 
 TaskHelper may modify this Agreement from time to time and such modification shall be effective upon posting by TaskHelper on the TaskHelper Website. You agree to be bound to any changes to this Agreement when you use the TaskHelper Services after any such modification is posted. It is therefore important that you review this Agreement regularly to ensure you are updated as to any changes.
 
 TaskHelper Members (for instance, in their Profile) may not contain inaccurate, inappropriate, offensive or sexually explicit information or any information prohibited under Section 7 of this Agreement, and TaskHelper assumes no responsibility or liability for.
 
-TaskHelper reserves the right, in its sole discretion, to reject, refuse to post or remove any posting (including private messages) by you, or to restrict, suspend, or terminate your access to all or any part of the TaskHelper Services at any time, for any or no reason, with or without prior notice, and without liability. TaskHelper expressly reserves the right to remove your profile and/or restrict, suspend, or terminate your access to any part of TaskHelper Services if TaskHelper determines, in its sole discretion, that you pose a threat to TaskHelper and/or its Users. TaskHelper also reserves the right to change, alter or remove part of or all your added personal information. With TaskHelperAPP.com using short URL’s as links to members personal profiles, TaskHelper reserves the right to alter or remove this at any time without further notification.
-
+TaskHelper reserves the right, in its sole discretion, to reject, refuse to post or remove any posting (including private messages) by you, or to restrict, suspend, or terminate your access to all or any part of the TaskHelper Services at any time, for any or no reason, with or without prior notice, and without liability. TaskHelper expressly reserves the right to remove your profile and/or restrict, suspend, or terminate your access to any part of TaskHelper Services if TaskHelper determines, in its sole discretion, that you pose a threat to TaskHelper and/or its Users. TaskHelper also reserves the right to change, alter or remove part of or all your added personal information. With TaskHelperAPP.com using short URL’s as links to members personal profiles, TaskHelper reserves the right to alter or remove this at any time without further notification.</mutableString>
+                                        <attributes>
+                                            <font key="NSFont" size="15" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cgo
 </string>
                                         <attributes>
                                             <font key="NSFont" size="13" name="Helvetica"/>
@@ -690,22 +714,22 @@ TaskHelper reserves the right, in its sole discretion, to reject, refuse to post
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="wtB-Ls-78r" detailTextLabel="6LV-Vt-Fcj" style="IBUITableViewCellStyleSubtitle" id="fHL-e2-1F9">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="wtB-Ls-78r" detailTextLabel="6LV-Vt-Fcj" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="fHL-e2-1F9">
+                                <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fHL-e2-1F9" id="Gmw-J1-53Q">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wtB-Ls-78r">
-                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="16" y="10" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6LV-Vt-Fcj">
-                                            <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
+                                            <rect key="frame" x="16" y="33.5" width="44" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -1039,6 +1063,7 @@ TaskHelper reserves the right, in its sole discretion, to reject, refuse to post
         <image name="background" width="375" height="667"/>
         <image name="bg" width="375" height="667"/>
         <image name="bg_highlight" width="375" height="667"/>
+        <image name="email" width="16" height="16"/>
         <image name="facebook" width="256" height="256"/>
         <image name="faceicon" width="20" height="20"/>
         <image name="friends" width="25" height="25"/>
@@ -1047,6 +1072,7 @@ TaskHelper reserves the right, in its sole discretion, to reject, refuse to post
         <image name="profile_image" width="100" height="100"/>
         <image name="selfie" width="16" height="16"/>
         <image name="twitter" width="256" height="256"/>
+        <image name="user" width="16" height="16"/>
         <image name="voice" width="16" height="16"/>
     </resources>
 </document>

@@ -33,12 +33,11 @@ class SignupViewController: UIViewController, UIGestureRecognizerDelegate, UIIma
         profilio.layer.cornerRadius = profilio.frame.size.width/2
         profilio.clipsToBounds = true
         
-        
-        username.backgroundColor = UIColor(white: 0.7, alpha: 0.4)
-        username.layer.cornerRadius = username.frame.size.height/2
-        
         email.backgroundColor = UIColor(white: 0.7, alpha: 0.4)
         email.layer.cornerRadius = email.frame.size.height/2
+        email.clipsToBounds = true
+        username.backgroundColor = UIColor(white: 0.7, alpha: 0.4)
+        username.layer.cornerRadius = username.frame.size.height/2
         face.backgroundColor = UIColor(white: 0.7, alpha: 0.5)
         face.layer.cornerRadius = face.frame.size.height/2
         voice.backgroundColor = UIColor(white: 0.7, alpha: 0.5)
@@ -46,20 +45,19 @@ class SignupViewController: UIViewController, UIGestureRecognizerDelegate, UIIma
 
         signup.layer.cornerRadius = signup.frame.size.height/2
         
-        email.leftViewMode = .always
-        let emailView = UIImageView(frame: CGRect(x: 0, y: 0, width: 47, height: 25))
-        let emailImg = UIImage(named: "email.png")
-        emailView.image = emailImg
-        emailView.contentMode = .center
-        email.leftView = emailView
-        
-        username.leftViewMode = .always
-        let userView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 25))
-        let userImg = UIImage(named: "user.png")
-        userView.image = userImg
-        userView.contentMode = .center
-        username.leftView = userView
-        
+//        email.leftViewMode = .always
+//        var imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 25))
+//        var image = UIImage(named: "email.png")
+//        imageView.image = image
+//        imageView.contentMode = .center
+//        email.leftView = imageView
+//        
+//        username.leftViewMode = .always
+//        imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 25))
+//        image = UIImage(named: "user.png")
+//        imageView.image = image
+//        imageView.contentMode = .center
+//        username.leftView = imageView
         
 
         //Configure Terms and Conditions

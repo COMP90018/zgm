@@ -17,6 +17,7 @@
 		8E3244341F76597000E08D26 /* TaskHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3244331F76597000E08D26 /* TaskHomeViewController.swift */; };
 		8E3244361F765A2C00E08D26 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3244351F765A2C00E08D26 /* Task.swift */; };
 		8E3244391F767B1700E08D26 /* DBConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3244381F767B1700E08D26 /* DBConnection.swift */; };
+		8E3DADD31F7DEB2B00C09680 /* PaddingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3DADD21F7DEB2B00C09680 /* PaddingTextField.swift */; };
 		8E8897631F77F1110016F831 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8897621F77F1110016F831 /* AddTaskViewController.swift */; };
 		8E8897651F77F5C90016F831 /* TaskDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8897641F77F5C90016F831 /* TaskDetailTableViewController.swift */; };
 		8E8897671F78863A0016F831 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8897661F78863A0016F831 /* TaskTableViewCell.swift */; };
@@ -49,6 +50,7 @@
 		8E3244331F76597000E08D26 /* TaskHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskHomeViewController.swift; sourceTree = "<group>"; };
 		8E3244351F765A2C00E08D26 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		8E3244381F767B1700E08D26 /* DBConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBConnection.swift; sourceTree = "<group>"; };
+		8E3DADD21F7DEB2B00C09680 /* PaddingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingTextField.swift; sourceTree = "<group>"; };
 		8E8897621F77F1110016F831 /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		8E8897641F77F5C90016F831 /* TaskDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailTableViewController.swift; sourceTree = "<group>"; };
 		8E8897661F78863A0016F831 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			children = (
 				8ED6E7E81F6E3CD0006FE377 /* ResLogViewController.swift */,
 				8E1305661F6E941D0093B94B /* SignupViewController.swift */,
+				8E3DADD21F7DEB2B00C09680 /* PaddingTextField.swift */,
 			);
 			name = ResLog;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				8E32442E1F76477500E08D26 /* User.swift in Sources */,
 				8E8897651F77F5C90016F831 /* TaskDetailTableViewController.swift in Sources */,
 				A2BD20971AC8A731007F7181 /* QSTodoDataModel.xcdatamodeld in Sources */,
+				8E3DADD31F7DEB2B00C09680 /* PaddingTextField.swift in Sources */,
 				8EB8D7A21F7B8A61005FC912 /* DetailProfileTableViewController.swift in Sources */,
 				A2D9CBC41943C2540017F096 /* AppDelegate.swift in Sources */,
 				77F2002C1F7CE43400D0F70A /* FriendSystem.swift in Sources */,
