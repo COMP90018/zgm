@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SignupViewController: UIViewController, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet weak var profilio: UIImageView!
-    @IBOutlet weak var username: UITextField!
     @IBOutlet weak var email: UITextField!
-    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var username: UITextField!
+    @IBOutlet weak var face: UIButton!
+    @IBOutlet weak var voice: UIButton!
     @IBOutlet weak var signup: UIButton!
     @IBOutlet weak var termsText: UITextView!
     
@@ -31,34 +33,32 @@ class SignupViewController: UIViewController, UIGestureRecognizerDelegate, UIIma
         profilio.layer.cornerRadius = profilio.frame.size.width/2
         profilio.clipsToBounds = true
         
-        username.backgroundColor = UIColor(white: 0.6, alpha: 0.3)
-        username.layer.cornerRadius = username.frame.size.height/2
-        email.backgroundColor = UIColor(white: 0.6, alpha: 0.3)
+        email.backgroundColor = UIColor(white: 0.7, alpha: 0.4)
         email.layer.cornerRadius = email.frame.size.height/2
-        password.backgroundColor = UIColor(white: 0.6, alpha: 0.3)
-        password.layer.cornerRadius = email.frame.size.height/2
+        email.clipsToBounds = true
+        username.backgroundColor = UIColor(white: 0.7, alpha: 0.4)
+        username.layer.cornerRadius = username.frame.size.height/2
+        face.backgroundColor = UIColor(white: 0.7, alpha: 0.5)
+        face.layer.cornerRadius = face.frame.size.height/2
+        voice.backgroundColor = UIColor(white: 0.7, alpha: 0.5)
+        voice.layer.cornerRadius = voice.frame.size.height/2
+
         signup.layer.cornerRadius = signup.frame.size.height/2
         
-        username.leftViewMode = .always
-        var imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 25))
-        var image = UIImage(named: "user.png")
-        imageView.image = image
-        imageView.contentMode = .center
-        username.leftView = imageView
+//        email.leftViewMode = .always
+//        var imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 25))
+//        var image = UIImage(named: "email.png")
+//        imageView.image = image
+//        imageView.contentMode = .center
+//        email.leftView = imageView
+//        
+//        username.leftViewMode = .always
+//        imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 25))
+//        image = UIImage(named: "user.png")
+//        imageView.image = image
+//        imageView.contentMode = .center
+//        username.leftView = imageView
         
-        email.leftViewMode = .always
-        imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 25))
-        image = UIImage(named: "email.png")
-        imageView.image = image
-        imageView.contentMode = .center
-        email.leftView = imageView
-        
-        password.leftViewMode = .always
-        imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 25))
-        image = UIImage(named: "password.png")
-        imageView.image = image
-        imageView.contentMode = .center
-        password.leftView = imageView
 
         //Configure Terms and Conditions
         // Create an attributed string
@@ -79,7 +79,7 @@ class SignupViewController: UIViewController, UIGestureRecognizerDelegate, UIIma
         // Set attributed string
         termsText.attributedText = attributedText
         termsText.textAlignment = .center
-        termsText.font = UIFont(name: "Futura-Medium", size: 10)
+        termsText.font = UIFont(name: "Futura-Medium", size: 12)
         
         // Add tap gesture recognizer to Text View
         let tap = UITapGestureRecognizer(target: self, action: #selector(myMethodToHandleTap(_:)))
@@ -94,8 +94,28 @@ class SignupViewController: UIViewController, UIGestureRecognizerDelegate, UIIma
     }
     
     @IBAction func signUp(_ sender: UIButton) {
-        
-        
+        if email.text != "" {
+            FriendSystem.system.createAccount(email.text!, username.text!, password: "123456") { (success) in
+                if success {
+                    //Sign up successful
+                    print("Sign up successful")
+                }
+                else {
+                    //Error
+                    self.presentSignupAlertView()
+                }
+            }
+        } else {
+            // Fields not filled
+            presentSignupAlertView()
+        }
+    }
+    
+    func presentSignupAlertView() {
+        let alertController = UIAlertController(title: "Error", message: "Couldn't create account", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     func myMethodToHandleTap(_ sender: UITapGestureRecognizer) {

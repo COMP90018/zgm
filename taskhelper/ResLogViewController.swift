@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ResLogViewController: UIViewController {
     
+    
     @IBOutlet weak var email: UITextField!
-    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var face: UIButton!
+    @IBOutlet weak var voice: UIButton!
     @IBOutlet weak var login: UIButton!
     
     
@@ -24,28 +27,25 @@ class ResLogViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         //Set the UITextField transparent, not affect the placeholder.
-        email.backgroundColor = UIColor(white: 0.6, alpha: 0.3)
-        password.backgroundColor = UIColor(white: 0.6, alpha: 0.3)
+        email.backgroundColor = UIColor(white: 0.7, alpha: 0.5)
         email.layer.cornerRadius = email.frame.size.height/2
-        password.layer.cornerRadius = email.frame.size.height/2
+        face.backgroundColor = UIColor(white: 0.7, alpha: 0.5)
+        face.layer.cornerRadius = face.frame.size.height/2
+        voice.backgroundColor = UIColor(white: 0.7, alpha: 0.5)
+        voice.layer.cornerRadius = voice.frame.size.height/2
         login.layer.cornerRadius = login.frame.size.height/2
         
-        email.leftViewMode = .always
-        var imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 25))
-        var image = UIImage(named: "email.png")
-        imageView.image = image
-        imageView.contentMode = .center
-        email.leftView = imageView
-        
-        password.leftViewMode = .always
-        imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 25))
-        image = UIImage(named: "password.png")
-        imageView.image = image
-        imageView.contentMode = .center
-        password.leftView = imageView
-        
+//        email.leftViewMode = .always
+//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 25))
+//        let image = UIImage(named: "email.png")
+//        imageView.image = image
+//        imageView.contentMode = .center
+//        email.leftView = imageView
         
     }
+    
+    
+    
     
 
     override func didReceiveMemoryWarning() {
@@ -54,9 +54,26 @@ class ResLogViewController: UIViewController {
     }
     
     @IBAction func logIn(_ sender: UIButton) {
-        
-        
-        
+        if email.text != "" {
+            FriendSystem.system.loginAccount(email.text!, password: "123456") { (success) in
+                if success {
+                    self.performSegue(withIdentifier: "showHomePage", sender: self)
+                } else {
+                    // Error
+                    self.presentLoginAlertView()
+                }
+            }
+        } else {
+            // Fields not filled
+            presentLoginAlertView()
+        }
+    }
+    
+    func presentLoginAlertView() {
+        let alertController = UIAlertController(title: "Error", message: "Email is invalid", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     
@@ -66,17 +83,10 @@ class ResLogViewController: UIViewController {
     }
     
     
-    @IBAction func resetPassword(_ sender: UIButton) {
+    @IBAction func findUsername(_ sender: UIButton) {
         
         
     }
-    
-    
-    
-    
-
-    
-    
     
     
 
