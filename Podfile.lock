@@ -1,4 +1,20 @@
 PODS:
+  - AZSClient (0.2.4)
+  - MicrosoftAzureMobile (3.3.0)
+  - ProjectOxfordFace (1.3.2)
+
+DEPENDENCIES:
+  - AZSClient
+  - MicrosoftAzureMobile
+  - ProjectOxfordFace
+
+SPEC CHECKSUMS:
+  AZSClient: 086e68a3a043da5e162c7a962efce9fbceb1c9f7
+  MicrosoftAzureMobile: 08e10f8277b8ce7b55a54f3c96872e075d5041d5
+  ProjectOxfordFace: c6e50e9f1740036229374944226536882d4217f9
+
+PODFILE CHECKSUM: 6c9840701e766aa05275975c1a66394e4e0725a2
+=======
   - Firebase/Auth (4.2.0):
     - Firebase/Core
     - FirebaseAuth (= 4.2.0)
