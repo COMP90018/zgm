@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Friend" representedClassName="FriendMO" syncable="YES">
+        <attribute name="friendEmail" attributeType="String" syncable="YES"/>
+        <attribute name="friendIcon" attributeType="Binary" syncable="YES"/>
+        <attribute name="friendName" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Task" representedClassName="TaskMO" syncable="YES" codeGenerationType="class">
+        <attribute name="content" attributeType="String" syncable="YES"/>
+        <attribute name="dueDate" attributeType="String" syncable="YES"/>
+        <attribute name="isFinished" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isSuccessful" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isVerified" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="taskID" attributeType="String" syncable="YES"/>
+        <attribute name="verifier" attributeType="Binary" valueTransformerName="Verifier" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="UserMO" syncable="YES" codeGenerationType="class">
+        <attribute name="email" attributeType="String" syncable="YES"/>
+        <attribute name="faceRecog" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="friendList" attributeType="Binary" valueTransformerName="FriendList" syncable="YES"/>
+        <attribute name="isVerified" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="msgUnreadNum" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="profileImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="requestFriends" attributeType="Binary" syncable="YES"/>
+        <attribute name="requestTasks" attributeType="Binary" valueTransformerName="RequestTasks" syncable="YES"/>
+        <attribute name="taskCompeleteNum" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="taskNum" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="username" attributeType="String" syncable="YES"/>
+        <attribute name="voiceRecog" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Friend" positionX="-54" positionY="-9" width="128" height="90"/>
+        <element name="Task" positionX="-36" positionY="9" width="128" height="150"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="225"/>
+    </elements>
+</model>
