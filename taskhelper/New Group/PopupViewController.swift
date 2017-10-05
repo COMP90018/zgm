@@ -1,10 +1,8 @@
-//
 //  PopupViewController.swift
-//  FaceIdentification
-//
-//  Created by 奇奇 on 2017/9/28.
-//  Copyright © 2017年 MelbUni. All rights reserved.
-//
+//  Author: Meng Qi
+//  Declaration: the function was build based on the tutorials from the following sources:
+//      Tutorial: https://www.youtube.com/watch?v=FgCIRMz_3dE
+//      Source: https://github.com/awseeley/Swift-Pop-Up-View-Tutorial
 
 import UIKit
 

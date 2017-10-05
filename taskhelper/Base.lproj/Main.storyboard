@@ -226,7 +226,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybo-pI-W6A">
-                                <rect key="frame" x="167" y="621" width="80" height="80"/>
+                                <rect key="frame" x="167" y="636" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.99874693155288696" green="0.30400916934013367" blue="0.19561505317687988" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal">
@@ -242,18 +242,43 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5R7-t6-wMs">
-                                <rect key="frame" x="45" y="471" width="325" height="30"/>
+                                <rect key="frame" x="45" y="546" width="325" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="Please Speak Your Voice Code">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="microphone" translatesAutoresizingMaskIntoConstraints="NO" id="zrg-C9-eON">
+                                <rect key="frame" x="44" y="170" width="326" height="271"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="271" id="5kA-R3-Tk1"/>
+                                    <constraint firstAttribute="width" constant="326" id="Eja-9h-fvk"/>
+                                </constraints>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="sL7-3M-Bqf">
+                                <rect key="frame" x="189" y="501" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.62101674080000002" green="0.92241322989999996" blue="0.93232327699999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Press the red button to start  recording" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mNA-lx-coq">
+                                <rect key="frame" x="48" y="584" width="318" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zrg-C9-eON" firstAttribute="top" secondItem="SN1-gi-BUV" secondAttribute="bottom" constant="150" id="8YT-5E-XH8"/>
+                            <constraint firstItem="zrg-C9-eON" firstAttribute="centerX" secondItem="Ybe-60-hhi" secondAttribute="centerX" id="WtI-G8-bal"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="activitySpinner" destination="sL7-3M-Bqf" id="gNG-z8-ZMT"/>
                         <outlet property="buttonLabel" destination="5R7-t6-wMs" id="NrR-rv-HfJ"/>
+                        <outlet property="mylabel" destination="mNA-lx-coq" id="9q4-x4-UyK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FXx-Yp-pMy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -319,11 +344,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z25-Jr-6gX">
-                                <rect key="frame" x="167" y="621" width="80" height="80"/>
+                                <rect key="frame" x="167" y="636" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.99874693155288696" green="0.30400916934013367" blue="0.19561505317687988" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="keyPath">
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
@@ -332,25 +357,43 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hip-uX-psP">
-                                <rect key="frame" x="45" y="471" width="325" height="30"/>
+                                <rect key="frame" x="45" y="546" width="325" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <state key="normal" title="Please Speak Your Voice Code">
+                                <state key="normal" title="Please Repeat Your Voice Code">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="One More Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nGX-IF-6Hg">
-                                <rect key="frame" x="136" y="509" width="142" height="24"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="microphone" translatesAutoresizingMaskIntoConstraints="NO" id="p0w-kj-BP7">
+                                <rect key="frame" x="44" y="170" width="326" height="271"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="271" id="hKR-Gp-lod"/>
+                                    <constraint firstAttribute="width" constant="326" id="o7b-Cs-roq"/>
+                                </constraints>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="WM4-du-hd6">
+                                <rect key="frame" x="189" y="510" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="color" red="0.62101674080000002" green="0.92241322989999996" blue="0.93232327699999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Press the red button to start  recording" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgc-5d-5zl">
+                                <rect key="frame" x="58" y="590" width="298" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="p0w-kj-BP7" firstAttribute="top" secondItem="fzh-3w-OfJ" secondAttribute="bottom" constant="150" id="CfF-g9-j4h"/>
+                            <constraint firstItem="p0w-kj-BP7" firstAttribute="centerX" secondItem="n7V-1i-5J4" secondAttribute="centerX" id="t6V-jz-rnc"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="activitySpinner" destination="WM4-du-hd6" id="i57-8y-afy"/>
                         <outlet property="buttonLabel" destination="Hip-uX-psP" id="1z7-bs-aoN"/>
+                        <outlet property="myLabel" destination="fgc-5d-5zl" id="hER-zq-OII"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PL0-pP-gsD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -404,10 +447,10 @@
             </objects>
             <point key="canvasLocation" x="-1467" y="1136"/>
         </scene>
-        <!--View Controller-->
+        <!--Speech View Controller-->
         <scene sceneID="sva-Y7-mt3">
             <objects>
-                <viewController id="Fz0-g7-ClI" sceneMemberID="viewController">
+                <viewController id="Fz0-g7-ClI" customClass="SpeechViewController" customModule="taskhelper" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Aa2-nL-Ex9"/>
                         <viewControllerLayoutGuide type="bottom" id="ssL-66-ro8"/>
@@ -415,12 +458,65 @@
                     <view key="view" contentMode="scaleToFill" id="Imc-Pg-3v0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tN5-gE-IPg">
+                                <rect key="frame" x="167" y="636" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99874693155288696" green="0.30400916934013367" blue="0.19561505317687988" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="verifyButton:" destination="Fz0-g7-ClI" eventType="touchUpInside" id="V5O-1Y-Gf0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TVn-Fl-rIr">
+                                <rect key="frame" x="65" y="546" width="285" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="Please Speak Your Voice Code">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="DNZ-rx-Ezk">
+                                <rect key="frame" x="189" y="501" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.62101674080000002" green="0.92241322989999996" blue="0.93232327699999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="microphone" translatesAutoresizingMaskIntoConstraints="NO" id="rPL-np-AJ4">
+                                <rect key="frame" x="44" y="170" width="326" height="271"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="326" id="ATd-bc-Mhv"/>
+                                    <constraint firstAttribute="height" constant="271" id="hCD-ih-IJf"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Press the red button to start recording" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ik-qk-6af">
+                                <rect key="frame" x="63" y="590" width="288" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="rPL-np-AJ4" secondAttribute="trailing" constant="44" id="9Su-1u-oUK"/>
+                            <constraint firstItem="rPL-np-AJ4" firstAttribute="top" secondItem="Aa2-nL-Ex9" secondAttribute="bottom" constant="150" id="ciG-eI-xs3"/>
+                            <constraint firstItem="rPL-np-AJ4" firstAttribute="leading" secondItem="Imc-Pg-3v0" secondAttribute="leading" constant="44" id="juV-O5-oDD"/>
+                            <constraint firstItem="rPL-np-AJ4" firstAttribute="centerX" secondItem="Imc-Pg-3v0" secondAttribute="centerX" id="nN8-D6-gHD"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activitySpinner" destination="DNZ-rx-Ezk" id="8ku-gy-jCn"/>
+                        <outlet property="buttonLabel" destination="TVn-Fl-rIr" id="JGP-m6-UQc"/>
+                        <outlet property="myLabel" destination="9Ik-qk-6af" id="muC-ee-GnN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IcR-h5-flb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1038" y="939"/>
+            <point key="canvasLocation" x="1037.68115942029" y="938.31521739130437"/>
         </scene>
         <!--Popup View Controller-->
         <scene sceneID="LyX-LS-2YU">
@@ -1142,7 +1238,7 @@ Cgo
                 <placeholder placeholderIdentifier="IBFirstResponder" id="suw-WB-OZl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="peK-ZR-y1C" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1217" y="1787"/>
+            <point key="canvasLocation" x="241" y="2530"/>
         </scene>
         <!--Detail Profile Table View Controller-->
         <scene sceneID="rB8-Xg-vdf">
@@ -1831,6 +1927,82 @@ Cgo
             </objects>
             <point key="canvasLocation" x="241" y="1787"/>
         </scene>
+        <!--Second Speech View Controller-->
+        <scene sceneID="icP-AG-kMU">
+            <objects>
+                <viewController storyboardIdentifier="secondSpeech" id="6Wu-an-OHc" customClass="SecondSpeechViewController" customModule="taskhelper" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="czi-73-imX"/>
+                        <viewControllerLayoutGuide type="bottom" id="sUJ-ST-PRR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lNy-SF-0Ye">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9v8-0n-IBS">
+                                <rect key="frame" x="11" y="546" width="393" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="Please Repeat Your Voice Code">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7m5-DB-W3d">
+                                <rect key="frame" x="167" y="636" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99874693155288696" green="0.30400916934013367" blue="0.19561505317687988" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="verifyButton:" destination="6Wu-an-OHc" eventType="touchUpInside" id="AGQ-xE-xBb"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Gya-ew-MKS">
+                                <rect key="frame" x="189" y="501" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.62101674080000002" green="0.92241322989999996" blue="0.93232327699999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="microphone" translatesAutoresizingMaskIntoConstraints="NO" id="KvO-h6-Gzk">
+                                <rect key="frame" x="44" y="170" width="326" height="271"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="326" id="Ier-cC-RRh"/>
+                                    <constraint firstAttribute="height" constant="271" id="L8q-gN-uEA"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0RP-LO-qY6">
+                                <rect key="frame" x="186" y="587" width="0.0" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Press the red button to start  recording" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x78-37-j6z">
+                                <rect key="frame" x="63" y="585" width="289" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KvO-h6-Gzk" firstAttribute="top" secondItem="czi-73-imX" secondAttribute="bottom" constant="150" id="Kxa-Un-C8c"/>
+                            <constraint firstItem="KvO-h6-Gzk" firstAttribute="centerX" secondItem="lNy-SF-0Ye" secondAttribute="centerX" id="vGw-HM-xd8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activitySpinner" destination="Gya-ew-MKS" id="24N-wq-ZO6"/>
+                        <outlet property="buttonLabel" destination="9v8-0n-IBS" id="PO0-WI-IlX"/>
+                        <outlet property="myLabel" destination="x78-37-j6z" id="nmK-tB-tjb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a9L-fW-BEq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1028.985507246377" y="1775.5434782608697"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="SNj-dt-aZ5">
             <objects>
@@ -1898,6 +2070,7 @@ Cgo
         <image name="faceicon" width="20" height="20"/>
         <image name="friends" width="25" height="25"/>
         <image name="google" width="256" height="256"/>
+        <image name="microphone" width="100" height="100"/>
         <image name="notchecked" width="60" height="60"/>
         <image name="photo" width="150" height="150"/>
         <image name="plus" width="60" height="60"/>

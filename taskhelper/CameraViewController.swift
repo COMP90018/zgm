@@ -1,18 +1,18 @@
-//
 //  CameraViewController.swift
-//  FaceIdentification
-//
-//  Created by 奇奇 on 2017/9/17.
-//  Copyright © 2017年 MelbUni. All rights reserved.
-//
+//  Author: Meng Qi
+//  Declaration: the function was build based on the tutorials from the following sources:
+//      Tutorial: https://www.youtube.com/watch?v=2gs5QTRC8Yk&t=101s
+//      Source: https://bitbucket.org/team-devslopes/ios-10-speech-recognition-api
+//      Tutorial: https://www.youtube.com/watch?v=FgCIRMz_3dE
+//      Source: https://github.com/awseeley/Swift-Pop-Up-View-Tutorial
+//      Tutorial: https://www.youtube.com/watch?v=hIW6atqmig0
+//      Tutorial： https://www.youtube.com/watch?v=r-0YyveITWU&t=178s
 
 import UIKit
 import AVFoundation
 import ProjectOxfordFace
 import AZSClient
 import MicrosoftAzureMobile
-
-
 
 enum PhotoType{
     case takeAPhoto
@@ -120,13 +120,11 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                     print("too many faces")
                     
                     let faceUnsucPopup = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "faceUnsucPopup") as! PopupViewController
-                    
-                    
+  
                     DispatchQueue.main.async {
                         self.present(faceUnsucPopup, animated: true, completion: nil)
                     }
-                    
-                
+
                 }
 
                 if let image = UIImage(data: dataImage) {
@@ -159,8 +157,6 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         settings.previewPhotoFormat = previewFormat
         sessionOutput.capturePhoto(with: settings, delegate: self)
     }
-    
 
-    
 }
 

@@ -1,10 +1,12 @@
-//
 //  PhotoViewController.swift
-//  FaceIdentification
-//
-//  Created by 奇奇 on 2017/9/21.
-//  Copyright © 2017年 MelbUni. All rights reserved.
-//
+//  Author: Meng Qi
+//  Declaration: the function was build based on the tutorials from the following sources:
+//      Tutorial: https://www.youtube.com/watch?v=2gs5QTRC8Yk&t=101s
+//      Source: https://bitbucket.org/team-devslopes/ios-10-speech-recognition-api
+//      Tutorial: https://www.youtube.com/watch?v=FgCIRMz_3dE
+//      Source: https://github.com/awseeley/Swift-Pop-Up-View-Tutorial
+//      Tutorial: https://www.youtube.com/watch?v=hIW6atqmig0
+//      Tutorial： https://www.youtube.com/watch?v=r-0YyveITWU&t=178s
 
 import UIKit
 
@@ -22,8 +24,7 @@ class PhotoViewController: UIViewController {
         }
     }
     
-    
-    
+
     @IBAction func done(_ sender: Any) {
         //store the photo locally
         

@@ -1,10 +1,12 @@
-//
-//  RecorderViewController.swift
-//  FaceIdentification
-//
-//  Created by 奇奇 on 2017/9/24.
-//  Copyright © 2017年 MelbUni. All rights reserved.
-//
+//  SecondRecordViewController.swift
+//  Author: Meng Qi
+//  Declaration: the function was build based on the tutorials from the following sources:
+//      Tutorial: https://www.youtube.com/watch?v=2gs5QTRC8Yk&t=101s
+//      Source: https://bitbucket.org/team-devslopes/ios-10-speech-recognition-api
+//      Tutorial: https://www.youtube.com/watch?v=FgCIRMz_3dE
+//      Source: https://github.com/awseeley/Swift-Pop-Up-View-Tutorial
+//      Tutorial: https://www.youtube.com/watch?v=hIW6atqmig0
+//      Tutorial： https://www.youtube.com/watch?v=r-0YyveITWU&t=178s
 
 import UIKit
 import AVFoundation
@@ -15,16 +17,21 @@ class SecondRecordViewController: UIViewController, AVAudioRecorderDelegate{
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
     var audioPlayer: AVAudioPlayer!
-    
+ 
     var filename: URL!
-    
-    
+
+    @IBOutlet weak var myLabel: UILabel!
+    @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
     @IBOutlet weak var buttonLabel: UIButton!
     
     @IBAction func record(_ sender: Any) {
         
         //check if we have an active recorder
         if audioRecorder == nil{
+            
+            activitySpinner.isHidden = false
+            activitySpinner.startAnimating()
+            myLabel.text = "Press the red button again to stop recording"
             
             let settings = [AVFormatIDKey: Int(kAudioFormatMPEG4AAC), AVSampleRateKey: 12000, AVNumberOfChannelsKey: 1, AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue]
             
@@ -38,7 +45,7 @@ class SecondRecordViewController: UIViewController, AVAudioRecorderDelegate{
                 audioRecorder.record()
                 
                 //change the title of the label
-                buttonLabel.setTitle("Stop recording", for: .normal)
+                buttonLabel.setTitle("Recording...", for: .normal)
             }catch{
                 displayAlert(title: "Error", message: "Recording failed")
             }
@@ -48,10 +55,11 @@ class SecondRecordViewController: UIViewController, AVAudioRecorderDelegate{
             audioRecorder.stop()
             audioRecorder = nil
             
+            activitySpinner.isHidden = true
+            activitySpinner.stopAnimating()
+            
             buttonLabel.setTitle("Start Recording", for: .normal)
-            
-            
-            
+ 
             //recognize the text in the speech
             SFSpeechRecognizer.requestAuthorization { authStatus in
                 if authStatus == SFSpeechRecognizerAuthorizationStatus.authorized{
@@ -81,20 +89,20 @@ class SecondRecordViewController: UIViewController, AVAudioRecorderDelegate{
                 }
             }
             
-
             let voiceCodeCreated = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "voiceCodeCreated") as! PopupViewController
             
             DispatchQueue.main.async {
                 self.present(voiceCodeCreated, animated: true, completion: nil)
             }
-            
-            
+
         }
         
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activitySpinner.isHidden = true
         
         //setting up session
         recordingSession = AVAudioSession.sharedInstance()
@@ -112,8 +120,7 @@ class SecondRecordViewController: UIViewController, AVAudioRecorderDelegate{
         alert.addAction(UIAlertAction(title: "dismiss", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
-    
-    
+
 }
 
 
