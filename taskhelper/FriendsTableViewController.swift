@@ -42,7 +42,6 @@ class FriendsTableViewController: UITableViewController, UISearchResultsUpdating
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         
-        
         //Static friend data
         friendsList.append(Friend(friendName: "Arthur", friendEmail:"donngao@gmail.com",friendIcon: UIImage(named: "profile_image.png")!))
         friendsList.append(Friend(friendName: "Arthur", friendEmail:"donngao@gmail.com",friendIcon: UIImage(named: "profile_image.png")!))

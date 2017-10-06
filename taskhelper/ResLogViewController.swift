@@ -8,16 +8,23 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
 
 var localUser = User()
+var taskList = [Task]()
+var dataControl = DatabaseControl()
+var users = [NSManagedObject]()
+var userTasks = [NSManagedObject]()
+var userFriends = [NSManagedObject]()
 
 class ResLogViewController: UIViewController {
-    
     
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var face: UIButton!
     @IBOutlet weak var voice: UIButton!
     @IBOutlet weak var login: UIButton!
+    
     
     
     @IBAction func unwindToResLog(segue: UIStoryboardSegue) {
@@ -61,6 +68,7 @@ class ResLogViewController: UIViewController {
             FriendSystem.system.loginAccount(email.text!, password: "123456") { (success) in
                 if success {
                     self.performSegue(withIdentifier: "showHomePage", sender: self)
+                    
                 } else {
                     // Error
                     self.presentLoginAlertView()
@@ -103,6 +111,8 @@ class ResLogViewController: UIViewController {
         
         
     }
+    
+
     
     
 

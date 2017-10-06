@@ -10,39 +10,41 @@ import Foundation
 import Firebase
 import FirebaseAuth
 
+
+// MARK: - Firebase references
+/** The base Firebase reference */
+let BASE_REF = Database.database().reference()
+/* The user Firebase reference */
+let USER_REF = Database.database().reference().child("users")
+
+/** The Firebase reference to the current user tree */
+var CURRENT_USER_REF: DatabaseReference {
+    let id = Auth.auth().currentUser!.uid
+    return USER_REF.child("\(id)")
+}
+
+/** The Firebase reference to the current user's friend tree */
+var CURRENT_USER_FRIENDS_REF: DatabaseReference {
+    return CURRENT_USER_REF.child("friends")
+}
+
+/** The Firebase reference to the current user's friend request tree */
+var CURRENT_USER_REQUESTS_REF: DatabaseReference {
+    return CURRENT_USER_REF.child("requests")
+}
+
+/** The current user's id */
+var CURRENT_USER_ID: String {
+    let id = Auth.auth().currentUser!.uid
+    return id
+}
+
+
+
+
 class FriendSystem {
     
     static let system = FriendSystem()
-    
-    // MARK: - Firebase references
-    /** The base Firebase reference */
-    let BASE_REF = Database.database().reference()
-    /* The user Firebase reference */
-    let USER_REF = Database.database().reference().child("users")
-    
-    /** The Firebase reference to the current user tree */
-    var CURRENT_USER_REF: DatabaseReference {
-        let id = Auth.auth().currentUser!.uid
-        return USER_REF.child("\(id)")
-    }
-    
-    /** The Firebase reference to the current user's friend tree */
-    var CURRENT_USER_FRIENDS_REF: DatabaseReference {
-        return CURRENT_USER_REF.child("friends")
-    }
-    
-    /** The Firebase reference to the current user's friend request tree */
-    var CURRENT_USER_REQUESTS_REF: DatabaseReference {
-        return CURRENT_USER_REF.child("requests")
-    }
-    
-    /** The current user's id */
-    var CURRENT_USER_ID: String {
-        let id = Auth.auth().currentUser!.uid
-        return id
-    }
-    
-    
     /** Gets the current User object for the specified user id */
     func getCurrentUser(_ completion: @escaping (FirebaseUser) -> Void) {
         CURRENT_USER_REF.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
@@ -78,7 +80,7 @@ class FriendSystem {
                 // Success
                 var userInfo = [String: AnyObject]()
                 userInfo = ["email": email as AnyObject, "username": username as AnyObject]
-                self.CURRENT_USER_REF.setValue(userInfo)
+                CURRENT_USER_REF.setValue(userInfo)
                 completion(true)
             } else {
                 // Failure
@@ -145,7 +147,7 @@ class FriendSystem {
     /** Adds a user observer. The completion function will run every time this list changes, allowing you
      to update your UI. */
     func addUserObserver(_ update: @escaping () -> Void) {
-        FriendSystem.system.USER_REF.observe(DataEventType.value, with: { (snapshot) in
+        USER_REF.observe(DataEventType.value, with: { (snapshot) in
             self.userList.removeAll()
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 let email = child.childSnapshot(forPath: "email").value as! String
@@ -162,6 +164,36 @@ class FriendSystem {
     func removeUserObserver() {
         USER_REF.removeAllObservers()
     }
+    
+    
+    
+    //The list of all tasks
+    /** Adds a user observer. The completion function will run every time this list changes, allowing you
+     to update your UI. */
+    func addTaskObserver(_ update: @escaping () -> Void) {
+        USER_REF.child("tasks").observe(DataEventType.value, with: { (snapshot) in
+            taskList.removeAll()
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                let taskID = child.childSnapshot(forPath: "taskID").value as! String
+                let content = child.childSnapshot(forPath: "content").value as! String
+                let dueDate = child.childSnapshot(forPath: "dueDate").value as! String
+                let verifier = child.childSnapshot(forPath: "verifier").value as! [Friend]
+                let isFinished = child.childSnapshot(forPath: "isFinished").value as! Bool
+                let isVerified = child.childSnapshot(forPath: "isVerified").value as! Bool
+                let isSuccessful = child.childSnapshot(forPath: "isSuccessful").value as! Bool
+                
+                taskList.append(Task(taskID: taskID, content: content, dueDate: dueDate, verifier: verifier, isFinished: isFinished, isVerified: isVerified, isSuccessful: isSuccessful))
+
+                
+            }
+            update()
+        })
+    }
+    /** Removes the user observer. This should be done when leaving the view that uses the observer. */
+    func removeTaskObserver() {
+        USER_REF.child("tasks").removeAllObservers()
+    }
+
     
     
     

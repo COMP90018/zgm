@@ -22,7 +22,6 @@ class SignupViewController: UIViewController, UIGestureRecognizerDelegate, UIIma
     @IBOutlet weak var termsText: UITextView!
     
     var storageRef: StorageReference!
-    var users = [NSManagedObject]()
     
     @IBAction func unwindToSignup(segue: UIStoryboardSegue) {
         
@@ -134,14 +133,14 @@ class SignupViewController: UIViewController, UIGestureRecognizerDelegate, UIIma
                     let friendList = NSKeyedArchiver.archivedData(withRootObject: localUser.friendList)
                     let requestTasks = NSKeyedArchiver.archivedData(withRootObject: localUser.requestTasks)
                     let requestFriends = NSKeyedArchiver.archivedData(withRootObject: localUser.requestFriends)
-                    //save the data
+                    //Save user information in CoreData
                     
                     if let imageData = UIImageJPEGRepresentation(self.profilio.image!, 0.7) {
                         user.setValue(NSData(data: imageData), forKey: "profileImage")
                     }
                     user.setValue(localUser.email, forKey: "email")
                     user.setValue(localUser.username, forKey: "username")
-                    user.setValue(localUser.faceRecog, forKey: "isVerified")
+                    user.setValue(localUser.isVerified, forKey: "isVerified")
                     user.setValue(localUser.faceRecog, forKey: "faceRecog")
                     user.setValue(localUser.voiceRecog, forKey: "voiceRecog")
                     user.setValue(friendList, forKey: "friendList")
@@ -150,22 +149,31 @@ class SignupViewController: UIViewController, UIGestureRecognizerDelegate, UIIma
                     user.setValue(localUser.taskCompeleteNum, forKey: "taskCompeleteNum")
                     user.setValue(requestTasks, forKey: "requestTasks")
                     user.setValue(localUser.msgUnreadNum, forKey: "msgUnreadNum")
-                    
-                    
-                    
                     do {
                         try managedContext.save()
-                        self.users.append(user)
+                        users.append(user)
                     } catch let error as NSError  {
                         print("Could not save \(error), \(error.userInfo)")
                     }
                     
                     
-                    
-
-                    //Save the image to Firebase
+                    //Save user information in Firebase
                     self.uploadImage()
-                    
+                    var userInfo = [String: AnyObject]()
+                    userInfo = [
+                        "email": localUser.email as AnyObject,
+                        "username": localUser.username as AnyObject,
+                        "isVerified": localUser.isVerified as AnyObject,
+                        "faceRecog": localUser.faceRecog as AnyObject,
+                        "voiceRecog": localUser.voiceRecog as AnyObject,
+                        "friendList": localUser.friendList as AnyObject,
+                        "requestFriends": localUser.requestFriends as AnyObject,
+                        "taskNum": localUser.taskNum as AnyObject,
+                        "taskCompeleteNum": localUser.taskCompeleteNum as AnyObject,
+                        "requestTasks": localUser.requestTasks as AnyObject,
+                        "msgUnreadNum": localUser.msgUnreadNum as AnyObject]
+                    CURRENT_USER_REF.setValue(userInfo)
+
                     let alert = UIAlertController(title: "Signup Successfully!", message: "Login Now!", preferredStyle: .alert)
                     let goLogin  = UIAlertAction(title: "OK", style: .default, handler: { action in self.performSegue(withIdentifier: "showLoginPage", sender: self)})
                     alert.addAction(goLogin)
@@ -246,7 +254,6 @@ class SignupViewController: UIViewController, UIGestureRecognizerDelegate, UIIma
         if let imageData = UIImageJPEGRepresentation(self.profilio.image!, 0.7) {
             data = NSData(data: imageData) as Data
         }
-        
         
         // Upload the file to the path "images/rivers.jpg"
         let uploadTask = iconRef.putData(data, metadata: nil) { (metadata, error) in

@@ -15,22 +15,23 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var tableView: UITableView!
     
+    
     var ref: DatabaseReference!
     var storage: StorageReference!
-    var databaseHandle: DatabaseHandle!
+
     //search bar
     var sc: UISearchController!
     
-    var fc: NSFetchedResultsController<TaskMO>!
+    var task: Task = Task()
+    var tasks: [Task] = []
+    var taskID: String = ""
     
-    var tasks: [TaskMO] = []
-    
-    var searchResult: [TaskMO] = []
+    var searchResult: [Task] = []
     
     //the method for searching
     func searchFilter(text: String) {
         searchResult = tasks.filter({ (task) -> Bool in
-            return task.content!.localizedCaseInsensitiveContains(text)
+            return task.content.localizedCaseInsensitiveContains(text)
         })
     }
     
@@ -49,10 +50,12 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getUserInfo()
+        fetchTaskInfo()
+        
         //Set the firebase reference
         ref = Database.database().reference()
         
@@ -70,12 +73,20 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         //fetch the data from Area entity
-        fetchAllData()
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
     }
+    
+    func getTaskInfo() {
+        FriendSystem.system.addTaskObserver { () in
+            
+            print(taskList)
+            self.tableView.reloadData()
+        }
+    }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -108,33 +119,11 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         if let object = controller.fetchedObjects {
-            tasks = object as! [TaskMO]
+            tasks = object as! [Task]
         }
     }
     
-    //fetch the data from the task entity
-    func fetchAllData() {
-        let request: NSFetchRequest<TaskMO> = TaskMO.fetchRequest()
-        let sd = NSSortDescriptor(key: "content", ascending: true)
-        request.sortDescriptors = [sd]
-        
-        /*
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
-        fc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        fc.delegate = self
-        
-        do {
-            try fc.performFetch()
-            if let object = fc.fetchedObjects {
-                tasks = object
-            }
-        } catch {
-            print(error)
-        }
- */
-    }
+    
     
     
     
@@ -143,20 +132,24 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
         return sc.isActive ? searchResult.count : tasks.count
     }
     
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TaskTableViewCell
+        
         let task = sc.isActive ? searchResult[indexPath.row] : tasks[indexPath.row]
         
         // Configure the cell
         cell.taskLabel.text = task.content
         cell.timeLabel.text = task.dueDate
+        cell.finishBtn.setBackgroundImage(UIImage(named: "checkbox"), for: .normal)
+        cell.finishBtn.setBackgroundImage(UIImage(named: "checkedbox"), for: .selected)
+        
         cell.finishBtn.imageView?.image = cell.finishBtn.isSelected ? UIImage(named: "checkbox.png") : UIImage(named: "checkedbox.png")
         
         //read the data from the firebase and store them in a list.
-//        databaseHandle = ref.child("\(localUser.email)").child("\(localUser.email)").observe(DataEventType.value, with: { (snapshot) in
-//            let postDict = snapshot.value as! String
-//            self.alert[0].cameraId = postDict
-//        })
+        //        databaseHandle = ref.child("\(localUser.email)").child("\(localUser.email)").observe(DataEventType.value, with: { (snapshot) in
+        //            let postDict = snapshot.value as! String
+        //            self.alert[0].cameraId = postDict
+        //        })
         
         
         return cell
@@ -182,12 +175,12 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
         //Delete
         let actionDel = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
             /*
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            let context = appDelegate.persistentContainer.viewContext
-            
-            context.delete(self.fc.object(at: indexPath))
-            appDelegate.saveContext()
- */
+             let appDelegate = UIApplication.shared.delegate as! AppDelegate
+             let context = appDelegate.persistentContainer.viewContext
+             
+             context.delete(self.fc.object(at: indexPath))
+             appDelegate.saveContext()
+             */
         }
         
         let actionTop = UITableViewRowAction(style: .normal, title: "Top") { (_, indexPath) in
@@ -200,25 +193,197 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        taskID = tasks[indexPath.row].taskID
         performSegue(withIdentifier: "showDetailTask", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+        
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showTaskDetail" {
+        if segue.identifier == "showDetailTask" {
             let dest = segue.destination as! TaskDetailTableViewController
             dest.hidesBottomBarWhenPushed = true
+            dest.taskID = taskID
+            
+            
         }
     }
+    
+    
+    //Get user infor from firebase
+    func getUserInfo() {
 
-    /*
-    // MARK: - Navigation
+        CURRENT_USER_REF.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let username = value?["username"] as! String
+            localUser.username = username
+        })
+        CURRENT_USER_REF.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let isVerified = value?["isVerified"] as! Bool
+            localUser.isVerified = isVerified
+        })
+        CURRENT_USER_REF.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let faceRecog = value?["faceRecog"] as! Bool
+            localUser.faceRecog = faceRecog
+        })
+        CURRENT_USER_REF.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let voiceRecog = value?["voiceRecog"] as! Bool
+            localUser.voiceRecog = voiceRecog
+        })
+        CURRENT_USER_REF.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let friendList = value?["friendList"] as? [Friend] ?? []
+            localUser.friendList = friendList
+        })
+        
+        CURRENT_USER_REF.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let requestFriends = value?["requestFriends"] as? [Friend] ?? []
+            localUser.requestFriends = requestFriends
+        })
+        CURRENT_USER_REF.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let taskNum = value?["taskNum"] as! Int
+            localUser.taskNum = taskNum
+        })
+        CURRENT_USER_REF.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let taskCompeleteNum = value?["taskCompeleteNum"] as! Int
+            localUser.taskCompeleteNum = taskCompeleteNum
+        })
+        CURRENT_USER_REF.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let requestTasks = value?["requestTasks"] as? [Task] ?? []
+            localUser.requestTasks = requestTasks
+        })
+        CURRENT_USER_REF.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let friendList = value?["friendList"] as? [Friend] ?? []
+            localUser.friendList = friendList
+        })
+        CURRENT_USER_REF.observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let msgUnreadNum = value?["msgUnreadNum"] as! Int
+            localUser.msgUnreadNum = msgUnreadNum
+        })
+        
+        let storageRef = Storage.storage().reference()
+        let islandRef = storageRef.child("images/\(localUser.email)jpg")
+        
+        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+        islandRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+            if let error = error {
+                // Uh-oh, an error occurred!
+            } else {
+                // Data for "images/island.jpg" is returned
+                localUser.profileImage = UIImage(data: data!)!
+            }
+        }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        
     }
-    */
+    
+
+    
+    
+    
+    //fetch the data from the task entity
+    func fetchTaskInfo() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Task")
+        
+        do {
+            let results = try managedContext.fetch(fetchRequest)
+            
+            if results.count != 0 {
+                
+                for result in results {
+                    let taskID = (result as AnyObject).value(forKey: "taskID") as! String
+                    if taskID.contains("\(CURRENT_USER_ID)"){
+                        task.taskID = taskID
+                        task.content = (result as AnyObject).value(forKey: "content") as! String
+                        task.dueDate = (result as AnyObject).value(forKey: "dueDate") as! String
+                        tasks.append(task)
+                        
+                    }
+                }
+            }
+            
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+    }
+    
+    
+    //Update user information in CoreData
+    func updateUser() {
+        deleteUser()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let entity =  NSEntityDescription.entity(forEntityName: "User", in:managedContext)
+        let user = NSManagedObject(entity: entity!, insertInto: managedContext)
+        
+        let friendList = NSKeyedArchiver.archivedData(withRootObject: localUser.friendList)
+        let requestTasks = NSKeyedArchiver.archivedData(withRootObject: localUser.requestTasks)
+        let requestFriends = NSKeyedArchiver.archivedData(withRootObject: localUser.requestFriends)
+        
+        user.setValue(localUser.email, forKey: "email")
+        user.setValue(localUser.username, forKey: "username")
+        user.setValue(localUser.isVerified, forKey: "isVerified")
+        user.setValue(localUser.faceRecog, forKey: "faceRecog")
+        user.setValue(localUser.voiceRecog, forKey: "voiceRecog")
+        user.setValue(friendList, forKey: "friendList")
+        user.setValue(requestFriends, forKey: "requestFriends")
+        user.setValue(localUser.taskNum, forKey: "taskNum")
+        user.setValue(localUser.taskCompeleteNum, forKey: "taskCompeleteNum")
+        user.setValue(requestTasks, forKey: "requestTasks")
+        user.setValue(localUser.msgUnreadNum, forKey: "msgUnreadNum")
+        if let imageData = UIImageJPEGRepresentation(localUser.profileImage, 0.7) {
+            user.setValue(NSData(data: imageData), forKey: "profileImage")
+        }
+        
+        do {
+            try managedContext.save()
+            users.append(user)
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        }
+
+    }
+    
+    
+    func deleteUser() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        do {
+            let results = try managedContext.fetch(request)
+            if results.count != 0 {
+                for result in results {
+                    if (result as AnyObject).value(forKey: "email") as! String == localUser.email {
+                        managedContext.delete(result as! NSManagedObject)
+                    }
+                }
+                do {
+                    try managedContext.save()
+                } catch {
+                    print(error)
+                }
+            }
+            
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+    }
+
+    
 
 }

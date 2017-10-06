@@ -24,8 +24,10 @@ class AddTaskViewController: UITableViewController {
     @IBOutlet weak var isCompeleted: UIButton!
     @IBOutlet weak var isSuccessful: UIButton!
     
-    var task: TaskMO  = TaskMO()
-    var friends: [Friend] = []
+    var verifierList: [Friend] = []
+    var dateFormatter = DateFormatter()
+    var taskID: String = ""
+    var dueDate: String = ""
 
     
     @IBAction func findVerifier(_ sender: UIButton) {
@@ -49,13 +51,15 @@ class AddTaskViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
+//        CURRENT_USER_REF.observeSingleEvent(of: .value, with: { (snapshot) in
+//            let value = snapshot.value as? NSDictionary
+//            let username = value?["username"] as? String ?? ""
+//            localUser.username = username
+//        })
+        
+        
+
         isCompeleted.setBackgroundImage(UIImage(named: "checkbox"), for: .normal)
         isCompeleted.setBackgroundImage(UIImage(named: "checkedbox"), for: .selected)
         
@@ -67,10 +71,16 @@ class AddTaskViewController: UITableViewController {
         verified2.isHidden = true
         verified3.isHidden = true
         
-        dueDateLabel.text = "\(datePicker.date)"
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        dueDate = dateFormatter.string(from: datePicker.date)
+        
+        dueDateLabel.text = dueDate
         
         datePicker.addTarget(self, action: #selector(datePickerChanged(datePicker:)), for: UIControlEvents.valueChanged)
         
+        //Firebase path cannot contain "."
+        taskID = "\(CURRENT_USER_ID)-task\(localUser.taskNum)"
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,95 +90,64 @@ class AddTaskViewController: UITableViewController {
 
     
     func datePickerChanged(datePicker: UIDatePicker) {
-        var dateFormatter = DateFormatter()
-        
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .short
-        
-        var strDate = dateFormatter.string(from: datePicker.date)
-        dueDateLabel.text = strDate
+        dueDate = dateFormatter.string(from: datePicker.date)
+        dueDateLabel.text = dueDate
     }
-    
-    @IBAction func cancelTap(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "unwindToHome", sender: self)
-    }
-    
     
     
     @IBAction func saveTap(_ sender: UIBarButtonItem) {
+        uploadTask()
         //get the app delegate
-        /*
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let entity =  NSEntityDescription.entity(forEntityName: "Task", in:managedContext)
+        let task = NSManagedObject(entity: entity!, insertInto: managedContext)
+        
+        let friendList = NSKeyedArchiver.archivedData(withRootObject: verifierList)
         //save the data
-        task = TaskMO(context: appDelegate.persistentContainer.viewContext)
-        task.taskID = localUser.email + "\(taskNum)"
-        task.content = taskContent.text
-        task.dueDate = "\(datePicker.date)"
-        task.verifier = friends as! NSData
-        task.isFinished = isCompeleted.isSelected
-        task.isVerified = verified1.isSelected && verified2.isSelected && verified3.isSelected
-        task.isSuccessful = task.isFinished && task.isVerified
-        taskNum += 1
-        appDelegate.saveContext()
-        */
+        task.setValue(taskID, forKey: "taskID")
+        task.setValue(taskContent.text, forKey: "content")
+        task.setValue(dueDate, forKey: "dueDate")
+        task.setValue(friendList, forKey: "verifier")
+        task.setValue(isCompeleted.isSelected, forKey: "isFinished")
+        task.setValue(false, forKey: "isVerified")
+        task.setValue(false, forKey: "isSuccessful")
+        localUser.taskNum += 1
+        dataControl.updateUser()
+        CURRENT_USER_REF.child("taskNum").setValue(localUser.taskNum)
+       
+        do {
+            try managedContext.save()
+            userTasks.append(task)
+            print("Save Successfully!")
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        }
         
         performSegue(withIdentifier: "unwindToHome", sender: self)
     }
     
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+    
+    //Save task information in Firebase
+    func uploadTask() {
+        var taskInfo = [String: AnyObject]()
+        taskInfo = [
+            "taskID": taskID as AnyObject,
+            "content": taskContent.text as AnyObject,
+            "dueDate": dueDate as AnyObject,
+            "verifier": verifierList as AnyObject,
+            "isFinished": isCompeleted.isSelected as AnyObject,
+            "isVerified": isCompeleted.isSelected as AnyObject,
+            "isSuccessful": isCompeleted.isSelected as AnyObject]
+        CURRENT_USER_REF.child("tasks").child(taskID).setValue(taskInfo)
 
     }
-    */
+    
+    
 
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

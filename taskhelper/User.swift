@@ -12,7 +12,7 @@ import Foundation
 struct User {
     var email: String
     var username: String
-    var profileImage: UIImage?
+    var profileImage: UIImage
     //If the user login using OAuth, isVerified is false.
     var isVerified: Bool
     var faceRecog: Bool
@@ -42,7 +42,7 @@ struct User {
     init() {
         self.email = ""
         self.username = ""
-        self.profileImage = UIImage()
+        self.profileImage = UIImage(named: "profile_image.png")!
         self.isVerified = false
         self.faceRecog = false
         self.voiceRecog = false

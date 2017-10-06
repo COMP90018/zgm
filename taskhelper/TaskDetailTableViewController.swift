@@ -1,4 +1,4 @@
-//
+
 //  TaskDetailTableViewController.swift
 //  taskhelper
 //
@@ -9,87 +9,180 @@
 import UIKit
 
 class TaskDetailTableViewController: UITableViewController {
-
+    
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var taskContent: UITextView!
+    @IBOutlet weak var verifier1: UIButton!
+    @IBOutlet weak var verifier2: UIButton!
+    @IBOutlet weak var verifier3: UIButton!
+    @IBOutlet weak var verified1: UIButton!
+    @IBOutlet weak var verified2: UIButton!
+    @IBOutlet weak var verified3: UIButton!
+    @IBOutlet weak var isCompeleted: UIButton!
+    @IBOutlet weak var isSuccessful: UIButton!
+    
+    var taskID: String = ""
+    var verifierList: [Friend] = []
+    var dateFormatter = DateFormatter()
+    var dueDate: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        fetchTaskData()
+        
+        isCompeleted.setBackgroundImage(UIImage(named: "checkbox"), for: .normal)
+        isCompeleted.setBackgroundImage(UIImage(named: "checkedbox"), for: .selected)
+        
+        isSuccessful.setBackgroundImage(UIImage(named: "checkbox"), for: .normal)
+        isSuccessful.setBackgroundImage(UIImage(named: "checkedbox"), for: .selected)
+        
+        verifier2.isHidden = true
+        verifier3.isHidden = true
+        verified2.isHidden = true
+        verified3.isHidden = true
+        
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        let date = dateFormatter.date(from: dueDate)
+        datePicker.date = date!
+        dueDateLabel.text = dueDate
+        
+        datePicker.addTarget(self, action: #selector(datePickerChanged(datePicker:)), for: UIControlEvents.valueChanged)
+        
     }
-
+    
+    
+    
+    func datePickerChanged(datePicker: UIDatePicker) {
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        dueDate = dateFormatter.string(from: datePicker.date)
+        dueDateLabel.text = dueDate
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    
+    
+    @IBAction func saveTaskChange(_ sender: UIBarButtonItem) {
+        //Update task infor to firebase
+        uploadTask()
+        //Update task infor to coredata
+        updateAll()
+        performSegue(withIdentifier: "unwindDetailToHome", sender: self)
+    }
+    
+    
+    
+    
+    func fetchTaskData() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Task")
+        
+        do {
+            let results = try managedContext.fetch(fetchRequest)
+            
+            if results.count != 0 {
+                for result in results {
+                    let ID = (result as AnyObject).value(forKey: "taskID") as! String
+                    if ID == taskID {
+                        taskContent.text = (result as AnyObject).value(forKey: "content") as! String
+                        dueDate = (result as AnyObject).value(forKey: "dueDate") as! String
+                        // verifierList = (result as AnyObject).value(forKey: "verifier") as! [Friend]
+                        isCompeleted.isSelected = (result as AnyObject).value(forKey: "isFinished") as! Bool
+                        isSuccessful.isSelected = (result as AnyObject).value(forKey: "isSuccessful") as! Bool
+                    }
+                    
+                }
+            }
+            
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+    }
+    
+    
+    func updateAll(){
+        
+        deleteAll()
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let entity =  NSEntityDescription.entity(forEntityName: "Task", in:managedContext)
+        let task = NSManagedObject(entity: entity!, insertInto: managedContext)
+        
+        
+        let friendList = NSKeyedArchiver.archivedData(withRootObject: verifierList)
+        //save the data
+        task.setValue(taskID, forKey: "taskID")
+        task.setValue(taskContent.text, forKey: "content")
+        task.setValue(dueDate, forKey: "dueDate")
+        task.setValue(friendList, forKey: "verifier")
+        task.setValue(isCompeleted.isSelected, forKey: "isFinished")
+        task.setValue(false, forKey: "isVerified")
+        task.setValue(false, forKey: "isSuccessful")
+        
+        do {
+            try managedContext.save()
+            userTasks.append(task)
+            print("Save Successfully!")
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        
+    }
+    
+    
+    
+    func deleteAll(){
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Task")
+        do {
+            let results = try managedContext.fetch(request)
+            if results.count != 0 {
+                for result in results {
+                    if (result as AnyObject).value(forKey: "taskID") as! String == taskID {
+                        managedContext.delete(result as! NSManagedObject)
+                    }
+                }
+                do {
+                    try managedContext.save()
+                } catch {
+                    print(error)
+                }
+            }
+            
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+    }
+    
+    //Save task information in Firebase
+    func uploadTask() {
+        var taskInfo = [String: AnyObject]()
+        taskInfo = [
+            "content": taskContent.text as AnyObject,
+            "dueDate": dueDate as AnyObject,
+            "verifier": verifierList as AnyObject,
+            "isFinished": isCompeleted.isSelected as AnyObject,
+            "isVerified": isCompeleted.isSelected as AnyObject,
+            "isSuccessful": isCompeleted.isSelected as AnyObject]
+        CURRENT_USER_REF.child("tasks").child(taskID).setValue(taskInfo)
+        
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
+    
 }
