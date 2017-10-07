@@ -1,34 +1,45 @@
 //
-//  FriendsTableViewController.swift
+//  AddUsernameTableViewController.swift
 //  taskhelper
 //
-//  Created by DongGao on 25/9/17.
-//  Modified by Yijie on 3/10/17.
+//  Created by Yijie Zhang on 7/10/17.
 //  Copyright © 2017 Microsoft. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class FriendsTableViewController: UIViewController{
+class AddUsernameTableViewController: UIViewController{
     
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var usernameLabel: UILabel!
     
     let searchController = UISearchController(searchResultsController: nil)
-    var firebaseFriendList = [FirebaseUser]()
+    let USER_REF = Database.database().reference().child("users")
+    var userList = [FirebaseUser]()
     var searchResult = [FirebaseUser]()
     
     func searchFilter(text: String) {
-        searchResult = firebaseFriendList.filter({ (firebaseFriendList) -> Bool in
-            return(firebaseFriendList.username.contains(text))
+        searchResult = userList.filter({ (userList) -> Bool in
+            return(userList.username.contains(text))
         })
         tableView.reloadData()
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addFriendObserver {
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
+        rightSwipe.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(rightSwipe)
+        
+        FriendSystem.system.getCurrentUser { (user) in
+            self.usernameLabel.text = user.username
+            self.usernameLabel.sizeToFit()
+        }
+        
+        addUserObserver { () in
             self.tableView.reloadData()
         }
         
@@ -38,35 +49,34 @@ class FriendsTableViewController: UIViewController{
         tableView.tableHeaderView = searchController.searchBar
     }
     
-    func getUser(_ userID: String, completion: @escaping (FirebaseUser) -> Void) {
-        USER_REF.child(userID).observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
-            let email = snapshot.childSnapshot(forPath: "email").value as! String
-            let username = snapshot.childSnapshot(forPath: "username").value as! String
-            let id = snapshot.key
-            completion(FirebaseUser(userID: id, userEmail: email, userName: username))
+    func addUserObserver(_ update: @escaping () -> Void) {
+        USER_REF.observe(DataEventType.value, with: { (snapshot) in
+            self.userList.removeAll()
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                let email = child.childSnapshot(forPath: "email").value as! String
+                let username = child.childSnapshot(forPath: "username").value as! String
+                if email != Auth.auth().currentUser?.email! {
+                    self.userList.append(FirebaseUser(userID: child.key, userEmail: email, userName: username))
+                }
+                
+            }
+            update()
         })
     }
     
-    func addFriendObserver(_ update: @escaping () -> Void) {
-        CURRENT_USER_FRIENDS_REF.observe(DataEventType.value, with: { (snapshot) in
-            self.firebaseFriendList.removeAll()
-            for child in snapshot.children.allObjects as! [DataSnapshot] {
-                let id = child.key
-                self.getUser(id, completion: { (user) in
-                    self.firebaseFriendList.append(user)
-                    update()
-                })
-            }
-            // If there are no children, run completion here instead
-            if snapshot.childrenCount == 0 {
-                update()
-            }
-        })
+    func swipeAction(swipe:UISwipeGestureRecognizer) {
+        switch swipe.direction.rawValue {
+        case 1:
+            performSegue(withIdentifier: "goLeft", sender: self)
+        default:
+            break
+        }
     }
+    
     
 }
 
-extension FriendsTableViewController: UITableViewDataSource {
+extension AddUsernameTableViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -76,7 +86,7 @@ extension FriendsTableViewController: UITableViewDataSource {
         if searchController.searchBar.text != "" {
             return searchResult.count
         } else {
-            return firebaseFriendList.count
+            return userList.count
         }
     }
     
@@ -92,16 +102,15 @@ extension FriendsTableViewController: UITableViewDataSource {
         if searchController.searchBar.text != "" {
             user = searchResult[indexPath.row]
         } else {
-            user = firebaseFriendList[indexPath.row]
+            user = userList[indexPath.row]
         }
         
         // Modify cell
-        cell!.button.setTitle("Remove", for: UIControlState())
         cell!.emailLabel.text = user.username
         
         cell!.setFunction {
             let id = user.id
-            FriendSystem.system.removeFriend(id!)
+            FriendSystem.system.sendRequestToUser(id!)
         }
         
         // Return cell
@@ -110,7 +119,7 @@ extension FriendsTableViewController: UITableViewDataSource {
     
 }
 
-extension FriendsTableViewController: UISearchResultsUpdating {
+extension AddUsernameTableViewController: UISearchResultsUpdating {
     public func updateSearchResults(for searchController: UISearchController) {
         searchFilter(text: searchController.searchBar.text!)
     }

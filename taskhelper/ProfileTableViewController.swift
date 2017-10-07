@@ -162,6 +162,10 @@ class ProfileTableViewController: UITableViewController,UINavigationControllerDe
         switch indexPath.section {
         case 1:
             secNum = 1
+            rowNum = indexPath.row
+            if rowNum == 1 {
+                performSegue(withIdentifier: "showRequestTable", sender: self)
+            }
             performSegue(withIdentifier: "showDetailProfile", sender: self)
         case 2:
             secNum = 2

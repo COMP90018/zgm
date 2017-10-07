@@ -222,7 +222,7 @@ class VerifyViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         activitySpinner.isHidden = false
         activitySpinner.startAnimating()
         let settings = AVCapturePhotoSettings()
-        let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
+        let previewPixelType = settings.__availablePreviewPhotoPixelFormatTypes.first!
         let previewFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewPixelType, kCVPixelBufferWidthKey as String: 160, kCVPixelBufferHeightKey as String:160]
         
         settings.previewPhotoFormat = previewFormat

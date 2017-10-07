@@ -15,6 +15,10 @@
 		558EA7AF1F83A8DF00C3CC07 /* SecondRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558EA7AE1F83A8DF00C3CC07 /* SecondRecordViewController.swift */; };
 		558EA7B11F85D45700C3CC07 /* SpeechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558EA7B01F85D45700C3CC07 /* SpeechViewController.swift */; };
 		558EA7B31F85D8C800C3CC07 /* SecondSpeechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558EA7B21F85D8C800C3CC07 /* SecondSpeechViewController.swift */; };
+		77EF6E471F889A5F0019A9F5 /* AddUsernameTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EF6E461F889A5F0019A9F5 /* AddUsernameTableViewController.swift */; };
+		77EF6E491F889A950019A9F5 /* FriendRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EF6E481F889A950019A9F5 /* FriendRequestViewController.swift */; };
+		77EF6E4C1F889B060019A9F5 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EF6E4B1F889B060019A9F5 /* UserCell.swift */; };
+		77EF6E4D1F889B1E0019A9F5 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77EF6E4A1F889B060019A9F5 /* UserCell.xib */; };
 		77F2002A1F7CE41600D0F70A /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F200291F7CE41600D0F70A /* Error.swift */; };
 		77F2002C1F7CE43400D0F70A /* FriendSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F2002B1F7CE43400D0F70A /* FriendSystem.swift */; };
 		77F2002F1F7CE53C00D0F70A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77F2002E1F7CE53C00D0F70A /* GoogleService-Info.plist */; };
@@ -57,6 +61,10 @@
 		558EA7AE1F83A8DF00C3CC07 /* SecondRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondRecordViewController.swift; sourceTree = "<group>"; };
 		558EA7B01F85D45700C3CC07 /* SpeechViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechViewController.swift; sourceTree = "<group>"; };
 		558EA7B21F85D8C800C3CC07 /* SecondSpeechViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSpeechViewController.swift; sourceTree = "<group>"; };
+		77EF6E461F889A5F0019A9F5 /* AddUsernameTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUsernameTableViewController.swift; sourceTree = "<group>"; };
+		77EF6E481F889A950019A9F5 /* FriendRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestViewController.swift; sourceTree = "<group>"; };
+		77EF6E4A1F889B060019A9F5 /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
+		77EF6E4B1F889B060019A9F5 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		77F200291F7CE41600D0F70A /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		77F2002B1F7CE43400D0F70A /* FriendSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSystem.swift; sourceTree = "<group>"; };
 		77F2002E1F7CE53C00D0F70A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -175,6 +183,8 @@
 			isa = PBXGroup;
 			children = (
 				8E8897691F788E450016F831 /* FriendsTableViewController.swift */,
+				77EF6E461F889A5F0019A9F5 /* AddUsernameTableViewController.swift */,
+				77EF6E481F889A950019A9F5 /* FriendRequestViewController.swift */,
 			);
 			name = Friends;
 			sourceTree = "<group>";
@@ -239,6 +249,8 @@
 				A2D9CBE81943D1340017F096 /* taskhelper-Bridging-Header.h */,
 				A31A89F61BF3FDFA00C7B656 /* Launch Screen.storyboard */,
 				8E32442D1F76477500E08D26 /* User.swift */,
+				77EF6E4B1F889B060019A9F5 /* UserCell.swift */,
+				77EF6E4A1F889B060019A9F5 /* UserCell.xib */,
 				8E3244351F765A2C00E08D26 /* Task.swift */,
 			);
 			path = taskhelper;
@@ -298,7 +310,7 @@
 				TargetAttributes = {
 					A2D9CBBD1943C2540017F096 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = NVQ84G9K8U;
+						DevelopmentTeam = F5NBU4297C;
 						LastSwiftMigration = 0820;
 					};
 				};
@@ -330,6 +342,7 @@
 				77F2002F1F7CE53C00D0F70A /* GoogleService-Info.plist in Resources */,
 				A2D9CBCE1943C2540017F096 /* Images.xcassets in Resources */,
 				A31A89F71BF3FDFA00C7B656 /* Launch Screen.storyboard in Resources */,
+				77EF6E4D1F889B1E0019A9F5 /* UserCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +429,7 @@
 				8E8897631F77F1110016F831 /* AddTaskViewController.swift in Sources */,
 				8E3244341F76597000E08D26 /* TaskHomeViewController.swift in Sources */,
 				8E1305671F6E941D0093B94B /* SignupViewController.swift in Sources */,
+				77EF6E4C1F889B060019A9F5 /* UserCell.swift in Sources */,
 				8E3244361F765A2C00E08D26 /* Task.swift in Sources */,
 				8ED6E7E91F6E3CD0006FE377 /* ResLogViewController.swift in Sources */,
 				77F2002A1F7CE41600D0F70A /* Error.swift in Sources */,
@@ -427,6 +441,7 @@
 				558EA7AD1F83A07D00C3CC07 /* RecorderViewController.swift in Sources */,
 				A2BD20971AC8A731007F7181 /* QSTodoDataModel.xcdatamodeld in Sources */,
 				8E3DADD31F7DEB2B00C09680 /* PaddingTextField.swift in Sources */,
+				77EF6E491F889A950019A9F5 /* FriendRequestViewController.swift in Sources */,
 				8EB8D7A21F7B8A61005FC912 /* DetailProfileTableViewController.swift in Sources */,
 				A2D9CBC41943C2540017F096 /* AppDelegate.swift in Sources */,
 				77F2002C1F7CE43400D0F70A /* FriendSystem.swift in Sources */,
@@ -435,6 +450,7 @@
 				558EA7AA1F83934F00C3CC07 /* VerifyViewController.swift in Sources */,
 				8E88976A1F788E450016F831 /* FriendsTableViewController.swift in Sources */,
 				558EA7A61F83643500C3CC07 /* PopupViewController.swift in Sources */,
+				77EF6E471F889A5F0019A9F5 /* AddUsernameTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,7 +565,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = NVQ84G9K8U;
+				DEVELOPMENT_TEAM = F5NBU4297C;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -571,7 +588,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = NVQ84G9K8U;
+				DEVELOPMENT_TEAM = F5NBU4297C;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
