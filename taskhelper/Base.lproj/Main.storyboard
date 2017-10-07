@@ -1448,8 +1448,8 @@ Cgo
                                     <outlet property="delegate" destination="UvB-0T-85J" id="bXe-0e-b9P"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Users" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fX7-xv-k1q">
-                                <rect key="frame" x="139" y="37" width="96" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available Users" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fX7-xv-k1q">
+                                <rect key="frame" x="104.5" y="37" width="166" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2440,7 +2440,6 @@ Cgo
         <image name="voice" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Dxj-u8-5gZ"/>
         <segue reference="ICM-9N-bd4"/>
         <segue reference="Vco-2X-zwU"/>
         <segue reference="udG-o0-gTE"/>

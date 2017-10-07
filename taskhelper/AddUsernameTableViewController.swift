@@ -18,6 +18,8 @@ class AddUsernameTableViewController: UIViewController{
     let USER_REF = Database.database().reference().child("users")
     var userList = [FirebaseUser]()
     var searchResult = [FirebaseUser]()
+    var friendList = [FirebaseUser]()
+    var emailList = [String]()
     
     func searchFilter(text: String) {
         searchResult = userList.filter({ (userList) -> Bool in
@@ -39,8 +41,10 @@ class AddUsernameTableViewController: UIViewController{
             self.usernameLabel.sizeToFit()
         }
         
-        addUserObserver { () in
-            self.tableView.reloadData()
+        addFriendObserver {
+            self.addUserObserver { () in
+                self.tableView.reloadData()
+            }
         }
         
         searchController.searchResultsUpdater = self
@@ -49,13 +53,34 @@ class AddUsernameTableViewController: UIViewController{
         tableView.tableHeaderView = searchController.searchBar
     }
     
+    func addFriendObserver(_ next: @escaping () -> Void) {
+        CURRENT_USER_FRIENDS_REF.observe(DataEventType.value, with: { (snapshot) in
+            self.friendList.removeAll()
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                let id = child.key
+                FriendSystem.system.getUser(id, completion: { (user) in
+                    self.friendList.append(user)
+                    next()
+                })
+            }
+            // If there are no children, run completion here instead
+            if snapshot.childrenCount == 0 {
+                next()
+            }
+        })
+    }
+    
     func addUserObserver(_ update: @escaping () -> Void) {
         USER_REF.observe(DataEventType.value, with: { (snapshot) in
             self.userList.removeAll()
+            self.emailList.removeAll()
+            for friend in self.friendList {
+                self.emailList.append(friend.email)
+            }
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 let email = child.childSnapshot(forPath: "email").value as! String
                 let username = child.childSnapshot(forPath: "username").value as! String
-                if email != Auth.auth().currentUser?.email! {
+                if email != Auth.auth().currentUser?.email! && !self.emailList.contains(email) {
                     self.userList.append(FirebaseUser(userID: child.key, userEmail: email, userName: username))
                 }
                 

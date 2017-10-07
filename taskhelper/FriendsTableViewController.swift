@@ -38,21 +38,12 @@ class FriendsTableViewController: UIViewController{
         tableView.tableHeaderView = searchController.searchBar
     }
     
-    func getUser(_ userID: String, completion: @escaping (FirebaseUser) -> Void) {
-        USER_REF.child(userID).observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
-            let email = snapshot.childSnapshot(forPath: "email").value as! String
-            let username = snapshot.childSnapshot(forPath: "username").value as! String
-            let id = snapshot.key
-            completion(FirebaseUser(userID: id, userEmail: email, userName: username))
-        })
-    }
-    
     func addFriendObserver(_ update: @escaping () -> Void) {
         CURRENT_USER_FRIENDS_REF.observe(DataEventType.value, with: { (snapshot) in
             self.firebaseFriendList.removeAll()
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 let id = child.key
-                self.getUser(id, completion: { (user) in
+                FriendSystem.system.getUser(id, completion: { (user) in
                     self.firebaseFriendList.append(user)
                     update()
                 })
