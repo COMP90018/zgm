@@ -1495,7 +1495,7 @@ Cgo
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bBd-ey-Kgp">
-                                <rect key="frame" x="0.0" y="20" width="375" height="567"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="523"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="80" id="dHa-Lb-eX2" customClass="TaskTableViewCell" customModule="taskhelper" customModuleProvider="target">
@@ -1896,7 +1896,7 @@ Cgo
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Ox7-Zo-LFv">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="SxA-ee-OuQ" kind="unwind" unwindAction="unwindToHomeWithSegue:" id="HBq-1d-oHt"/>
+                                <action selector="cancelTap:" destination="ri7-hp-PkL" id="Xrd-Iy-J5b"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="1M9-2O-ULK">
@@ -1918,7 +1918,7 @@ Cgo
                         <outlet property="verifier1" destination="04Z-mm-iEX" id="A7z-89-Mbz"/>
                         <outlet property="verifier2" destination="id1-ot-LyS" id="FVG-jY-m1g"/>
                         <outlet property="verifier3" destination="66I-YZ-9rB" id="Zyi-Dh-tJ7"/>
-                        <segue destination="yKY-Wt-y0a" kind="show" identifier="unwindToHome" id="LF2-8B-gZ4"/>
+                        <segue destination="SxA-ee-OuQ" kind="unwind" identifier="unwindToHome" unwindAction="unwindToHomeWithSegue:" id="gVQ-DH-b1j"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CJY-qB-seA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2386,7 +2386,7 @@ Cgo
                         <barButtonItem key="leftBarButtonItem" image="arrow" id="buz-QU-eUO">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="leJ-ct-JAa" kind="unwind" unwindAction="unwindToHomeWithSegue:" id="jbk-Ha-xvZ"/>
+                                <action selector="backToHome:" destination="KZL-80-qCa" id="B5b-wJ-Z5q"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Nwf-Te-f1M">
@@ -2408,7 +2408,7 @@ Cgo
                         <outlet property="verifier1" destination="1qV-7Y-JlA" id="1uc-l7-yHT"/>
                         <outlet property="verifier2" destination="yQ2-wU-0rM" id="1WX-sU-uFA"/>
                         <outlet property="verifier3" destination="pEm-C4-r68" id="V3d-lK-oJe"/>
-                        <segue destination="9vo-RX-v5c" kind="show" identifier="unwindDetailToHome" id="udG-o0-gTE"/>
+                        <segue destination="leJ-ct-JAa" kind="unwind" identifier="unwindDetailToHome" unwindAction="unwindToHomeWithSegue:" id="JKx-me-oOw"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pC6-Va-eZM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2442,8 +2442,7 @@ Cgo
     <inferredMetricsTieBreakers>
         <segue reference="ICM-9N-bd4"/>
         <segue reference="Vco-2X-zwU"/>
-        <segue reference="udG-o0-gTE"/>
-        <segue reference="LF2-8B-gZ4"/>
+        <segue reference="3hm-uO-edL"/>
         <segue reference="ssA-ZJ-uHg"/>
         <segue reference="g2Y-lV-3A5"/>
     </inferredMetricsTieBreakers>

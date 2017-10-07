@@ -11,6 +11,9 @@ import CoreData
 import FirebaseStorage
 import FirebaseDatabase
 
+var task: Task = Task()
+var tasks: [Task] = []
+
 class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UISearchResultsUpdating {
 
     @IBOutlet weak var tableView: UITableView!
@@ -18,12 +21,10 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
     
     var ref: DatabaseReference!
     var storage: StorageReference!
+    var databaseHandle: DatabaseHandle!
 
     //search bar
     var sc: UISearchController!
-    
-    var task: Task = Task()
-    var tasks: [Task] = []
     var taskID: String = ""
     
     var searchResult: [Task] = []
@@ -53,9 +54,20 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getUserInfo()
-        fetchTaskInfo()
+        databaseHandle = CURRENT_USER_REF.child("tasks").observe(.value, with: { (snapshot) in
+            
+            let cloudTask = snapshot.value as? [NSDictionary]
+            print(cloudTask?.count)
+            print(cloudTask)
+            
+        })
         
+        
+        
+        getUserInfo()
+        getTaskInfo()
+        fetchTaskInfo()
+        //fetchTaskInfo()
         //Set the firebase reference
         ref = Database.database().reference()
         
@@ -76,15 +88,59 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        
+        //NotificationCenter.default.addObserver(self, selector: "refreshTable:", name: NSNotification.Name(rawValue: "refresh"), object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        fetchTaskInfo()
+        tableView.reloadData()
+        
     }
     
     func getTaskInfo() {
-        FriendSystem.system.addTaskObserver { () in
-            
-            print(taskList)
-            self.tableView.reloadData()
-        }
+        
+        
+        
+        
+        //        var ID: String = ""
+        //        var localTask: Task = Task()
+        //        if localUser.taskNum > 0 {
+        //            for i in 0..<localUser.taskNum {
+        //                ID = CURRENT_USER_ID + "-task\(i)"
+        //
+        //                CURRENT_USER_REF.child("tasks").child(ID).observeSingleEvent(of: .value, with: { (snapshot) in
+        //                    let value = snapshot.value as? NSDictionary
+        //                    let taskID = value?["taskID"] as! String
+        //                    print(taskID)
+        //                    let content = value?["content"] as! String
+        //                    let dueDate = value?["dueDate"] as! String
+        //                    let isFinished = value?["isFinished"] as! Bool
+        //                    let isSuccessful = value?["isSuccessful"] as! Bool
+        //                    let isVerified = value?["isVerified"] as! Bool
+        //                    let verifier = value?["verifier"] as? [Friend] ?? []
+        //
+        //
+        //                    localTask.content = content
+        //                    localTask.taskID = taskID
+        //                    localTask.dueDate = dueDate
+        //                    localTask.isFinished = isFinished
+        //                    localTask.isVerified = isVerified
+        //                    localTask.isSuccessful = isSuccessful
+        //
+        //                    self.addLocalTask(localTask)
+        //                })
+        //
+        //
+        //            }
+        //
+        //        }
+        
+        
     }
+    
 
     
     override func didReceiveMemoryWarning() {
@@ -93,6 +149,11 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {
+        
+        if segue.identifier == "unwindToHome" {
+            fetchTaskInfo()
+            tableView.reloadData()
+        }
         
     }
     
@@ -213,7 +274,7 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
     
     //Get user infor from firebase
     func getUserInfo() {
-
+        
         CURRENT_USER_REF.observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             let username = value?["username"] as! String
@@ -283,17 +344,18 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
                 localUser.profileImage = UIImage(data: data!)!
             }
         }
-
+        
         
         
     }
     
-
+    
     
     
     
     //fetch the data from the task entity
     func fetchTaskInfo() {
+        tasks.removeAll()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Task")
@@ -355,7 +417,7 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
         }
-
+        
     }
     
     
@@ -383,7 +445,60 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
     }
-
+    
+    func addLocalTask(_ localTask: Task) {
+        deleteAll(localTask.taskID)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let entity =  NSEntityDescription.entity(forEntityName: "Task", in:managedContext)
+        let task = NSManagedObject(entity: entity!, insertInto: managedContext)
+        
+        let verifier = NSKeyedArchiver.archivedData(withRootObject: localTask.verifier)
+        //save the data
+        task.setValue(localTask.taskID, forKey: "taskID")
+        task.setValue(localTask.content, forKey: "content")
+        task.setValue(localTask.dueDate, forKey: "dueDate")
+        task.setValue(verifier, forKey: "verifier")
+        task.setValue(localTask.isFinished, forKey: "isFinished")
+        task.setValue(localTask.isVerified, forKey: "isVerified")
+        task.setValue(localTask.isSuccessful, forKey: "isSuccessful")
+        
+        do {
+            try managedContext.save()
+            userTasks.append(task)
+            print("Save Successfully!")
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        }
+        
+    }
+    
+    
+    func deleteAll(_ ID: String){
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Task")
+        do {
+            let results = try managedContext.fetch(request)
+            if results.count != 0 {
+                for result in results {
+                    if (result as AnyObject).value(forKey: "taskID") as! String == ID {
+                        managedContext.delete(result as! NSManagedObject)
+                    }
+                }
+                do {
+                    try managedContext.save()
+                } catch {
+                    print(error)
+                }
+            }
+            
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+    }
     
 
 }

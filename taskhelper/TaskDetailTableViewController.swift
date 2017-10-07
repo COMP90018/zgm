@@ -67,7 +67,11 @@ class TaskDetailTableViewController: UITableViewController {
     }
     
     
-
+    @IBAction func backToHome(_ sender: UIBarButtonItem) {
+        
+        performSegue(withIdentifier: "unwindDetailToHome", sender: self)
+    }
+    
     
     
     @IBAction func saveTaskChange(_ sender: UIBarButtonItem) {
@@ -172,6 +176,7 @@ class TaskDetailTableViewController: UITableViewController {
     func uploadTask() {
         var taskInfo = [String: AnyObject]()
         taskInfo = [
+            "taskID": taskID as AnyObject,
             "content": taskContent.text as AnyObject,
             "dueDate": dueDate as AnyObject,
             "verifier": verifierList as AnyObject,

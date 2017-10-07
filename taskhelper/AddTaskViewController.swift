@@ -96,6 +96,12 @@ class AddTaskViewController: UITableViewController {
         dueDateLabel.text = dueDate
     }
     
+
+    @IBAction func cancelTap(_ sender: UIBarButtonItem) {
+         performSegue(withIdentifier: "unwindToHome", sender: self)
+    }
+    
+    
     
     @IBAction func saveTap(_ sender: UIBarButtonItem) {
         uploadTask()
@@ -117,7 +123,7 @@ class AddTaskViewController: UITableViewController {
         localUser.taskNum += 1
         dataControl.updateUser()
         CURRENT_USER_REF.child("taskNum").setValue(localUser.taskNum)
-       
+        
         do {
             try managedContext.save()
             userTasks.append(task)
@@ -142,7 +148,7 @@ class AddTaskViewController: UITableViewController {
             "isVerified": isCompeleted.isSelected as AnyObject,
             "isSuccessful": isCompeleted.isSelected as AnyObject]
         CURRENT_USER_REF.child("tasks").child(taskID).setValue(taskInfo)
-
+        
     }
     
     
