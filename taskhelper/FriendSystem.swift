@@ -74,6 +74,7 @@ class FriendSystem {
     func getTask(_ taskID: String, completion: @escaping (RequestTask) -> Void) {
         CURRENT_USER_TASKREQUEST_REF.child(taskID).observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
             let userID = snapshot.childSnapshot(forPath: "userID").value as! String
+            let taskOwner = snapshot.childSnapshot(forPath: "taskOwner").value as! String
             let content = snapshot.childSnapshot(forPath: "content").value as! String
             let dueDate = snapshot.childSnapshot(forPath: "dueDate").value as! String
             let verifier = snapshot.childSnapshot(forPath: "verifier").value as! String
@@ -81,7 +82,7 @@ class FriendSystem {
             let isVerified = snapshot.childSnapshot(forPath: "isVerified").value as! Bool
             let isSuccessful = snapshot.childSnapshot(forPath: "isSuccessful").value as! Bool
             let id = snapshot.key
-            completion(RequestTask(userID: userID, taskID: id, content: content, dueDate: dueDate, verifier: verifier, isFinished: isFinished, isVerified: isVerified, isSuccessful: isSuccessful))
+            completion(RequestTask(userID: userID, taskOwner: taskOwner, taskID: id, content: content, dueDate: dueDate, verifier: verifier, isFinished: isFinished, isVerified: isVerified, isSuccessful: isSuccessful))
         })
     }
     

@@ -44,6 +44,7 @@ struct Task {
 
 struct RequestTask {
     var userID: String
+    var taskOwner: String
     var taskID: String
     var content: String
     var dueDate: String
@@ -52,8 +53,9 @@ struct RequestTask {
     var isVerified: Bool
     var isSuccessful: Bool
     
-    init(userID: String, taskID: String, content: String,dueDate: String, verifier: String, isFinished: Bool, isVerified: Bool, isSuccessful: Bool) {
+    init(userID: String, taskOwner: String, taskID: String, content: String,dueDate: String, verifier: String, isFinished: Bool, isVerified: Bool, isSuccessful: Bool) {
         self.userID = userID
+        self.taskOwner = taskOwner
         self.taskID = taskID
         self.content = content
         self.dueDate = dueDate
@@ -65,6 +67,7 @@ struct RequestTask {
     
     init() {
         self.userID = ""
+        self.taskOwner = ""
         self.taskID = ""
         self.content = ""
         self.dueDate = ""

@@ -9,6 +9,8 @@
 import UIKit
 
 class VerifyTaskTableViewController: UITableViewController {
+    
+    var requestTask: RequestTask = RequestTask()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +19,11 @@ class VerifyTaskTableViewController: UITableViewController {
             self.tableView.reloadData()
         }
 
+    }
+    
+    @IBAction func unwindRequestTask(segue: UIStoryboardSegue) {
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,8 +47,29 @@ class VerifyTaskTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = FriendSystem.system.taskRequestList[indexPath.row].content
         cell.detailTextLabel?.text = FriendSystem.system.taskRequestList[indexPath.row].dueDate
+        
     
         return cell
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        requestTask = FriendSystem.system.taskRequestList[indexPath.row]
+        performSegue(withIdentifier: "showVerifyTask", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showVerifyTask" {
+            let dest = segue.destination as! TaskVerifyTableViewController
+            dest.hidesBottomBarWhenPushed = true
+            dest.requestTask = requestTask
+            
+            
+        }
+
+        
     }
 
 
