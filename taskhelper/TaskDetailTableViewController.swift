@@ -16,28 +16,57 @@ class TaskDetailTableViewController: UITableViewController {
     @IBOutlet weak var verifier1: UIButton!
 //    @IBOutlet weak var verifier2: UIButton!
 //    @IBOutlet weak var verifier3: UIButton!
-    @IBOutlet weak var verified1: UIButton!
 //    @IBOutlet weak var verified2: UIButton!
 //    @IBOutlet weak var verified3: UIButton!
     @IBOutlet weak var isCompeleted: UIButton!
-    @IBOutlet weak var isSuccessful: UIButton!
     @IBOutlet weak var friendNameLabel: UILabel!
+    
+    @IBOutlet weak var hasVerified: UIImageView!
+    @IBOutlet weak var hasSuccessful: UIImageView!
+    
+    var finish: Bool = false
+    
+
+    @IBAction func chooseFinshed(_ sender: UIButton) {
+        isCompeleted.isSelected = !isCompeleted.isSelected
+        finish = true
+    }
     
     
     var taskID: String = ""
+    var verifierID: String = ""
     //var verifierList: [Friend] = []
     var dateFormatter = DateFormatter()
     var dueDate: String = ""
+    var task: Task = Task()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchTaskData()
+        //fetchTaskData()
+        
+        if task.isVerified {
+            hasVerified.image = UIImage(named: "checkedbox")
+        }
+        
+        if task.isSuccessful {
+            hasSuccessful.image = UIImage(named: "checkedbox")
+        }
+        
+        taskContent.text = task.content
+        dueDate = task.dueDate
+        // verifierList = (result as AnyObject).value(forKey: "verifier") as! [Friend]
+        friendNameLabel.text = task.verifier
+
+        if task.isFinished {
+            isCompeleted.imageView?.image = UIImage(named: "checkedbox")
+            isCompeleted.isSelected = true
+        }
+        
         
         isCompeleted.setBackgroundImage(UIImage(named: "checkbox"), for: .normal)
         isCompeleted.setBackgroundImage(UIImage(named: "checkedbox"), for: .selected)
         
-        isSuccessful.setBackgroundImage(UIImage(named: "checkbox"), for: .normal)
-        isSuccessful.setBackgroundImage(UIImage(named: "checkedbox"), for: .selected)
+        
         
 //        verifier2.isHidden = true
 //        verifier3.isHidden = true
@@ -78,7 +107,8 @@ class TaskDetailTableViewController: UITableViewController {
     
     @IBAction func saveTaskChange(_ sender: UIBarButtonItem) {
         //Update task infor to firebase
-        uploadTask()
+        updateTask()
+        updateRequesTask()
         //Update task infor to coredata
         updateAll()
         performSegue(withIdentifier: "unwindDetailToHome", sender: self)
@@ -103,8 +133,6 @@ class TaskDetailTableViewController: UITableViewController {
                         dueDate = (result as AnyObject).value(forKey: "dueDate") as! String
                         // verifierList = (result as AnyObject).value(forKey: "verifier") as! [Friend]
                         friendNameLabel.text = (result as AnyObject).value(forKey: "verifier") as! String
-                        isCompeleted.isSelected = (result as AnyObject).value(forKey: "isFinished") as! Bool
-                        isSuccessful.isSelected = (result as AnyObject).value(forKey: "isSuccessful") as! Bool
                     }
                     
                 }
@@ -134,6 +162,7 @@ class TaskDetailTableViewController: UITableViewController {
         task.setValue(dueDate, forKey: "dueDate")
         task.setValue(friendNameLabel.text, forKey: "verifier")
         task.setValue(isCompeleted.isSelected, forKey: "isFinished")
+        task.setValue(verifierID, forKey: "verifierID")
         task.setValue(false, forKey: "isVerified")
         task.setValue(false, forKey: "isSuccessful")
         
@@ -176,21 +205,22 @@ class TaskDetailTableViewController: UITableViewController {
     }
     
     //Save task information in Firebase
-    func uploadTask() {
+    func updateTask() {
         var taskInfo = [String: AnyObject]()
         taskInfo = [
             "taskID": taskID as AnyObject,
             "content": taskContent.text as AnyObject,
             "dueDate": dueDate as AnyObject,
             "verifier": friendNameLabel.text as AnyObject,
-            "isFinished": isCompeleted.isSelected as AnyObject,
-            "isVerified": isCompeleted.isSelected as AnyObject,
-            "isSuccessful": isCompeleted.isSelected as AnyObject]
+            "isFinished": finish as AnyObject,
+            "isVerified": false as AnyObject,
+            "verifierID": verifierID as AnyObject,
+            "isSuccessful": false as AnyObject]
         CURRENT_USER_REF.child("tasks").child(taskID).setValue(taskInfo)
         
     }
 
-    func uploadRequesTask() {
+    func updateRequesTask() {
         var requestTaskInfo = [String: AnyObject]()
         requestTaskInfo = [
             "userID": CURRENT_USER_ID as AnyObject,
@@ -199,10 +229,10 @@ class TaskDetailTableViewController: UITableViewController {
             "content": taskContent.text as AnyObject,
             "dueDate": dueDate as AnyObject,
             "verifier": friendNameLabel.text as AnyObject,
-            "isFinished": isCompeleted.isSelected as AnyObject,
-            "isVerified": isCompeleted.isSelected as AnyObject,
-            "isSuccessful": isCompeleted.isSelected as AnyObject]
-       // USER_REF.child(friendID).child("taskrequests").child(taskID).setValue(requestTaskInfo)
+            "isFinished": finish as AnyObject,
+            "isVerified": false as AnyObject,
+            "isSuccessful": false as AnyObject]
+        USER_REF.child(verifierID).child("taskrequests").child(taskID).setValue(requestTaskInfo)
         
         
     }

@@ -13,6 +13,7 @@
         <attribute name="isVerified" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="taskID" attributeType="String" syncable="YES"/>
         <attribute name="verifier" attributeType="String" valueTransformerName="Verifier" syncable="YES"/>
+        <attribute name="verifierID" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="UserMO" syncable="YES" codeGenerationType="class">
         <attribute name="email" attributeType="String" syncable="YES"/>
@@ -30,7 +31,7 @@
     </entity>
     <elements>
         <element name="Friend" positionX="-54" positionY="-9" width="128" height="90"/>
-        <element name="Task" positionX="-36" positionY="9" width="128" height="150"/>
+        <element name="Task" positionX="-36" positionY="9" width="128" height="165"/>
         <element name="User" positionX="-63" positionY="-18" width="128" height="225"/>
     </elements>
 </model>

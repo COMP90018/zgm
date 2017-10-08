@@ -14,11 +14,12 @@ struct Task {
     var content: String
     var dueDate: String
     var verifier: String
+    var verifierID: String
     var isFinished: Bool
     var isVerified: Bool
     var isSuccessful: Bool
     
-    init(taskID: String, content: String,dueDate: String, verifier: String, isFinished: Bool, isVerified: Bool, isSuccessful: Bool) {
+    init(taskID: String, content: String,dueDate: String, verifier: String, isFinished: Bool, isVerified: Bool, isSuccessful: Bool, verifierID: String) {
         self.taskID = taskID
         self.content = content
         self.dueDate = dueDate
@@ -26,6 +27,7 @@ struct Task {
         self.isFinished = isFinished
         self.isVerified = isVerified
         self.isSuccessful = isSuccessful
+        self.verifierID = verifierID
     }
     
     init() {
@@ -36,6 +38,7 @@ struct Task {
         self.isFinished = false
         self.isVerified = false
         self.isSuccessful = false
+        self.verifierID = ""
     }
     
     

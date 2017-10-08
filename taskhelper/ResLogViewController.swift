@@ -21,6 +21,10 @@ var userFriends = [NSManagedObject]()
 var isVerified: Bool = false
 var isFaceVerify: Bool = false
 var isVoiceVerify: Bool = false
+var taskFaceVerify: Bool = false
+var taskVoiceVerify: Bool = false
+var faceSegueFrom: String = ""
+var voiceSegueFrom: String = ""
 
 class ResLogViewController: UIViewController {
     

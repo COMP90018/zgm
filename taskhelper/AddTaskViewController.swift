@@ -136,8 +136,10 @@ class AddTaskViewController: UITableViewController {
         task.setValue(dueDate, forKey: "dueDate")
         task.setValue(friendNameLabel.text, forKey: "verifier")
         task.setValue(isCompeleted.isSelected, forKey: "isFinished")
+        task.setValue(friendID, forKey: "verifierID")
         task.setValue(false, forKey: "isVerified")
         task.setValue(false, forKey: "isSuccessful")
+        
         localUser.taskNum += 1
         dataControl.updateUser()
         CURRENT_USER_REF.child("taskNum").setValue(localUser.taskNum)
@@ -162,6 +164,7 @@ class AddTaskViewController: UITableViewController {
             "content": taskContent.text as AnyObject,
             "dueDate": dueDate as AnyObject,
             "verifier": friendNameLabel.text as AnyObject,
+            "verifierID": friendID as AnyObject,
             "isFinished": isCompeleted.isSelected as AnyObject,
             "isVerified": isCompeleted.isSelected as AnyObject,
             "isSuccessful": isCompeleted.isSelected as AnyObject]
@@ -175,7 +178,6 @@ class AddTaskViewController: UITableViewController {
         var requestTaskInfo = [String: AnyObject]()
         requestTaskInfo = [
             "userID": CURRENT_USER_ID as AnyObject,
-            //"friendID": friendID as AnyObject,
             "taskOwner": localUser.username as AnyObject,
             "taskID": taskID as AnyObject,
             "content": taskContent.text as AnyObject,

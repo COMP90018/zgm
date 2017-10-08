@@ -35,6 +35,7 @@ class VerifyViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     var faceFromDoc: MPOFace!
     var imageURL: URL!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

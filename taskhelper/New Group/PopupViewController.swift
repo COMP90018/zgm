@@ -27,13 +27,35 @@ class PopupViewController: UIViewController {
     
     @IBAction func retryLogin(_ sender: UIButton) {
         
-        performSegue(withIdentifier: "unwindVerifyFail", sender: self)
+        if faceSegueFrom == "taskVerify" {
+            taskFaceVerify = true
+            performSegue(withIdentifier: "unwindToTaskVerifyFail", sender: self)
+            
+        } else if voiceSegueFrom == "taskVerify" {
+            taskVoiceVerify = true
+            performSegue(withIdentifier: "unwindToTaskVerifyFail", sender: self)
+        } else {
+            performSegue(withIdentifier: "unwindVerifyFail", sender: self)
+        }
+
     }
     
     
     //verified successfully
     @IBAction func faceLogin(_ sender: UIButton) {
-        performSegue(withIdentifier: "unwindVerifyDone", sender: self)
+        
+        if faceSegueFrom == "taskVerify" {
+            taskFaceVerify = true
+            performSegue(withIdentifier: "unwindToTaskVerify", sender: self)
+            
+        } else if voiceSegueFrom == "taskVerify" {
+            taskVoiceVerify = true
+            performSegue(withIdentifier: "unwindToTaskVerify", sender: self)
+        } else {
+            performSegue(withIdentifier: "unwindVerifyDone", sender: self)
+        }
+        
+        
         
     }
     

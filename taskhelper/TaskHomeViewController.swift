@@ -26,6 +26,7 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
     //search bar
     var sc: UISearchController!
     var taskID: String = ""
+    var verifierID: String = ""
     
     var searchResult: [Task] = []
     
@@ -54,19 +55,18 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        databaseHandle = CURRENT_USER_REF.child("tasks").observe(.value, with: { (snapshot) in
-            
-            let cloudTask = snapshot.value as? [NSDictionary]
-            print(cloudTask?.count)
-            print(cloudTask)
-            
-        })
+
+        FriendSystem.system.taskObserver() {
+            tasks = FriendSystem.system.taskList
+            self.tableView.reloadData()
+        }
         
+
         
         
         getUserInfo()
-        getTaskInfo()
-        fetchTaskInfo()
+//        getTaskInfo()
+//        fetchTaskInfo()
         //fetchTaskInfo()
         //Set the firebase reference
         ref = Database.database().reference()
@@ -93,13 +93,13 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
         //NotificationCenter.default.addObserver(self, selector: "refreshTable:", name: NSNotification.Name(rawValue: "refresh"), object: nil)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        fetchTaskInfo()
-        tableView.reloadData()
-        
-    }
-    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        //fetchTaskInfo()
+//        tableView.reloadData()
+//        
+//    }
+//    
     func getTaskInfo() {
         
         
@@ -151,39 +151,39 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {
         
         if segue.identifier == "unwindToHome" || segue.identifier == "unwindDetailToHome"  {
-            fetchTaskInfo()
-            tableView.reloadData()
+//            fetchTaskInfo()
+//            tableView.reloadData()
         }
         
     }
     
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.beginUpdates()
-    }
-    
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.endUpdates()
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        switch type {
-        case .delete:
-            tableView.deleteRows(at: [indexPath!], with: .automatic)
-        case .insert:
-            tableView.insertRows(at: [newIndexPath!], with: .automatic)
-        case .update:
-            tableView.reloadRows(at: [indexPath!], with: .automatic)
-        default:
-            tableView.reloadData()
-        }
-        
-        if let object = controller.fetchedObjects {
-            tasks = object as! [Task]
-        }
-    }
-    
+//    
+//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//        tableView.beginUpdates()
+//    }
+//    
+//    
+//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//        tableView.endUpdates()
+//    }
+//    
+//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+//        switch type {
+//        case .delete:
+//            tableView.deleteRows(at: [indexPath!], with: .automatic)
+//        case .insert:
+//            tableView.insertRows(at: [newIndexPath!], with: .automatic)
+//        case .update:
+//            tableView.reloadRows(at: [indexPath!], with: .automatic)
+//        default:
+//            tableView.reloadData()
+//        }
+//        
+//        if let object = controller.fetchedObjects {
+//            tasks = object as! [Task]
+//        }
+//    }
+//    
     
     
     
@@ -201,10 +201,12 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
         // Configure the cell
         cell.taskLabel.text = task.content
         cell.timeLabel.text = task.dueDate
-        cell.finishBtn.setBackgroundImage(UIImage(named: "checkbox"), for: .normal)
-        cell.finishBtn.setBackgroundImage(UIImage(named: "checkedbox"), for: .selected)
+        if task.isSuccessful {
+            cell.successLabel.image = UIImage(named: "checkedbox")
+        } else {
+            cell.successLabel.image = UIImage(named: "checkbox")
+        }
         
-        cell.finishBtn.imageView?.image = cell.finishBtn.isSelected ? UIImage(named: "checkbox.png") : UIImage(named: "checkedbox.png")
         
         //read the data from the firebase and store them in a list.
         //        databaseHandle = ref.child("\(localUser.email)").child("\(localUser.email)").observe(DataEventType.value, with: { (snapshot) in
@@ -255,6 +257,8 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         taskID = tasks[indexPath.row].taskID
+        verifierID = tasks[indexPath.row].verifierID
+        task = tasks[indexPath.row]
         performSegue(withIdentifier: "showDetailTask", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -266,6 +270,8 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
             let dest = segue.destination as! TaskDetailTableViewController
             dest.hidesBottomBarWhenPushed = true
             dest.taskID = taskID
+            dest.verifierID = verifierID
+            dest.task = task
             
             
         }
@@ -371,6 +377,11 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
                         task.taskID = taskID
                         task.content = (result as AnyObject).value(forKey: "content") as! String
                         task.dueDate = (result as AnyObject).value(forKey: "dueDate") as! String
+                        task.verifierID = (result as AnyObject).value(forKey: "verifierID") as! String
+                        task.isFinished = (result as AnyObject).value(forKey: "isFinished") as! Bool
+                        task.isVerified = (result as AnyObject).value(forKey: "isVerified") as! Bool
+                        task.isSuccessful = (result as AnyObject).value(forKey: "isSuccessful") as! Bool
+                        task.verifier = (result as AnyObject).value(forKey: "verifier") as! String
                         tasks.append(task)
                         
                     }

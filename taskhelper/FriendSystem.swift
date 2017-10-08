@@ -39,6 +39,11 @@ var CURRENT_USER_TASKREQUEST_REF: DatabaseReference {
     return CURRENT_USER_REF.child("taskrequests")
 }
 
+
+var CURRENT_USER_TASK_REF: DatabaseReference {
+    return CURRENT_USER_REF.child("tasks")
+}
+
 /** The current user's id */
 var CURRENT_USER_ID: String {
     let id = Auth.auth().currentUser!.uid
@@ -70,8 +75,26 @@ class FriendSystem {
         })
     }
     
-    /** Gets the Task object for the specified task id */
-    func getTask(_ taskID: String, completion: @escaping (RequestTask) -> Void) {
+    
+    /** Gets the task object for the specified user id */
+    func getTask(_ taskID: String, completion: @escaping (Task) -> Void) {
+        CURRENT_USER_TASK_REF.child(taskID).observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+            let verifierID = snapshot.childSnapshot(forPath: "verifierID").value as! String
+            let content = snapshot.childSnapshot(forPath: "content").value as! String
+            let dueDate = snapshot.childSnapshot(forPath: "dueDate").value as! String
+            let verifier = snapshot.childSnapshot(forPath: "verifier").value as! String
+            let isFinished = snapshot.childSnapshot(forPath: "isFinished").value as! Bool
+            let isVerified = snapshot.childSnapshot(forPath: "isVerified").value as! Bool
+            let isSuccessful = snapshot.childSnapshot(forPath: "isSuccessful").value as! Bool
+            
+            completion(Task(taskID: taskID, content: content, dueDate: dueDate, verifier: verifier, isFinished: isFinished, isVerified: isVerified, isSuccessful: isSuccessful, verifierID: verifierID))
+        })
+    }
+    
+    
+    
+    /** Gets the request task object for the specified task id */
+    func getRequestTask(_ taskID: String, completion: @escaping (RequestTask) -> Void) {
         CURRENT_USER_TASKREQUEST_REF.child(taskID).observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
             let userID = snapshot.childSnapshot(forPath: "userID").value as! String
             let taskOwner = snapshot.childSnapshot(forPath: "taskOwner").value as! String
@@ -188,35 +211,6 @@ class FriendSystem {
     
     
     
-    //The list of all tasks
-    /** Adds a user observer. The completion function will run every time this list changes, allowing you
-     to update your UI. */
-    func addTaskObserver(_ update: @escaping () -> Void) {
-        USER_REF.child("tasks").observe(DataEventType.value, with: { (snapshot) in
-            taskList.removeAll()
-            for child in snapshot.children.allObjects as! [DataSnapshot] {
-                let taskID = child.childSnapshot(forPath: "taskID").value as! String
-                let content = child.childSnapshot(forPath: "content").value as! String
-                let dueDate = child.childSnapshot(forPath: "dueDate").value as! String
-                let verifier = child.childSnapshot(forPath: "verifier").value as! String
-                let isFinished = child.childSnapshot(forPath: "isFinished").value as! Bool
-                let isVerified = child.childSnapshot(forPath: "isVerified").value as! Bool
-                let isSuccessful = child.childSnapshot(forPath: "isSuccessful").value as! Bool
-                
-                taskList.append(Task(taskID: taskID, content: content, dueDate: dueDate, verifier: verifier, isFinished: isFinished, isVerified: isVerified, isSuccessful: isSuccessful))
-
-                
-            }
-            update()
-        })
-    }
-    /** Removes the user observer. This should be done when leaving the view that uses the observer. */
-    func removeTaskObserver() {
-        USER_REF.child("tasks").removeAllObservers()
-    }
-
-    
-    
     
     // MARK: - All friends
     /** The list of all friends of the current user. */
@@ -242,6 +236,39 @@ class FriendSystem {
     /** Removes the friend observer. This should be done when leaving the view that uses the observer. */
     func removeFriendObserver() {
         CURRENT_USER_FRIENDS_REF.removeAllObservers()
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    // MARK: - All requests
+    /** The list of all tasks the current user has. */
+    var taskList = [Task]()
+    /** Adds a friend request observer. The completion function will run every time this list changes, allowing you
+     to update your UI. */
+    func taskObserver(_ update: @escaping () -> Void) {
+        CURRENT_USER_TASK_REF.observe(DataEventType.value, with: { (snapshot) in
+            self.taskList.removeAll()
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                let id = child.key
+                self.getTask(id, completion: { (task) in
+                    self.taskList.append(task)
+                    update()
+                })
+            }
+            // If there are no children, run completion here instead
+            if snapshot.childrenCount == 0 {
+                update()
+            }
+        })
+    }
+    /** Removes the friend request observer. This should be done when leaving the view that uses the observer. */
+    func removeTaskObserver() {
+        CURRENT_USER_TASK_REF.removeAllObservers()
     }
     
     
@@ -275,17 +302,16 @@ class FriendSystem {
     
     
     
-    
-    /** The list of all friend requests the current user has. */
+    /** The list of all task requests the current user has. */
     var taskRequestList = [RequestTask]()
     /** Adds a friend request observer. The completion function will run every time this list changes, allowing you
      to update your UI. */
     func taskRequestObserver(_ update: @escaping () -> Void) {
         CURRENT_USER_TASKREQUEST_REF.observe(DataEventType.value, with: { (snapshot) in
-            self.requestList.removeAll()
+            self.taskRequestList.removeAll()
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 let id = child.key
-                self.getTask(id, completion: { (task) in
+                self.getRequestTask(id, completion: { (task) in
                     self.taskRequestList.append(task)
                     update()
                 })

@@ -13,9 +13,13 @@ class TaskVerifyTableViewController: UITableViewController {
     @IBOutlet weak var ownerLabel: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var taskContent: UITextField!
-    @IBOutlet weak var isFinished: UIImageView!
-    
+    @IBOutlet weak var hasFinished: UIButton!
+    @IBOutlet weak var hasVerified: UIButton!
+    @IBOutlet weak var hasSuccessful: UIButton!
     var requestTask: RequestTask = RequestTask()
+    var finished: Bool = false
+    var verified: Bool = false
+    var success: Bool = false
     
 
     override func viewDidLoad() {
@@ -23,10 +27,34 @@ class TaskVerifyTableViewController: UITableViewController {
         ownerLabel.text = requestTask.taskOwner
         dueDateLabel.text = requestTask.dueDate
         taskContent.text = requestTask.content
+        finished = requestTask.isFinished
+        verified = requestTask.isVerified
+        success = requestTask.isSuccessful
+        if finished {
+            hasFinished.imageView?.image = UIImage(named: "checkedbox")
+        }
         
+        if verified {
+            hasVerified.imageView?.image = UIImage(named: "checkedbox")
+        }
+        if success {
+            hasSuccessful.imageView?.image = UIImage(named: "checkedbox")
+        }
 
         
     }
+    
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        
+//        if taskFaceVerify || taskVoiceVerify {
+//            hasVerified.imageView?.image = UIImage(named: "checkedbox")
+//            hasSuccessful.imageView?.image = UIImage(named: "checkedbox")
+//            verified = true
+//            success = true
+//        }
+//        
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -44,67 +72,95 @@ class TaskVerifyTableViewController: UITableViewController {
     
     @IBAction func saveVerify(_ sender: UIBarButtonItem) {
         
+        updateTask()
+        updateRequesTask()
         
-        
-        
+        //
+        taskFaceVerify = false
+        taskVoiceVerify = false
         performSegue(withIdentifier: "AfterVerify", sender: self)
     }
-
-
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+    
+    @IBAction func taskVerifyFace(_ sender: UIButton) {
+        if !finished {
+            presentAlertView()
+            return
+        }
+        
+        performSegue(withIdentifier: "taskFaceVerify", sender: self)
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    
+    @IBAction func taskVerifyVoice(_ sender: UIButton) {
+        if !finished {
+            presentAlertView()
+            return
+        }
+        
+        performSegue(withIdentifier: "taskVoiceVerify", sender: self)
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    func presentAlertView() {
+        let alertController = UIAlertController(title: "Attention", message: "You must verify your friends' tasks after they finished! So remind them to finish tasks!", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "taskFaceVerify" {
+            let dest = segue.destination as! VerifyViewController
+            dest.hidesBottomBarWhenPushed = true
+            faceSegueFrom = "taskVerify"
+            
+        }
+        
+        if segue.identifier == "taskVoiceVerify" {
+            let dest = segue.destination as! SpeechViewController
+            dest.hidesBottomBarWhenPushed = true
+            voiceSegueFrom = "taskVerify"
+            
+        }
+        
+        
+        
     }
-    */
+
+    @IBAction func unwindToTaskVerify(segue: UIStoryboardSegue) {
+        
+        if segue.identifier == "unwindToTaskVerify"  {
+            if taskFaceVerify || taskVoiceVerify {
+                hasVerified.imageView?.image = UIImage(named: "checkedbox")
+                hasSuccessful.imageView?.image = UIImage(named: "checkedbox")
+                verified = true
+                success = true
+            }
+
+        }
+        
+    }
+
+    
+    func updateTask() {
+        let taskID = requestTask.taskID
+        let ownerID = requestTask.userID
+
+        USER_REF.child(ownerID).child("tasks").child(taskID).child("isVerified").setValue(verified)
+        USER_REF.child(ownerID).child("tasks").child(taskID).child("isSuccessful").setValue(success)
+        
+    }
+    
+    func updateRequesTask() {
+        let taskID = requestTask.taskID
+        CURRENT_USER_REF.child("taskrequests").child(taskID).child("isVerified").setValue(verified)
+        CURRENT_USER_REF.child("taskrequests").child(taskID).child("isSuccessful").setValue(success)
+        
+        
+    }
+
 
 }

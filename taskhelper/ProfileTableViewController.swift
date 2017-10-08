@@ -54,16 +54,15 @@ class ProfileTableViewController: UITableViewController,UINavigationControllerDe
         super.viewDidLoad()
         
         var method = ""
-        if localUser.faceRecog {
+        if !isVoiceVerify {
             method = method + " Face ecognition"
         }
-        if localUser.voiceRecog {
+        if !isFaceVerify {
             method = method + " Speech Recognition"
         }
         
-        if !localUser.isVerified {
-            method = " None!"
-        }
+            
+
         
         sectionContent[0][0] = "Username: " + localUser.username
         sectionContent[0][1] = "Total Tasks: " + String(localUser.taskNum)
@@ -224,7 +223,7 @@ class ProfileTableViewController: UITableViewController,UINavigationControllerDe
         
         coverWidthCons.isActive = true
         coverHeightCons.isActive = true
-        
+        localUser.profileImage = profileImage.image!
         //dimiss the view
         dismiss(animated: true, completion: nil)
     }
