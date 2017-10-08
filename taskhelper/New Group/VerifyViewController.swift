@@ -155,6 +155,7 @@ class VerifyViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                 DispatchQueue.main.async {
                     self.present(verifyUnsucc, animated: true, completion: nil)
                 }
+                return
             }
             
             self.faceFromPhoto = faces![0]

@@ -18,6 +18,9 @@ var dataControl = DatabaseControl()
 var users = [NSManagedObject]()
 var userTasks = [NSManagedObject]()
 var userFriends = [NSManagedObject]()
+var isVerified: Bool = false
+var isFaceVerify: Bool = false
+var isVoiceVerify: Bool = false
 
 class ResLogViewController: UIViewController {
     
@@ -29,6 +32,14 @@ class ResLogViewController: UIViewController {
     
     
     @IBAction func unwindToResLog(segue: UIStoryboardSegue) {
+        
+        if segue.identifier == "unwindVerifyDone" {
+            isVerified = true
+            localUser.isVerified = isVerified
+            
+        }
+
+        
         
     }
 
@@ -64,6 +75,15 @@ class ResLogViewController: UIViewController {
     }
     
     @IBAction func logIn(_ sender: UIButton) {
+        if !isVerified {
+            verifyAlertView()
+            return
+            
+        }
+        
+        print("ceshi")
+        print(localUser.faceRecog)
+        print(localUser.voiceRecog)
         if email.text != "" {
             localUser.email = email.text!
             FriendSystem.system.loginAccount(email.text!, password: "123456") { (success) in
@@ -83,6 +103,14 @@ class ResLogViewController: UIViewController {
     
     func presentLoginAlertView() {
         let alertController = UIAlertController(title: "Error", message: "Email is invalid", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    func verifyAlertView() {
+        let alertController = UIAlertController(title: "Attention", message: "Please login after verifying your face or voice!", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(defaultAction)
         present(alertController, animated: true, completion: nil)

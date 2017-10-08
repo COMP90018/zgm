@@ -8,6 +8,7 @@ import UIKit
 
 class PopupViewController: UIViewController {
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,7 +21,42 @@ class PopupViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        
     }
+    
+    
+    @IBAction func retryLogin(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "unwindVerifyFail", sender: self)
+    }
+    
+    
+    //verified successfully
+    @IBAction func faceLogin(_ sender: UIButton) {
+        performSegue(withIdentifier: "unwindVerifyDone", sender: self)
+        
+    }
+    
+    
+    
+    
+    
+    
+    @IBAction func faceCreated(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "unwindFaceToSignup", sender: self)
+    }
+    
+    
+    
+    
+    @IBAction func voiceCreated(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "unwindVoiceToSignup", sender: self)
+    }
+    
+    
+    
     
     func showAnimate(){
         self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)

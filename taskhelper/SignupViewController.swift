@@ -24,6 +24,16 @@ class SignupViewController: UIViewController, UIGestureRecognizerDelegate, UIIma
     var storageRef: StorageReference!
     
     @IBAction func unwindToSignup(segue: UIStoryboardSegue) {
+        if segue.identifier == "unwindVoiceToSignup" {
+            isFaceVerify = true
+            localUser.faceRecog = isFaceVerify
+            
+        }
+        if segue.identifier == "unwindFaceToSignup" {
+            isVoiceVerify = true
+            localUser.voiceRecog = isVoiceVerify
+            
+        }
         
     }
     
@@ -119,6 +129,11 @@ class SignupViewController: UIViewController, UIGestureRecognizerDelegate, UIIma
     
     @IBAction func signUp(_ sender: UIButton) {
         if email.text != ""  && username.text != "" {
+            if !(isVoiceVerify || isFaceVerify) {
+                createVerifyAlertView()
+                return
+            }
+            
             localUser.email = email.text!
             localUser.username = username.text!
             FriendSystem.system.createAccount(email.text!, username.text!, password: "123456") { (success) in
@@ -137,6 +152,7 @@ class SignupViewController: UIViewController, UIGestureRecognizerDelegate, UIIma
                     
                     if let imageData = UIImageJPEGRepresentation(self.profilio.image!, 0.7) {
                         user.setValue(NSData(data: imageData), forKey: "profileImage")
+                        localUser.profileImage = self.profilio.image!
                     }
                     user.setValue(localUser.email, forKey: "email")
                     user.setValue(localUser.username, forKey: "username")
@@ -196,6 +212,15 @@ class SignupViewController: UIViewController, UIGestureRecognizerDelegate, UIIma
         alertController.addAction(defaultAction)
         present(alertController, animated: true, completion: nil)
     }
+    
+    
+    func createVerifyAlertView() {
+        let alertController = UIAlertController(title: "Attention", message: "Please create your verify method at first!", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
     
     func myMethodToHandleTap(_ sender: UITapGestureRecognizer) {
         

@@ -175,6 +175,7 @@ class AddTaskViewController: UITableViewController {
         var requestTaskInfo = [String: AnyObject]()
         requestTaskInfo = [
             "userID": CURRENT_USER_ID as AnyObject,
+            //"friendID": friendID as AnyObject,
             "taskOwner": localUser.username as AnyObject,
             "taskID": taskID as AnyObject,
             "content": taskContent.text as AnyObject,

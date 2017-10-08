@@ -70,39 +70,42 @@ class ProfileTableViewController: UITableViewController,UINavigationControllerDe
         sectionContent[0][2] = "Compeleted Tasks: " + String(localUser.taskCompeleteNum)
         sectionContent[0][3] = "Verification Methods:" + method
         
+       // downloadImage()
+        profileImage.image = localUser.profileImage
+        
         profileImage.layer.cornerRadius = profileImage.frame.size.width/2
         profileImage.clipsToBounds = true
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-        
-        do {
-            let results = try managedContext.fetch(fetchRequest)
-            
-            if results.count != 0 {
-                
-                for result in results {
-                    
-                    if (result as AnyObject).value(forKey: "email") as! String == localUser.email {
-                        
-                        let data = (result as AnyObject).value(forKey: "profileImage") as! Data
-                        profileImage.image = UIImage(data: data)
-                        downloadImage()
-                        profileImage.image = localUser.profileImage
-                        
-                    } else {
-                        downloadImage()
-                        profileImage.image = localUser.profileImage
-                    }
-                }
-                
-            }
-            
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
-        }
-        
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        let managedContext = appDelegate.managedObjectContext
+//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+//        
+//        do {
+//            let results = try managedContext.fetch(fetchRequest)
+//            
+//            if results.count != 0 {
+//                
+//                for result in results {
+//                    
+//                    if (result as AnyObject).value(forKey: "email") as! String == localUser.email {
+//                        
+//                        let data = (result as AnyObject).value(forKey: "profileImage") as! Data
+//                        profileImage.image = UIImage(data: data)
+//                        downloadImage()
+//                        profileImage.image = localUser.profileImage
+//                        
+//                    } else {
+//                        downloadImage()
+//                        profileImage.image = localUser.profileImage
+//                    }
+//                }
+//                
+//            }
+//            
+//        } catch let error as NSError {
+//            print("Could not fetch \(error), \(error.userInfo)")
+//        }
+//        
         
 
 

@@ -190,6 +190,23 @@ class TaskDetailTableViewController: UITableViewController {
         
     }
 
+    func uploadRequesTask() {
+        var requestTaskInfo = [String: AnyObject]()
+        requestTaskInfo = [
+            "userID": CURRENT_USER_ID as AnyObject,
+            "taskOwner": localUser.username as AnyObject,
+            "taskID": taskID as AnyObject,
+            "content": taskContent.text as AnyObject,
+            "dueDate": dueDate as AnyObject,
+            "verifier": friendNameLabel.text as AnyObject,
+            "isFinished": isCompeleted.isSelected as AnyObject,
+            "isVerified": isCompeleted.isSelected as AnyObject,
+            "isSuccessful": isCompeleted.isSelected as AnyObject]
+       // USER_REF.child(friendID).child("taskrequests").child(taskID).setValue(requestTaskInfo)
+        
+        
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
