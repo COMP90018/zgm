@@ -16,7 +16,7 @@ class ProfileTableViewController: UITableViewController,UINavigationControllerDe
     @IBOutlet weak var profileImage: UIImageView!
     
     var sectionTitle = ["Personal Information","Task Helper","More Options","About Us"]
-    var sectionContent = [["","","",""],["Help Your Friends","Friends"],["Settings"],["Website","Github"]]
+    var sectionContent = [["","","",""],["Help Your Friends","Friends Request"],["Settings"],["Website","Github"]]
     var links = ["https://taskhelper.azurewebsites.net","https://github.com/COMP90018/zgm"]
     
     var secNum:Int = 0
@@ -44,6 +44,9 @@ class ProfileTableViewController: UITableViewController,UINavigationControllerDe
         
     }
     
+    @IBAction func unwindToProfile(segue: UIStoryboardSegue) {
+        
+    }
     
     
     
@@ -85,6 +88,8 @@ class ProfileTableViewController: UITableViewController,UINavigationControllerDe
                         
                         let data = (result as AnyObject).value(forKey: "profileImage") as! Data
                         profileImage.image = UIImage(data: data)
+                        downloadImage()
+                        profileImage.image = localUser.profileImage
                         
                     } else {
                         downloadImage()
@@ -166,7 +171,7 @@ class ProfileTableViewController: UITableViewController,UINavigationControllerDe
             if rowNum == 1 {
                 performSegue(withIdentifier: "showRequestTable", sender: self)
             }
-            performSegue(withIdentifier: "showDetailProfile", sender: self)
+            performSegue(withIdentifier: "showRequestTask", sender: self)
         case 2:
             secNum = 2
             rowNum = indexPath.row
@@ -247,12 +252,13 @@ class ProfileTableViewController: UITableViewController,UINavigationControllerDe
     
     func downloadImage() {
         let storageRef = Storage.storage().reference()
-        let islandRef = storageRef.child("images/\(localUser.email)jpg")
+        let islandRef = storageRef.child("images/\(localUser.email).jpg")
         
         // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
         islandRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
             if let error = error {
                 // Uh-oh, an error occurred!
+                print("download not found")
             } else {
                 // Data for "images/island.jpg" is returned
                 localUser.profileImage = UIImage(data: data!)!

@@ -150,7 +150,7 @@ class TaskHomeViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {
         
-        if segue.identifier == "unwindToHome" {
+        if segue.identifier == "unwindToHome" || segue.identifier == "unwindDetailToHome"  {
             fetchTaskInfo()
             tableView.reloadData()
         }

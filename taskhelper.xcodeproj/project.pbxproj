@@ -29,6 +29,8 @@
 		8E3244341F76597000E08D26 /* TaskHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3244331F76597000E08D26 /* TaskHomeViewController.swift */; };
 		8E3244361F765A2C00E08D26 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3244351F765A2C00E08D26 /* Task.swift */; };
 		8E3DADD31F7DEB2B00C09680 /* PaddingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3DADD21F7DEB2B00C09680 /* PaddingTextField.swift */; };
+		8E4578861F88F9DE00B3CA27 /* VerifyTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4578851F88F9DE00B3CA27 /* VerifyTaskTableViewController.swift */; };
+		8E6394E71F88D941004A607C /* ChooseFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6394E61F88D941004A607C /* ChooseFriendsTableViewController.swift */; };
 		8E7D9C041F8792E40009C377 /* DatabaseControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7D9C031F8792E40009C377 /* DatabaseControl.swift */; };
 		8E8897631F77F1110016F831 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8897621F77F1110016F831 /* AddTaskViewController.swift */; };
 		8E8897651F77F5C90016F831 /* TaskDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8897641F77F5C90016F831 /* TaskDetailTableViewController.swift */; };
@@ -76,6 +78,8 @@
 		8E3244331F76597000E08D26 /* TaskHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskHomeViewController.swift; sourceTree = "<group>"; };
 		8E3244351F765A2C00E08D26 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		8E3DADD21F7DEB2B00C09680 /* PaddingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingTextField.swift; sourceTree = "<group>"; };
+		8E4578851F88F9DE00B3CA27 /* VerifyTaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyTaskTableViewController.swift; sourceTree = "<group>"; };
+		8E6394E61F88D941004A607C /* ChooseFriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseFriendsTableViewController.swift; sourceTree = "<group>"; };
 		8E7D9C031F8792E40009C377 /* DatabaseControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseControl.swift; sourceTree = "<group>"; };
 		8E8897621F77F1110016F831 /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		8E8897641F77F5C90016F831 /* TaskDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailTableViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +168,7 @@
 				8E8897621F77F1110016F831 /* AddTaskViewController.swift */,
 				8E8897641F77F5C90016F831 /* TaskDetailTableViewController.swift */,
 				8E8897661F78863A0016F831 /* TaskTableViewCell.swift */,
+				8E4578851F88F9DE00B3CA27 /* VerifyTaskTableViewController.swift */,
 			);
 			name = Task;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 				8E8897691F788E450016F831 /* FriendsTableViewController.swift */,
 				77EF6E461F889A5F0019A9F5 /* AddUsernameTableViewController.swift */,
 				77EF6E481F889A950019A9F5 /* FriendRequestViewController.swift */,
+				8E6394E61F88D941004A607C /* ChooseFriendsTableViewController.swift */,
 			);
 			name = Friends;
 			sourceTree = "<group>";
@@ -442,6 +448,7 @@
 				A2BD20971AC8A731007F7181 /* QSTodoDataModel.xcdatamodeld in Sources */,
 				8E3DADD31F7DEB2B00C09680 /* PaddingTextField.swift in Sources */,
 				77EF6E491F889A950019A9F5 /* FriendRequestViewController.swift in Sources */,
+				8E4578861F88F9DE00B3CA27 /* VerifyTaskTableViewController.swift in Sources */,
 				8EB8D7A21F7B8A61005FC912 /* DetailProfileTableViewController.swift in Sources */,
 				A2D9CBC41943C2540017F096 /* AppDelegate.swift in Sources */,
 				77F2002C1F7CE43400D0F70A /* FriendSystem.swift in Sources */,
@@ -449,6 +456,7 @@
 				8EB4E1D71F7F7B2B00671B07 /* Model.xcdatamodeld in Sources */,
 				558EA7AA1F83934F00C3CC07 /* VerifyViewController.swift in Sources */,
 				8E88976A1F788E450016F831 /* FriendsTableViewController.swift in Sources */,
+				8E6394E71F88D941004A607C /* ChooseFriendsTableViewController.swift in Sources */,
 				558EA7A61F83643500C3CC07 /* PopupViewController.swift in Sources */,
 				77EF6E471F889A5F0019A9F5 /* AddUsernameTableViewController.swift in Sources */,
 			);

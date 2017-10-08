@@ -15,10 +15,6 @@ class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var finishBtn: UIButton!
     
     
-    @IBAction func isCompeleted(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        
-    }
     
 
     override func awakeFromNib() {

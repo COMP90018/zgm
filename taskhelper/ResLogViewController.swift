@@ -13,6 +13,7 @@ import FirebaseDatabase
 
 var localUser = User()
 var taskList = [Task]()
+var localFriend = Friend()
 var dataControl = DatabaseControl()
 var users = [NSManagedObject]()
 var userTasks = [NSManagedObject]()

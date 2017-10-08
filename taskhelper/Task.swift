@@ -13,12 +13,12 @@ struct Task {
     var taskID: String
     var content: String
     var dueDate: String
-    var verifier: [Friend]
+    var verifier: String
     var isFinished: Bool
     var isVerified: Bool
     var isSuccessful: Bool
     
-    init(taskID: String, content: String,dueDate: String, verifier: [Friend], isFinished: Bool, isVerified: Bool, isSuccessful: Bool) {
+    init(taskID: String, content: String,dueDate: String, verifier: String, isFinished: Bool, isVerified: Bool, isSuccessful: Bool) {
         self.taskID = taskID
         self.content = content
         self.dueDate = dueDate
@@ -32,10 +32,45 @@ struct Task {
         self.taskID = ""
         self.content = ""
         self.dueDate = ""
-        self.verifier = [Friend]()
+        self.verifier = ""
+        self.isFinished = false
+        self.isVerified = false
+        self.isSuccessful = false
+    }
+    
+    
+}
+
+
+struct RequestTask {
+    var userID: String
+    var taskID: String
+    var content: String
+    var dueDate: String
+    var verifier: String
+    var isFinished: Bool
+    var isVerified: Bool
+    var isSuccessful: Bool
+    
+    init(userID: String, taskID: String, content: String,dueDate: String, verifier: String, isFinished: Bool, isVerified: Bool, isSuccessful: Bool) {
+        self.userID = userID
+        self.taskID = taskID
+        self.content = content
+        self.dueDate = dueDate
+        self.verifier = verifier
+        self.isFinished = isFinished
+        self.isVerified = isVerified
+        self.isSuccessful = isSuccessful
+    }
+    
+    init() {
+        self.userID = ""
+        self.taskID = ""
+        self.content = ""
+        self.dueDate = ""
+        self.verifier = ""
         self.isFinished = false
         self.isVerified = false
         self.isSuccessful = false
     }
 }
-

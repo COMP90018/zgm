@@ -3,6 +3,7 @@
 //  taskhelper
 //
 //  Created by Yijie Zhang on 28/9/17.
+//  Edited by Dong Gao on 07/10/17
 //  Copyright © 2017 Microsoft. All rights reserved.
 //
 
@@ -31,6 +32,11 @@ var CURRENT_USER_FRIENDS_REF: DatabaseReference {
 /** The Firebase reference to the current user's friend request tree */
 var CURRENT_USER_REQUESTS_REF: DatabaseReference {
     return CURRENT_USER_REF.child("requests")
+}
+
+
+var CURRENT_USER_TASKREQUEST_REF: DatabaseReference {
+    return CURRENT_USER_REF.child("taskrequests")
 }
 
 /** The current user's id */
@@ -64,6 +70,20 @@ class FriendSystem {
         })
     }
     
+    /** Gets the Task object for the specified task id */
+    func getTask(_ taskID: String, completion: @escaping (RequestTask) -> Void) {
+        CURRENT_USER_TASKREQUEST_REF.child(taskID).observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+            let userID = snapshot.childSnapshot(forPath: "userID").value as! String
+            let content = snapshot.childSnapshot(forPath: "content").value as! String
+            let dueDate = snapshot.childSnapshot(forPath: "dueDate").value as! String
+            let verifier = snapshot.childSnapshot(forPath: "verifier").value as! String
+            let isFinished = snapshot.childSnapshot(forPath: "isFinished").value as! Bool
+            let isVerified = snapshot.childSnapshot(forPath: "isVerified").value as! Bool
+            let isSuccessful = snapshot.childSnapshot(forPath: "isSuccessful").value as! Bool
+            let id = snapshot.key
+            completion(RequestTask(userID: userID, taskID: id, content: content, dueDate: dueDate, verifier: verifier, isFinished: isFinished, isVerified: isVerified, isSuccessful: isSuccessful))
+        })
+    }
     
     
     // MARK: - Account Related
@@ -177,7 +197,7 @@ class FriendSystem {
                 let taskID = child.childSnapshot(forPath: "taskID").value as! String
                 let content = child.childSnapshot(forPath: "content").value as! String
                 let dueDate = child.childSnapshot(forPath: "dueDate").value as! String
-                let verifier = child.childSnapshot(forPath: "verifier").value as! [Friend]
+                let verifier = child.childSnapshot(forPath: "verifier").value as! String
                 let isFinished = child.childSnapshot(forPath: "isFinished").value as! Bool
                 let isVerified = child.childSnapshot(forPath: "isVerified").value as! Bool
                 let isSuccessful = child.childSnapshot(forPath: "isSuccessful").value as! Bool
@@ -249,6 +269,35 @@ class FriendSystem {
     /** Removes the friend request observer. This should be done when leaving the view that uses the observer. */
     func removeRequestObserver() {
         CURRENT_USER_REQUESTS_REF.removeAllObservers()
+    }
+    
+    
+    
+    
+    
+    /** The list of all friend requests the current user has. */
+    var taskRequestList = [RequestTask]()
+    /** Adds a friend request observer. The completion function will run every time this list changes, allowing you
+     to update your UI. */
+    func taskRequestObserver(_ update: @escaping () -> Void) {
+        CURRENT_USER_TASKREQUEST_REF.observe(DataEventType.value, with: { (snapshot) in
+            self.requestList.removeAll()
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                let id = child.key
+                self.getTask(id, completion: { (task) in
+                    self.taskRequestList.append(task)
+                    update()
+                })
+            }
+            // If there are no children, run completion here instead
+            if snapshot.childrenCount == 0 {
+                update()
+            }
+        })
+    }
+    /** Removes the friend request observer. This should be done when leaving the view that uses the observer. */
+    func removeTaskRequestObserver() {
+        CURRENT_USER_TASKREQUEST_REF.removeAllObservers()
     }
     
 }
